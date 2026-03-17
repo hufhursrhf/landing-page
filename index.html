@@ -40,6 +40,19 @@ nav{
   letter-spacing:.28em;text-transform:uppercase;
   color:var(--gold);text-decoration:none;
 }
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-login{
+  display:inline-flex;align-items:center;
+  padding:.52rem 1.1rem;
+  background:transparent;border:none;
+  color:var(--t-mid);
+  font-family:'Inter',sans-serif;
+  font-size:.6rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;
+  transition:color .2s;
+}
+.nav-login:hover{color:var(--t-hi)}
 .nav-cta{
   display:inline-flex;align-items:center;
   padding:.52rem 1.25rem;
@@ -351,16 +364,19 @@ footer{
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Haloways</a>
-  <a class="nav-cta" href="#cta">Tester gratuitement</a>
+  <div class="nav-actions">
+    <a class="nav-login" href="https://app.haloways.com/login">Se connecter</a>
+    <a class="nav-cta" href="https://app.haloways.com/signup">Tester gratuitement</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <span class="hero-eyebrow">Introductions sur mesure</span>
-  <h1 class="hero-h1">De nouveaux clients<br>vous sont présentés.<br><em>Chaque semaine.</em></h1>
-  <p class="hero-sub">Haloways sélectionne chaque semaine un membre dont le réseau correspond à vos cibles — et réciproquement. Un 1-to-1. Des introductions en 30 secondes.</p>
+  <h1 class="hero-h1">Rencontrez vos prochains clients.<br><em>Par introduction, chaque semaine.</em></h1>
+  <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en 30 secondes.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="#cta">Tester gratuitement</a>
+    <a class="btn-primary" href="https://app.haloways.com/signup">Tester gratuitement</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
   </div>
   <div class="hero-proof">
@@ -429,7 +445,7 @@ footer{
 
     <!-- 2 -->
     <div class="card">
-      <p class="card-quote">"J'ai trouvé 10 personnes en 1 mois dans mon groupe qui pouvaient m'introduire auprès de mes cibles. Impossible à faire manuellement."</p>
+      <p class="card-quote">"J'ai trouvé 10 personnes en 1 mois sur Haloways qui pouvaient m'introduire auprès de mes cibles. Impossible à faire manuellement."</p>
       <div class="card-author">
         <div class="avatar av-13"><img src="photos/yoka.png" alt="Yoka Sola" onerror="this.style.display='none';this.parentElement.textContent='YS'"></div>
         <div class="author-info">
@@ -525,7 +541,7 @@ footer{
 
     <!-- 10 -->
     <div class="card">
-      <p class="card-quote">"La magie, c'est de découvrir que quelqu'un dans un groupe Haloways connaît exactement la personne que tu cherches depuis des mois."</p>
+      <p class="card-quote">"La magie, c'est de découvrir que quelqu'un sur Haloways connaît exactement la personne que tu cherches à rencontrer depuis des mois."</p>
       <div class="card-author">
         <div class="avatar av-9"><img src="photos/hadrien.png" alt="Hadrien Grobois" onerror="this.style.display='none';this.parentElement.textContent='HG'"></div>
         <div class="author-info">
@@ -577,21 +593,20 @@ footer{
 <!-- FINAL CTA -->
 <section class="cta-block" id="cta">
   <div class="rule"></div>
-  <span class="section-label">Candidature</span>
   <h2 class="cta-title">Vos prochains clients n'attendent pas un message à froid.</h2>
   <p class="cta-sub">Ils attendent une introduction.</p>
-  <a class="btn-primary" href="https://tally.so/r/wbNjNZ" target="_blank">Tester gratuitement</a>
+  <a class="btn-primary" href="https://app.haloways.com/signup">Tester gratuitement</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Haloways</span>
   <div class="footer-links">
-    <a href="mailto:hello@haloways.co">Contact</a>
-    <a href="#">Mentions légales</a>
-    <a href="#">Confidentialité</a>
+    <a href="mailto:contact@haloways.com">Contact</a>
+    <a href="terms.html">Conditions d'utilisation</a>
+    <a href="privacy.html">Confidentialité</a>
   </div>
-  <span class="footer-copy">© 2025 Haloways</span>
+  <span class="footer-copy">© 2026 Haloways</span>
 </footer>
 
 </body>
