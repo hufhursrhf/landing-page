@@ -356,38 +356,30 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 #splash{
   position:fixed;inset:0;z-index:9999;
   background:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:0;
-  transition:opacity .6s ease;
+  display:flex;align-items:center;justify-content:center;
+  animation:splash-fade-out 800ms cubic-bezier(0.33,0,0.66,0) 2600ms forwards;
 }
-#splash.fade-out{opacity:0;pointer-events:none}
-.splash-line{
-  width:1px;height:48px;
-  background:rgba(201,168,76,0.4);
-  margin-bottom:28px;
-  animation:splash-grow .6s ease forwards;
+@keyframes splash-fade-out{from{opacity:1}to{opacity:0;pointer-events:none}}
+.splash-word{
+  display:flex;flex-direction:row;align-items:center;
 }
-@keyframes splash-grow{from{height:0;opacity:0}to{height:48px;opacity:1}}
-.splash-logo{
+.splash-letter{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;font-weight:400;
-  letter-spacing:.32em;text-transform:uppercase;
+  font-size:2rem;font-weight:300;
+  letter-spacing:.06em;text-transform:uppercase;
   color:var(--gold);
-  animation:splash-in .5s .2s ease both;
+  opacity:0;
+  animation:letter-in 168ms cubic-bezier(0.16,1,0.3,1) forwards;
 }
-.splash-dots{
-  display:flex;gap:6px;margin-top:32px;
-  animation:splash-in .4s .4s ease both;
-}
-.splash-dot{
-  width:4px;height:4px;border-radius:50%;
-  background:rgba(201,168,76,0.4);
-  animation:splash-pulse 1.4s ease-in-out infinite;
-}
-.splash-dot:nth-child(2){animation-delay:.2s}
-.splash-dot:nth-child(3){animation-delay:.4s}
-@keyframes splash-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@keyframes splash-pulse{0%,100%{opacity:.35}50%{opacity:.85}}
+.splash-letter:nth-child(1){animation-delay:7ms}
+.splash-letter:nth-child(2){animation-delay:182ms}
+.splash-letter:nth-child(3){animation-delay:357ms}
+.splash-letter:nth-child(4){animation-delay:532ms}
+.splash-letter:nth-child(5){animation-delay:707ms}
+.splash-letter:nth-child(6){animation-delay:882ms}
+.splash-letter:nth-child(7){animation-delay:1057ms}
+.splash-letter:nth-child(8){animation-delay:1232ms}
+@keyframes letter-in{from{opacity:0}to{opacity:1}}
 
 /* ── DIVIDERS ── */
 .rule{
@@ -418,12 +410,15 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-line"></div>
-  <span class="splash-logo">Haloways</span>
-  <div class="splash-dots">
-    <div class="splash-dot"></div>
-    <div class="splash-dot"></div>
-    <div class="splash-dot"></div>
+  <div class="splash-word">
+    <span class="splash-letter">H</span>
+    <span class="splash-letter">A</span>
+    <span class="splash-letter">L</span>
+    <span class="splash-letter">O</span>
+    <span class="splash-letter">W</span>
+    <span class="splash-letter">A</span>
+    <span class="splash-letter">Y</span>
+    <span class="splash-letter">S</span>
   </div>
 </div>
 
@@ -727,13 +722,11 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 </footer>
 
 <script>
-window.addEventListener('load', function() {
+// Remove splash from DOM after animation completes (2600ms delay + 800ms fade)
+setTimeout(function() {
   var splash = document.getElementById('splash')
-  setTimeout(function() {
-    splash.classList.add('fade-out')
-    setTimeout(function() { splash.style.display = 'none' }, 650)
-  }, 1200)
-})
+  if (splash) splash.style.display = 'none'
+}, 3400)
 </script>
 </body>
 </html>
