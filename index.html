@@ -359,6 +359,17 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   display:flex;align-items:center;justify-content:center;
   animation:splash-fade-out 800ms cubic-bezier(0.33,0,0.66,0) 2600ms forwards;
 }
+#splash::before{
+  content:'';
+  position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(
+    to right,
+    rgba(255,255,255,0.014) 0px,
+    rgba(255,255,255,0.014) 1px,
+    transparent 1px,
+    transparent 38px
+  );
+}
 @keyframes splash-fade-out{from{opacity:1}to{opacity:0;pointer-events:none}}
 .splash-word{
   display:flex;flex-direction:row;align-items:center;
@@ -717,6 +728,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <a href="mailto:contact@haloways.com">Contact</a>
     <a href="terms.html">Conditions d'utilisation</a>
     <a href="privacy.html">Confidentialité</a>
+    <a href="ai.html">Technologies IA</a>
   </div>
   <span class="footer-copy">© 2026 Haloways</span>
 </footer>
