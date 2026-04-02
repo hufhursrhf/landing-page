@@ -85,6 +85,42 @@ nav{
 .nav-cta:hover{background:var(--gold);color:var(--ink)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:102}
 .burger span{display:block;width:18px;height:1px;background:var(--gold);margin:5px 0;transition:transform .3s,opacity .2s}
+.mobile-menu{
+  display:none;position:fixed;inset:0;
+  z-index:9998;
+  background:var(--ink);
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:0;
+  opacity:0;transition:opacity .3s;
+}
+.mobile-menu::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.014) 0px,rgba(255,255,255,0.014) 1px,transparent 1px,transparent 38px);
+}
+.mobile-menu.open{display:flex;opacity:1}
+.mobile-link{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:300;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ivory);text-decoration:none;
+  padding:20px 0;position:relative;z-index:1;
+  transition:color .2s;
+}
+.mobile-link:hover{color:var(--gold)}
+.mobile-sep{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.25),transparent);position:relative;z-index:1}
+.mobile-cta{
+  display:inline-flex;align-items:center;
+  margin-top:40px;
+  padding:.85rem 2.4rem;
+  background:transparent;
+  border:1px solid rgba(201,168,76,.4);
+  color:var(--gold);
+  font-family:'Inter',sans-serif;
+  font-size:.65rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;position:relative;z-index:1;
+  transition:background .25s,color .25s;
+}
+.mobile-cta:hover{background:var(--gold);color:var(--ink)}
 
 /* ── HERO ── */
 .hero{
@@ -470,30 +506,9 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:0 24px}
+  .nav-desktop{display:none}
   .burger{display:flex;flex-direction:column;justify-content:center}
-  .nav-actions{
-    display:none;flex-direction:column;
-    position:fixed;top:0;left:0;right:0;bottom:0;
-    background:var(--ink);
-    padding:140px 40px 60px;gap:0;
-    align-items:center;justify-content:flex-start;
-    z-index:99;
-  }
-  .nav-actions::before{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.014) 0px,rgba(255,255,255,0.014) 1px,transparent 1px,transparent 38px);
-  }
-  .nav-actions.open{display:flex}
-  .nav-actions .nav-sep{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.25),transparent);margin:8px 0}
-  .nav-actions .nav-login{
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.6rem;font-weight:300;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--ivory);padding:16px 0;
-  }
-  .nav-actions .nav-cta{
-    font-size:.7rem;letter-spacing:.2em;padding:.85rem 2.2rem;
-    margin-top:32px;border-color:rgba(201,168,76,.4);
-  }
+  .burger.open{z-index:9999}
   .burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
@@ -536,14 +551,21 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Haloways</a>
-  <button class="burger" aria-label="Menu" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
-  <div class="nav-actions">
-    <a class="nav-login" href="#tarif" onclick="document.querySelector('.burger').classList.remove('open');document.querySelector('.nav-actions').classList.remove('open')">Prix</a>
+  <div class="nav-actions nav-desktop">
+    <a class="nav-login" href="#tarif">Prix</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
     <a class="nav-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
   </div>
+  <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
+<div id="mobile-menu" class="mobile-menu">
+  <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Prix</a>
+  <span class="mobile-sep"></span>
+  <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
+  <span class="mobile-sep"></span>
+  <a class="mobile-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -848,11 +870,14 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 </footer>
 
 <script>
-// Remove splash from DOM after animation completes (2600ms delay + 800ms fade)
 setTimeout(function() {
   var splash = document.getElementById('splash')
   if (splash) splash.style.display = 'none'
 }, 3400)
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open')
+  document.querySelector('.burger').classList.remove('open')
+}
 </script>
 </body>
 </html>
