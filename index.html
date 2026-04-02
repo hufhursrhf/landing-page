@@ -128,7 +128,7 @@ nav{
 }
 .hero-actions{display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap}
 .btn-primary{
-  display:inline-flex;align-items:center;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center;
   padding:.85rem 2.2rem;
   background:var(--gold);color:var(--ink);
   font-family:'Inter',sans-serif;
@@ -328,22 +328,45 @@ nav{
 /* ── PRICING ── */
 .pricing{
   padding:100px 40px;
+  display:flex;justify-content:center;
+}
+.pricing-card{
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:20px;
+  padding:56px 64px 52px;
   text-align:center;
+  max-width:420px;width:100%;
+  position:relative;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.05) 0%,transparent 60%),
+    rgba(255,255,255,.015);
+  backdrop-filter:blur(2px);
+}
+.pricing-card::before{
+  content:'';position:absolute;inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(201,168,76,.12) 0%,transparent 50%);
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;-webkit-mask-composite:xor;
+  padding:1px;pointer-events:none;
+}
+.pricing-card .section-label{
+  display:block;margin-bottom:8px;
 }
 .price-row{
   display:inline-flex;align-items:baseline;gap:10px;
-  margin:28px 0 14px;
+  margin:20px 0 14px;
 }
 .price-num{
   font-family:'Inter',sans-serif;
-  font-size:clamp(3rem,8vw,5rem);
+  font-size:clamp(2.8rem,7vw,4.2rem);
   font-weight:300;line-height:1;
   color:var(--ivory);
   letter-spacing:-.02em;
 }
 .price-unit{
   font-family:'Inter',sans-serif;
-  font-size:.75rem;font-weight:300;
+  font-size:.72rem;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
   color:var(--t-mid);
 }
@@ -352,7 +375,10 @@ nav{
   font-style:italic;
   font-size:1.05rem;
   color:rgba(201,168,76,.55);
-  margin-bottom:40px;
+  margin-bottom:36px;
+}
+.pricing-card .btn-primary{
+  width:100%;
 }
 
 /* ── FOOTER ── */
@@ -447,12 +473,17 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 24px}
+  nav{padding:0 16px}
+  .nav-login,.nav-sep{display:none}
+  .nav-cta{padding:.48rem 1rem;font-size:.55rem;letter-spacing:.16em}
   .section{padding:72px 24px}
   .testimonials{padding:60px 24px 80px}
   .wall{columns:1}
   .hero-proof{gap:24px}
   .proof-sep{display:none}
+  .pricing{padding:72px 24px}
+  .pricing-card{padding:44px 32px 40px}
+  .price-num{font-size:clamp(2.2rem,6vw,3rem)}
   .cta-block{padding:80px 24px}
   footer{padding:28px 24px;flex-direction:column;align-items:flex-start;gap:24px}
   .footer-links{gap:20px;flex-wrap:wrap}
@@ -489,7 +520,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <a class="nav-login" href="#tarif">Prix</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
-    <a class="nav-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
+    <a class="nav-cta" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
   </div>
 </nav>
 
@@ -499,7 +530,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <h1 class="hero-h1">Faites-vous introduire auprès de nouveaux clients, <em>chaque semaine.</em></h1>
   <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en 30 secondes.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
+    <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
   </div>
   <div class="hero-proof">
@@ -763,14 +794,15 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- PRICING -->
 <section class="pricing" id="tarif">
-  <div class="rule"></div>
-  <span class="section-label">Accès</span>
-  <div class="price-row">
-    <span class="price-num">29 €</span>
-    <span class="price-unit">/ mois</span>
+  <div class="pricing-card">
+    <span class="section-label">Accès</span>
+    <div class="price-row">
+      <span class="price-num">29 €</span>
+      <span class="price-unit">/ mois</span>
+    </div>
+    <p class="price-offer">Première rencontre offerte.</p>
+    <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
   </div>
-  <p class="price-offer">Première rencontre offerte.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
 </section>
 
 <!-- FINAL CTA -->
@@ -778,7 +810,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <div class="rule"></div>
   <h2 class="cta-title">Vos prochains clients n'attendent pas un message à froid.</h2>
   <p class="cta-sub">Ils attendent une introduction.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
+  <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
 </section>
 
 <!-- FOOTER -->
