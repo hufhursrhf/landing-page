@@ -54,6 +54,7 @@ nav{
   color:var(--gold);text-decoration:none;
 }
 .nav-actions{display:flex;align-items:center;gap:10px}
+.nav-sep{width:1px;height:14px;background:rgba(245,240,232,.15);flex-shrink:0}
 .nav-login{
   display:inline-flex;align-items:center;
   padding:.52rem 1.1rem;
@@ -504,6 +505,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 <nav>
   <a class="nav-logo" href="#">Haloways</a>
   <div class="nav-actions">
+    <a class="nav-login" href="#tarif">Prix</a>
+    <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
     <a class="nav-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
   </div>
@@ -788,8 +791,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
       <span class="price-period">/ mois</span>
     </div>
   </div>
-  <p class="price-offer">Première introduction offerte.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Demander l'accès</a>
+  <p class="price-offer">Première rencontre offerte.</p>
+  <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
 </section>
 
 <!-- FINAL CTA -->

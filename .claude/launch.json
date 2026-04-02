@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "landing-page",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path'),r='/Users/nicolasdemonte/landing-page';h.createServer((q,s)=>{let u=q.url==='/'?'/index.html':q.url,fp=p.join(r,u);f.readFile(fp,(e,d)=>{if(e){s.writeHead(404);s.end('Not found')}else{const m={'html':'text/html','css':'text/css','js':'text/javascript','jpg':'image/jpeg','png':'image/png'};const ext=fp.split('.').pop();s.writeHead(200,{'Content-Type':m[ext]||'text/plain'});s.end(d)}})}).listen(process.env.PORT||3456,()=>console.log('listening'))"],
+      "port": 3456,
+      "autoPort": true
+    }
+  ]
+}
