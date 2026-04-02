@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haloways — Introductions sur mesure</title>
-<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -327,32 +328,51 @@ nav{
 
 /* ── PRICING ── */
 .pricing{
-  padding:100px 40px;
-  text-align:center;
+  background:var(--ink2);
+  padding:60px 40px;
+  position:relative;
 }
-.price-row{
-  display:inline-flex;align-items:baseline;gap:10px;
-  margin:28px 0 14px;
+.pricing::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent 5%,rgba(201,168,76,.2) 40%,rgba(201,168,76,.2) 60%,transparent 95%);
+}
+.price-card{
+  max-width:720px;margin:0 auto;
+  border:1px solid var(--border);
+  background:var(--ink);
+  padding:36px 44px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+  position:relative;
+}
+.price-card::before{
+  content:'';position:absolute;
+  top:0;left:24px;right:24px;height:1px;
+  background:linear-gradient(to right,transparent,rgba(201,168,76,.2),transparent);
+}
+.price-left{display:flex;flex-direction:column;gap:6px}
+.price-amount{
+  display:flex;align-items:baseline;gap:8px;
 }
 .price-num{
   font-family:'Inter',sans-serif;
-  font-size:clamp(3rem,8vw,5rem);
+  font-size:2.4rem;
   font-weight:300;line-height:1;
   color:var(--ivory);
-  letter-spacing:-.02em;
+  letter-spacing:-.01em;
 }
 .price-unit{
   font-family:'Inter',sans-serif;
-  font-size:.75rem;font-weight:300;
-  letter-spacing:.14em;text-transform:uppercase;
+  font-size:.7rem;font-weight:300;
+  letter-spacing:.12em;text-transform:uppercase;
   color:var(--t-mid);
 }
 .price-offer{
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
-  font-size:1.05rem;
+  font-size:.95rem;
   color:rgba(201,168,76,.55);
-  margin-bottom:40px;
 }
 
 /* ── FOOTER ── */
@@ -453,6 +473,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   .wall{columns:1}
   .hero-proof{gap:24px}
   .proof-sep{display:none}
+  .pricing{padding:48px 24px}
+  .price-card{flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px}
   .cta-block{padding:80px 24px}
   footer{padding:28px 24px;flex-direction:column;align-items:flex-start;gap:24px}
   .footer-links{gap:20px;flex-wrap:wrap}
@@ -763,14 +785,16 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- PRICING -->
 <section class="pricing" id="tarif">
-  <div class="rule"></div>
-  <span class="section-label">Accès</span>
-  <div class="price-row">
-    <span class="price-num">29 €</span>
-    <span class="price-unit">/ mois</span>
+  <div class="price-card">
+    <div class="price-left">
+      <div class="price-amount">
+        <span class="price-num">29 €</span>
+        <span class="price-unit">/ mois</span>
+      </div>
+      <p class="price-offer">Première rencontre offerte.</p>
+    </div>
+    <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
   </div>
-  <p class="price-offer">Première rencontre offerte.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
 </section>
 
 <!-- FINAL CTA -->
