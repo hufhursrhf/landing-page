@@ -84,8 +84,7 @@ nav{
 }
 .nav-cta:hover{background:var(--gold);color:var(--ink)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:102}
-.burger span{display:block;width:20px;height:1.5px;background:var(--t-hi);margin:4px 0;transition:transform .3s,opacity .2s}
-.nav-overlay{display:none}
+.burger span{display:block;width:18px;height:1px;background:var(--gold);margin:5px 0;transition:transform .3s,opacity .2s}
 
 /* ── HERO ── */
 .hero{
@@ -474,17 +473,26 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   .burger{display:flex;flex-direction:column;justify-content:center}
   .nav-actions{
     display:none;flex-direction:column;
-    position:fixed;top:64px;left:0;right:0;bottom:0;
-    background:rgba(10,15,30,.97);backdrop-filter:blur(20px);
-    padding:60px 40px;gap:24px;
-    align-items:flex-start;justify-content:flex-start;
-    z-index:101;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:var(--ink);
+    padding:140px 40px 60px;gap:0;
+    align-items:center;justify-content:flex-start;
+    z-index:99;
+  }
+  .nav-actions::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.014) 0px,rgba(255,255,255,0.014) 1px,transparent 1px,transparent 38px);
   }
   .nav-actions.open{display:flex}
-  .nav-actions .nav-sep{display:none}
-  .nav-actions .nav-login,
+  .nav-actions .nav-sep{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.25),transparent);margin:8px 0}
+  .nav-actions .nav-login{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;font-weight:300;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ivory);padding:16px 0;
+  }
   .nav-actions .nav-cta{
-    font-size:.75rem;letter-spacing:.2em;padding:.6rem 0;
+    font-size:.7rem;letter-spacing:.2em;padding:.85rem 2.2rem;
+    margin-top:32px;border-color:rgba(201,168,76,.4);
   }
   .burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
   .burger.open span:nth-child(2){opacity:0}
