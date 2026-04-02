@@ -332,7 +332,7 @@ nav{
 }
 .pricing-card{
   border:1px solid rgba(201,168,76,.18);
-  border-radius:20px;
+  border-radius:0;
   padding:56px 64px 52px;
   text-align:center;
   max-width:420px;width:100%;
@@ -344,7 +344,7 @@ nav{
 }
 .pricing-card::before{
   content:'';position:absolute;inset:-1px;
-  border-radius:20px;
+  border-radius:0;
   background:linear-gradient(180deg,rgba(201,168,76,.12) 0%,transparent 50%);
   mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   mask-composite:exclude;-webkit-mask-composite:xor;
@@ -359,7 +359,7 @@ nav{
 }
 .price-num{
   font-family:'Inter',sans-serif;
-  font-size:clamp(2.8rem,7vw,4.2rem);
+  font-size:clamp(2rem,5vw,2.8rem);
   font-weight:300;line-height:1;
   color:var(--ivory);
   letter-spacing:-.02em;
@@ -483,7 +483,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   .proof-sep{display:none}
   .pricing{padding:72px 24px}
   .pricing-card{padding:44px 32px 40px}
-  .price-num{font-size:clamp(2.2rem,6vw,3rem)}
+  .price-num{font-size:clamp(1.6rem,5vw,2rem)}
   .cta-block{padding:80px 24px}
   footer{padding:28px 24px;flex-direction:column;align-items:flex-start;gap:24px}
   .footer-links{gap:20px;flex-wrap:wrap}
