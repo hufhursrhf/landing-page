@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haloways — Introductions sur mesure</title>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Haloways">
+<meta property="og:title" content="Haloways — Introductions sur mesure">
+<meta property="og:description" content="Faites-vous introduire auprès de nouveaux clients, chaque semaine.">
+<meta property="og:image" content="https://landing-page-haloways.vercel.app/logo-square.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Haloways — Introductions sur mesure">
+<meta name="twitter:description" content="Faites-vous introduire auprès de nouveaux clients, chaque semaine.">
+<meta name="twitter:image" content="https://landing-page-haloways.vercel.app/logo-square.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -307,6 +320,57 @@ nav{
   color:var(--t-mid);
   max-width:420px;margin:0 auto 44px;
   line-height:1.6;
+}
+
+/* ── PRICING ── */
+.pricing{
+  padding:120px 40px;
+  text-align:center;
+  position:relative;
+}
+.pricing::before{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(ellipse at center,rgba(201,168,76,.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+.price-tag{
+  display:inline-flex;align-items:flex-start;gap:8px;
+  margin:36px 0 12px;
+}
+.price-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,12vw,8rem);
+  font-weight:300;line-height:1;
+  color:var(--ivory);
+  letter-spacing:-.02em;
+}
+.price-right{
+  display:flex;flex-direction:column;align-items:flex-start;
+  padding-top:.55em;
+  gap:2px;
+}
+.price-currency{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(1rem,2vw,1.4rem);
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+}
+.price-period{
+  font-family:'Inter',sans-serif;
+  font-size:.75rem;font-weight:300;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--t-mid);
+  line-height:1;
+}
+.price-offer{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.05rem;
+  color:rgba(201,168,76,.55);
+  margin-bottom:40px;
 }
 
 /* ── FOOTER ── */
@@ -711,6 +775,21 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     </div>
 
   </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="tarif">
+  <div class="rule"></div>
+  <span class="section-label">Accès</span>
+  <div class="price-tag">
+    <span class="price-num">29</span>
+    <div class="price-right">
+      <span class="price-currency">€</span>
+      <span class="price-period">/ mois</span>
+    </div>
+  </div>
+  <p class="price-offer">Première introduction offerte.</p>
+  <a class="btn-primary" href="https://one.haloways.com/signup">Demander l'accès</a>
 </section>
 
 <!-- FINAL CTA -->
