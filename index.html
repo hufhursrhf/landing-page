@@ -83,6 +83,42 @@ nav{
 }
 .nav-cta:hover{background:var(--gold);color:var(--ink)}
 
+/* ── BURGER ── */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:28px;height:28px;background:none;border:none;cursor:pointer;padding:0}
+.burger span{display:block;width:100%;height:1px;background:var(--ivory);transition:transform .3s,opacity .3s}
+.burger.open span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-3px) rotate(-45deg)}
+.mobile-menu{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:99;
+  background:rgba(10,15,30,.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:24px;
+  flex-direction:column;align-items:stretch;gap:12px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  display:block;text-align:center;text-decoration:none;
+  font-family:'Inter',sans-serif;
+  font-size:.65rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t-mid);
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+  transition:color .2s;
+}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--t-hi)}
+.mobile-menu .nav-cta-m{
+  margin-top:8px;
+  padding:14px 0;
+  background:var(--gold);color:var(--ink);
+  font-weight:500;text-align:center;
+  border-bottom:none;
+}
+
 /* ── HERO ── */
 .hero{
   min-height:100vh;
@@ -474,8 +510,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:0 16px}
-  .nav-login,.nav-sep{display:none}
-  .nav-cta{padding:.48rem 1rem;font-size:.55rem;letter-spacing:.16em}
+  .nav-actions{display:none}
+  .burger{display:flex}
   .section{padding:72px 24px}
   .testimonials{padding:60px 24px 80px}
   .wall{columns:1}
@@ -522,7 +558,15 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
     <a class="nav-cta" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
   </div>
+  <button class="burger" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#tarif" onclick="document.querySelector('.burger').click()">Prix</a>
+  <a href="https://one.haloways.com/login" onclick="document.querySelector('.burger').click()">Se connecter</a>
+  <a class="nav-cta-m" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
