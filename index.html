@@ -26,8 +26,8 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0A0F1E;
-  --ink2:#0d1525;
+  --ink:#101a30;
+  --ink2:#13203a;
   --gold:#C9A84C;
   --gold-d:rgba(201,168,76,.18);
   --gold-s:rgba(201,168,76,.07);
@@ -448,8 +448,8 @@ footer{
   position:absolute;top:0;left:0;width:100%;height:100%;
   background-image:repeating-linear-gradient(
     to right,
-    rgba(255,255,255,0.014) 0px,
-    rgba(255,255,255,0.014) 1px,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 1px,
     transparent 1px,
     transparent 38px
   );
@@ -468,8 +468,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   position:absolute;inset:0;pointer-events:none;
   background-image:repeating-linear-gradient(
     to right,
-    rgba(255,255,255,0.014) 0px,
-    rgba(255,255,255,0.014) 1px,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 1px,
     transparent 1px,
     transparent 38px
   );
@@ -532,14 +532,16 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 }
 .brands-track:hover{animation-play-state:paused}
 .brand-logo{
-  height:34px;width:auto;
-  margin:0 56px;
+  width:auto;
+  margin:0 30px;
   opacity:.55;
   flex-shrink:0;
   display:block;
   transition:opacity .25s;
+  align-self:center;
 }
 .brand-logo:hover{opacity:.85}
+.brands-track{align-items:center}
 @keyframes brands-scroll{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
@@ -560,7 +562,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   .hero-proof{gap:24px}
   .proof-sep{display:none}
   .brands{padding:36px 0 44px}
-  .brand-logo{height:26px;margin:0 32px}
+  .brand-logo{margin:0 20px;transform:scale(.78);transform-origin:center}
   .pricing{padding:48px 24px}
   .price-card{flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px}
   .cta-block{padding:80px 24px}
@@ -622,44 +624,56 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   </div>
   <div class="hero-proof">
     <div class="proof-item">
-      <span class="proof-n">+200</span>
+      <span class="proof-n">+350</span>
       <span class="proof-l">Membres actifs</span>
     </div>
     <div class="proof-sep"></div>
     <div class="proof-item">
-      <span class="proof-n">1 100</span>
+      <span class="proof-n">3 000</span>
       <span class="proof-l">Introductions réalisées</span>
     </div>
     <div class="proof-sep"></div>
     <div class="proof-item">
-      <span class="proof-n">74 %</span>
-      <span class="proof-l">Taux de réponse moyen</span>
+      <span class="proof-n">57 %</span>
+      <span class="proof-l">Taux de RDV après intro</span>
     </div>
   </div>
 </section>
 
 <!-- BRAND MARQUEE -->
-<section class="brands" aria-label="Ils nous font confiance">
-  <div class="brands-label">Ils introduisent leurs réseaux avec Haloways</div>
+<section class="brands" aria-label="Parmi nos membres">
+  <div class="brands-label">Parmi nos membres</div>
   <div class="brands-track-wrap">
     <div class="brands-track">
+      <img class="brand-logo" src="brands/caisse-depots.png" alt="Caisse des Dépôts">
+      <img class="brand-logo" src="brands/cube.png" alt="Cube École">
       <img class="brand-logo" src="brands/aws.png" alt="AWS">
       <img class="brand-logo" src="brands/atlassian.png" alt="Atlassian">
       <img class="brand-logo" src="brands/databricks.png" alt="Databricks">
+      <img class="brand-logo" src="brands/aon.png" alt="AON">
       <img class="brand-logo" src="brands/axa.png" alt="AXA">
+      <img class="brand-logo" src="brands/ekino.png" alt="Ekino">
+      <img class="brand-logo" src="brands/aviagroup.png" alt="Aviagroup">
       <img class="brand-logo" src="brands/clareefai.png" alt="Clareefai">
       <img class="brand-logo" src="brands/hiresweet.png" alt="HireSweet">
+      <img class="brand-logo" src="brands/ockham.png" alt="Ockham">
       <img class="brand-logo" src="brands/oms.png" alt="OMS">
       <img class="brand-logo" src="brands/treko.png" alt="Treko">
       <img class="brand-logo" src="brands/wilhow.png" alt="Wilhow">
       <img class="brand-logo" src="brands/zylio.png" alt="Zylio">
       <!-- duplicate for seamless loop -->
+      <img class="brand-logo" src="brands/caisse-depots.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/cube.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/aws.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/atlassian.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/databricks.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/aon.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/axa.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/ekino.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/aviagroup.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/clareefai.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/hiresweet.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/ockham.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/oms.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/treko.png" alt="" aria-hidden="true">
       <img class="brand-logo" src="brands/wilhow.png" alt="" aria-hidden="true">
