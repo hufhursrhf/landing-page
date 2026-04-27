@@ -503,6 +503,48 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   margin:0 auto 32px;
 }
 
+/* ── BRAND MARQUEE ── */
+.brands{
+  padding:48px 0 56px;
+  background:var(--ink2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+  position:relative;
+}
+.brands-label{
+  text-align:center;
+  font-family:'DM Sans',sans-serif;
+  font-size:.58rem;font-weight:400;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(245,240,232,.35);
+  margin-bottom:32px;
+}
+.brands-track-wrap{
+  position:relative;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
+}
+.brands-track{
+  display:flex;
+  width:max-content;
+  animation:brands-scroll 50s linear infinite;
+}
+.brands-track:hover{animation-play-state:paused}
+.brand-logo{
+  height:34px;width:auto;
+  margin:0 56px;
+  opacity:.55;
+  flex-shrink:0;
+  display:block;
+  transition:opacity .25s;
+}
+.brand-logo:hover{opacity:.85}
+@keyframes brands-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:0 24px}
@@ -517,6 +559,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   .wall{columns:1}
   .hero-proof{gap:24px}
   .proof-sep{display:none}
+  .brands{padding:36px 0 44px}
+  .brand-logo{height:26px;margin:0 32px}
   .pricing{padding:48px 24px}
   .price-card{flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px}
   .cta-block{padding:80px 24px}
@@ -590,6 +634,36 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <div class="proof-item">
       <span class="proof-n">74 %</span>
       <span class="proof-l">Taux de réponse moyen</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND MARQUEE -->
+<section class="brands" aria-label="Ils nous font confiance">
+  <div class="brands-label">Ils introduisent leurs réseaux avec Haloways</div>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <img class="brand-logo" src="brands/aws.png" alt="AWS">
+      <img class="brand-logo" src="brands/atlassian.png" alt="Atlassian">
+      <img class="brand-logo" src="brands/databricks.png" alt="Databricks">
+      <img class="brand-logo" src="brands/axa.png" alt="AXA">
+      <img class="brand-logo" src="brands/clareefai.png" alt="Clareefai">
+      <img class="brand-logo" src="brands/hiresweet.png" alt="HireSweet">
+      <img class="brand-logo" src="brands/oms.png" alt="OMS">
+      <img class="brand-logo" src="brands/treko.png" alt="Treko">
+      <img class="brand-logo" src="brands/wilhow.png" alt="Wilhow">
+      <img class="brand-logo" src="brands/zylio.png" alt="Zylio">
+      <!-- duplicate for seamless loop -->
+      <img class="brand-logo" src="brands/aws.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/atlassian.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/databricks.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/axa.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/clareefai.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/hiresweet.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/oms.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/treko.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/wilhow.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="brands/zylio.png" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
