@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — Haloways</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#101a30;
+  --ink2:#13203a;
+  --gold:#C9A84C;
+  --ivory:#F5F0E8;
+  --t-hi:rgba(245,240,232,.88);
+  --t-mid:rgba(245,240,232,.52);
+  --t-lo:rgba(245,240,232,.28);
+  --border:rgba(245,240,232,.07);
+}
+body{
+  background:var(--ink);color:var(--t-hi);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  position:relative;overflow-x:hidden;
+}
+.lines-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(
+    to right,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px,
+    transparent 38px
+  );
+}
+.glow{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:800px;
+  background:radial-gradient(ellipse at center,rgba(201,168,76,.07) 0%,transparent 60%);
+  pointer-events:none;z-index:0;
+}
+.brand{
+  position:absolute;top:32px;left:40px;z-index:2;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:400;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+}
+.wrap{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:140px 32px 80px;text-align:center;position:relative;z-index:1;
+}
+.code{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(7rem,18vw,12rem);
+  font-weight:300;line-height:.9;
+  color:var(--gold);
+  letter-spacing:.04em;
+  margin-bottom:8px;
+  position:relative;
+}
+.rule{
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,transparent,rgba(201,168,76,.4),transparent);
+  margin:24px auto 32px;
+}
+.eyebrow{
+  font-size:.58rem;font-weight:400;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,168,76,.55);
+  margin-bottom:24px;
+}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;
+  color:var(--ivory);
+  line-height:1.2;
+  max-width:640px;margin:0 auto 18px;
+}
+h1 em{font-style:italic;color:var(--gold);font-weight:300}
+.sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.05rem;
+  color:var(--t-mid);
+  max-width:480px;margin:0 auto 44px;
+  line-height:1.6;
+}
+.actions{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;
+  padding:.85rem 2.2rem;
+  background:var(--gold);color:var(--ink);
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.btn-primary:hover{background:#d4bc5a;transform:translateY(-1px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:.85rem 1.6rem;
+  color:var(--t-mid);
+  font-size:.6rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--border);text-decoration:none;
+  transition:color .2s,border-color .2s;
+}
+.btn-ghost:hover{color:var(--t-hi);border-color:rgba(245,240,232,.25)}
+@media(max-width:768px){
+  .brand{top:24px;left:24px;font-size:.95rem}
+  .wrap{padding:120px 24px 60px}
+  .actions{flex-direction:column;gap:12px}
+  .actions a{width:100%;max-width:280px;justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="lines-bg"></div>
+<div class="glow"></div>
+<a class="brand" href="/">Haloways</a>
+<main class="wrap">
+  <div class="code">404</div>
+  <div class="rule"></div>
+  <span class="eyebrow">Page introuvable</span>
+  <h1>Cette page n'existe pas, <em>mais votre prochaine introduction si.</em></h1>
+  <p class="sub">Le lien que vous avez suivi nous a échappé. Revenons à l'essentiel.</p>
+  <div class="actions">
+    <a class="btn-primary" href="/">Retour à l'accueil</a>
+    <a class="btn-ghost" href="https://one.haloways.com/signup">Tester gratuitement →</a>
+  </div>
+</main>
+</body>
+</html>

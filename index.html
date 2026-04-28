@@ -3,23 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haloways — Introductions sur mesure</title>
+<title>Haloways — 1ère rencontre offerte</title>
+<meta name="description" content="Une rencontre en visio par semaine avec un membre dont le réseau peut vous ouvrir des portes. Échangez des introductions ciblées en direct. Première rencontre offerte.">
+<meta name="keywords" content="introductions, networking, B2B, mise en relation, prospection, réseau professionnel, recommandation, founder, entrepreneur">
+<meta name="author" content="Haloways">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://haloways.com/">
 <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Haloways">
-<meta property="og:title" content="Haloways — Introductions sur mesure">
+<meta property="og:title" content="Haloways — 1ère rencontre offerte">
 <meta property="og:description" content="Faites-vous introduire auprès de nouveaux clients, chaque semaine.">
 <meta property="og:image" content="https://landing-page-haloways.vercel.app/logo-square.png">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1080">
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Haloways — Introductions sur mesure">
+<meta name="twitter:title" content="Haloways — 1ère rencontre offerte">
 <meta name="twitter:description" content="Faites-vous introduire auprès de nouveaux clients, chaque semaine.">
 <meta name="twitter:image" content="https://landing-page-haloways.vercel.app/logo-square.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Haloways",
+  "url": "https://haloways.com",
+  "logo": "https://landing-page-haloways.vercel.app/logo-square.png",
+  "description": "Une rencontre en visio par semaine avec un membre dont le réseau peut vous ouvrir des portes.",
+  "sameAs": ["https://one.haloways.com"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Haloways",
+  "provider": {"@type":"Organization","name":"Haloways","url":"https://haloways.com"},
+  "areaServed": "FR",
+  "description": "Introductions B2B en visio sur recommandation. Une rencontre par semaine, des introductions en direct.",
+  "offers": {
+    "@type": "Offer",
+    "price": "29",
+    "priceCurrency": "EUR",
+    "description": "29 € / mois — première rencontre offerte"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "44"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
@@ -76,17 +113,17 @@ nav::before{
 .nav-login:hover{color:var(--t-hi)}
 .nav-cta{
   display:inline-flex;align-items:center;
-  padding:.52rem 1.25rem;
-  background:transparent;
-  border:1px solid rgba(201,168,76,.4);
-  color:var(--gold);
+  padding:.62rem 1.35rem;
+  background:var(--gold);
+  border:none;
+  color:var(--ink);
   font-family:'DM Sans',sans-serif;
   font-size:.6rem;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
   cursor:pointer;text-decoration:none;
-  transition:background .25s,color .25s;
+  transition:background .2s,transform .15s;
 }
-.nav-cta:hover{background:var(--gold);color:var(--ink)}
+.nav-cta:hover{background:#d4bc5a;transform:translateY(-1px)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:102}
 .burger span{display:block;width:18px;height:1px;background:var(--gold);margin:5px 0;transition:transform .3s,opacity .2s}
 .mobile-menu{
@@ -428,7 +465,7 @@ footer{
   flex-wrap:wrap;gap:16px;
 }
 .footer-logo{
-  font-family:'DM Sans',sans-serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:.85rem;font-weight:400;
   letter-spacing:.28em;text-transform:uppercase;
   color:rgba(201,168,76,.5);
@@ -468,7 +505,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   position:fixed;inset:0;z-index:9999;
   background:var(--ink);
   display:flex;align-items:center;justify-content:center;
-  animation:splash-fade-out 800ms cubic-bezier(0.33,0,0.66,0) 2600ms forwards;
+  animation:splash-fade-out 600ms cubic-bezier(0.33,0,0.66,0) 1700ms forwards;
 }
 #splash::before{
   content:'';
@@ -622,9 +659,9 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-eyebrow">Introductions sur mesure</span>
+  <span class="hero-eyebrow">1ère rencontre offerte</span>
   <h1 class="hero-h1">Faites-vous introduire auprès de nouveaux clients, <em>chaque semaine.</em></h1>
-  <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en 30 secondes.</p>
+  <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en visio.</p>
   <div class="hero-actions">
     <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
@@ -1290,7 +1327,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 setTimeout(function() {
   var splash = document.getElementById('splash')
   if (splash) splash.style.display = 'none'
-}, 3400)
+}, 2300)
 function closeMobileMenu() {
   document.getElementById('mobile-menu').classList.remove('open')
   document.querySelector('.burger').classList.remove('open')
