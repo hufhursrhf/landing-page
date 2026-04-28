@@ -46,9 +46,13 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   height:64px;display:flex;align-items:center;justify-content:space-between;
   padding:0 40px;
-  background:rgba(10,15,30,.85);
-  backdrop-filter:blur(20px);
+  background:linear-gradient(to bottom,var(--ink) 0%,var(--ink) 60%,rgba(16,26,48,.85) 100%);
+  backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border);
+}
+nav::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 38px);
 }
 .nav-logo{
   font-family:'Cormorant Garamond',serif;
@@ -89,36 +93,39 @@ nav{
   display:none;position:fixed;inset:0;
   z-index:9998;
   background:var(--ink);
-  flex-direction:column;align-items:center;justify-content:center;
-  gap:0;
+  flex-direction:column;align-items:stretch;
+  padding:96px 32px 40px;
   opacity:0;transition:opacity .3s;
 }
 .mobile-menu::before{
   content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.014) 0px,rgba(255,255,255,0.014) 1px,transparent 1px,transparent 38px);
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 38px);
 }
 .mobile-menu.open{display:flex;opacity:1}
 .mobile-link{
   font-family:'DM Sans',sans-serif;
-  font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--t-mid);text-decoration:none;
-  padding:14px 0;position:relative;z-index:1;
+  font-size:.72rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t-hi);text-decoration:none;
+  padding:18px 0;position:relative;z-index:1;
+  text-align:left;
   transition:color .2s;
+  border-bottom:1px solid var(--border);
 }
-.mobile-link:hover{color:var(--t-hi)}
-.mobile-sep{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.2),transparent);position:relative;z-index:1}
+.mobile-link:hover{color:var(--gold)}
+.mobile-sep{display:none}
 .mobile-cta{
-  display:inline-flex;align-items:center;
+  display:inline-flex;align-items:center;justify-content:center;
   margin-top:32px;
-  padding:.85rem 2.4rem;
+  padding:1rem 2rem;
   background:var(--gold);
   border:none;
   color:var(--ink);
   font-family:'DM Sans',sans-serif;
-  font-size:.62rem;font-weight:500;
+  font-size:.65rem;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
   text-decoration:none;position:relative;z-index:1;
   transition:background .2s;
+  align-self:stretch;
 }
 .mobile-cta:hover{background:#d4bc5a}
 
@@ -1078,7 +1085,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <div class="card">
       <p class="card-quote">"Quand tu construis quelque chose de nouveau, tu as besoin des bonnes conversations au bon moment. Ce qui change avec Haloways c'est que pendant la visio, on voit directement ce que chacun peut apporter à l'autre. Les introductions se font en live, toutes les semaines. On n'a plus à se souvenir de ce qu'on s'était promis après l'appel."</p>
       <div class="card-author">
-        <div class="avatar av-2"><span>AT</span></div>
+        <div class="avatar av-2"><img src="photos/adam-torok.png" alt="Adam Torok"></div>
         <div class="author-info">
           <div class="author-name">Adam Torok</div>
           <div class="author-role">Building something new</div>
@@ -1138,7 +1145,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
     <div class="card featured">
       <p class="card-quote">"J'avais du mal à accéder à des profils plus corporate. Haloways m'a mis en face de membres dont le réseau contenait exactement ces profils. L'un d'eux m'a fait une introduction qui a ouvert une porte qu'on cherchait depuis six mois."</p>
       <div class="card-author">
-        <div class="avatar av-7"><span>CP</span></div>
+        <div class="avatar av-7"><img src="photos/charles-pebereau.png" alt="Charles Pebereau"></div>
         <div class="author-info">
           <div class="author-name">Charles Pebereau</div>
           <div class="author-role">Founder in Residence · Pioneers</div>
