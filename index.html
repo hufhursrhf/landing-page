@@ -111,6 +111,14 @@ nav::before{
   transition:color .2s;
 }
 .nav-login:hover{color:var(--t-hi)}
+.heart{
+  color:var(--gold);
+  font-size:.85em;
+  margin-left:4px;
+  letter-spacing:0;
+  display:inline-block;
+  transform:translateY(-1px);
+}
 .nav-cta{
   display:inline-flex;align-items:center;
   padding:.62rem 1.35rem;
@@ -188,6 +196,46 @@ nav::before{
   letter-spacing:.32em;text-transform:uppercase;
   color:rgba(201,168,76,.55);
   margin-bottom:32px;
+}
+.hero-social{
+  display:inline-flex;align-items:center;gap:18px;
+  margin-bottom:36px;text-decoration:none;
+  transition:opacity .2s;
+}
+.hero-social:hover{opacity:.85}
+.hero-social:hover .social-link{color:var(--gold)}
+.social-stack{display:flex;flex-direction:row;align-items:center}
+.social-stack img{
+  width:36px;height:36px;border-radius:50%;
+  border:2px solid var(--ink);
+  object-fit:cover;display:block;
+  background:var(--ink2);
+}
+.social-stack img:not(:first-child){margin-left:-7.2px}
+.social-meta{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  text-align:left;
+}
+.social-stars{
+  display:flex;align-items:center;gap:8px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.78rem;font-weight:600;
+  color:var(--ivory);line-height:1;
+}
+.social-stars .stars{color:var(--gold);letter-spacing:.05em;font-size:.85rem}
+.social-stars .dot{color:rgba(245,240,232,.3);font-weight:400}
+.social-link{
+  font-family:'DM Sans',sans-serif;
+  font-size:.62rem;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--t-mid);transition:color .2s;
+}
+.social-link .arrow{margin-left:4px;display:inline-block;transition:transform .2s}
+.hero-social:hover .arrow{transform:translateX(3px)}
+@media(max-width:480px){
+  .social-stack img{width:30px;height:30px}
+  .social-stack img:not(:first-child){margin-left:-6px}
+  .hero-social{gap:12px}
 }
 .hero-h1{
   font-family:'DM Sans',sans-serif;
@@ -642,7 +690,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 <nav>
   <a class="nav-logo" href="#">Haloways</a>
   <div class="nav-actions nav-desktop">
-    <a class="nav-login" href="#wall">Wall of love</a>
+    <a class="nav-login" href="#wall">Wall of love <span class="heart">❤</span></a>
     <a class="nav-login" href="#tarif">Prix</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
@@ -651,7 +699,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
 <div id="mobile-menu" class="mobile-menu">
-  <a class="mobile-link" href="#wall" onclick="closeMobileMenu()">Wall of love</a>
+  <a class="mobile-link" href="#wall" onclick="closeMobileMenu()">Wall of love <span class="heart">❤</span></a>
   <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Prix</a>
   <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
   <a class="mobile-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
@@ -659,7 +707,23 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-eyebrow">1ère rencontre offerte</span>
+  <a class="hero-social" href="#wall">
+    <div class="social-stack">
+      <img src="photos/charles-pebereau.png" alt="">
+      <img src="photos/carole-anne-pelletier.png" alt="">
+      <img src="photos/karim-belayati.png" alt="">
+      <img src="photos/charlene-lin.png" alt="">
+      <img src="photos/antoine-torrini.png" alt="">
+    </div>
+    <div class="social-meta">
+      <div class="social-stars">
+        <span class="stars">★★★★★</span>
+        <span class="dot">·</span>
+        <span>4.9/5</span>
+      </div>
+      <span class="social-link">Fondé sur 44 témoignages <span class="arrow">→</span></span>
+    </div>
+  </a>
   <h1 class="hero-h1">Faites-vous introduire auprès de nouveaux clients, <em>chaque semaine.</em></h1>
   <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en visio.</p>
   <div class="hero-actions">
