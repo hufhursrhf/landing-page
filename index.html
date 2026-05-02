@@ -173,12 +173,14 @@ nav::before{
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:102}
 .burger span{display:block;width:18px;height:1px;background:var(--gold);margin:5px 0;transition:transform .3s,opacity .2s}
 .mobile-menu{
-  display:none;position:fixed;inset:0;
-  z-index:9998;
+  display:none;position:fixed;
+  top:64px;left:0;right:0;bottom:0;
+  z-index:99;
   background:var(--ink);
   flex-direction:column;align-items:stretch;
-  padding:96px 32px 40px;
-  opacity:0;transition:opacity .3s;
+  padding:32px 32px 40px;
+  opacity:0;transition:opacity .25s ease;
+  overflow-y:auto;
 }
 .mobile-menu::before{
   content:'';position:absolute;inset:0;pointer-events:none;
