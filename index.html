@@ -103,11 +103,18 @@ body{background:var(--ink);color:var(--t-hi);font-family:'DM Sans',sans-serif;fo
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  height:64px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;
-  background:linear-gradient(to bottom,var(--ink) 0%,var(--ink) 60%,rgba(16,26,48,.85) 100%);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--border);
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 44px;
+  background:rgba(16,26,48,.78);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid transparent;
+  transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+nav.scrolled{
+  background:rgba(16,26,48,.92);
+  border-bottom-color:var(--border);
+  box-shadow:0 1px 24px rgba(0,0,0,.18);
 }
 nav::before{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
@@ -115,24 +122,33 @@ nav::before{
 }
 .nav-logo{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;font-weight:400;
-  letter-spacing:.28em;text-transform:uppercase;
+  font-size:1.18rem;font-weight:400;
+  letter-spacing:0.0625em;text-transform:uppercase;
   color:var(--gold);text-decoration:none;
+  line-height:1;
 }
-.nav-actions{display:flex;align-items:center;gap:10px}
-.nav-sep{width:1px;height:14px;background:rgba(245,240,232,.15);flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:6px}
+.nav-sep{width:1px;height:16px;background:rgba(245,240,232,.13);flex-shrink:0;margin:0 8px}
 .nav-login{
+  position:relative;
   display:inline-flex;align-items:center;
-  padding:.52rem 1.1rem;
+  padding:.6rem 1rem;
   background:transparent;border:none;
   color:var(--t-mid);
   font-family:'DM Sans',sans-serif;
   font-size:.6rem;font-weight:600;
   letter-spacing:.18em;text-transform:uppercase;
   cursor:pointer;text-decoration:none;
-  transition:color .2s;
+  transition:color .2s ease;
 }
-.nav-login:hover{color:var(--t-hi)}
+.nav-login::after{
+  content:'';position:absolute;left:1rem;right:1rem;bottom:.4rem;
+  height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .25s ease;
+}
+.nav-login:hover{color:var(--ivory)}
+.nav-login:hover::after{transform:scaleX(1)}
 .heart{
   color:var(--gold);
   font-size:.85em;
@@ -575,7 +591,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   position:fixed;inset:0;z-index:9999;
   background:var(--ink);
   display:flex;align-items:center;justify-content:center;
-  animation:splash-fade-out 600ms cubic-bezier(0.33,0,0.66,0) 1700ms forwards;
+  animation:splash-fade-out 220ms cubic-bezier(0.33,0,0.66,0) 1600ms forwards;
 }
 #splash::before{
   content:'';
@@ -594,8 +610,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 }
 .splash-letter{
   font-family:'Cormorant Garamond',serif;
-  font-size:2rem;font-weight:300;
-  letter-spacing:.06em;text-transform:uppercase;
+  font-size:2rem;font-weight:400;
+  letter-spacing:0.0625em;text-transform:uppercase;
   color:var(--gold);
   opacity:0;
   animation:letter-in 168ms cubic-bezier(0.16,1,0.3,1) forwards;
@@ -663,7 +679,8 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 24px}
+  nav{padding:0 22px;height:64px}
+  .nav-logo{font-size:1.08rem}
   .nav-desktop{display:none}
   .burger{display:flex;flex-direction:column;justify-content:center}
   .burger.open{z-index:9999}
@@ -710,13 +727,13 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Haloways</a>
+  <a class="nav-logo" href="#" aria-label="Haloways">HALOWAYS</a>
   <div class="nav-actions nav-desktop">
     <a class="nav-login" href="#wall">Wall of love <span class="heart">❤</span></a>
     <a class="nav-login" href="#tarif">Prix</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
-    <a class="nav-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
+    <a class="nav-cta" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
   </div>
   <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
@@ -724,7 +741,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <a class="mobile-link" href="#wall" onclick="closeMobileMenu()">Wall of love <span class="heart">❤</span></a>
   <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Prix</a>
   <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
-  <a class="mobile-cta" href="https://one.haloways.com/signup">Tester gratuitement</a>
+  <a class="mobile-cta" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
 </div>
 
 <!-- HERO -->
@@ -749,7 +766,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <h1 class="hero-h1">Faites-vous introduire auprès de nouveaux clients, <em>chaque semaine.</em></h1>
   <p class="hero-sub">Haloways vous présente chaque semaine un membre dont le réseau peut vous ouvrir des portes. Vous confirmez le 1-to-1 en un clic. Vous échangez des introductions en visio.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
+    <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
   </div>
   <div class="hero-proof">
@@ -1457,7 +1474,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
       </div>
       <p class="price-offer">Première rencontre offerte.</p>
     </div>
-    <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
+    <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
   </div>
 </section>
 
@@ -1466,7 +1483,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
   <div class="rule"></div>
   <h2 class="cta-title">Vos prochains clients n'attendent pas un message à froid.</h2>
   <p class="cta-sub">Ils attendent une introduction.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Tester gratuitement</a>
+  <a class="btn-primary" href="https://one.haloways.com/signup">Démarrer gratuitement</a>
 </section>
 
 <!-- FOOTER -->
@@ -1485,7 +1502,7 @@ body>*:not(.lines-bg):not(#splash){position:relative;z-index:1}
 setTimeout(function() {
   var splash = document.getElementById('splash')
   if (splash) splash.style.display = 'none'
-}, 2300)
+}, 1820)
 function closeMobileMenu() {
   document.getElementById('mobile-menu').classList.remove('open')
   document.querySelector('.burger').classList.remove('open')
@@ -1500,6 +1517,17 @@ function closeMobileMenu() {
     wall.appendChild(cards[j])
     cards[j] = cards[i]
   }
+})()
+// Nav shadow on scroll
+(function() {
+  var nav = document.querySelector('nav')
+  if (!nav) return
+  var update = function() {
+    if (window.scrollY > 8) nav.classList.add('scrolled')
+    else nav.classList.remove('scrolled')
+  }
+  update()
+  window.addEventListener('scroll', update, { passive: true })
 })()
 </script>
 </body>
