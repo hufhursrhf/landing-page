@@ -396,7 +396,13 @@ nav::before{
   content:'';position:absolute;
   top:0;left:0;right:0;height:1px;
   background:linear-gradient(to right,transparent 5%,rgba(201,168,76,.2) 40%,rgba(201,168,76,.2) 60%,transparent 95%);
+  z-index:1;
 }
+.testimonials::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 38px);
+}
+.testimonials > *{position:relative;z-index:1}
 .testimonials-header{
   text-align:center;
   margin-bottom:60px;
@@ -506,7 +512,13 @@ nav::before{
   content:'';position:absolute;
   top:0;left:0;right:0;height:1px;
   background:linear-gradient(to right,transparent 5%,rgba(201,168,76,.2) 40%,rgba(201,168,76,.2) 60%,transparent 95%);
+  z-index:1;
 }
+.pricing::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 38px);
+}
+.pricing > *{position:relative;z-index:1}
 .price-card{
   max-width:720px;margin:0 auto;
   border:1px solid var(--border);
@@ -644,6 +656,11 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   overflow:hidden;
   position:relative;
 }
+.brands::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(to right,rgba(255,255,255,0.04) 0px,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 38px);
+}
+.brands > *{position:relative;z-index:1}
 .brands-label{
   text-align:center;
   font-family:'DM Sans',sans-serif;
