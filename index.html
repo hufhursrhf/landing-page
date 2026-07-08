@@ -86,7 +86,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "Comment se passe une rencontre ?", "acceptedAnswer": {"@type": "Answer", "text": "Une visio de 30 minutes, directement sur Haloways. Vous réservez le créneau avec l'autre membre sur Haloways, en un clic. Pas de préparation : vous n'avez qu'à être là."}},
-    {"@type": "Question", "name": "Combien de temps ça me prend vraiment ?", "acceptedAnswer": {"@type": "Answer", "text": "30 minutes par semaine. On choisit la personne, on prépare, on cale le créneau. Tout le reste tourne en fond pendant que vous faites votre métier."}},
+    {"@type": "Question", "name": "Combien de temps ça me prend vraiment ?", "acceptedAnswer": {"@type": "Answer", "text": "30 minutes par semaine. On choisit la personne, on prépare, on réserve le créneau. Tout le reste tourne en fond pendant que vous faites votre métier."}},
     {"@type": "Question", "name": "Comment sont choisies les personnes que je rencontre ?", "acceptedAnswer": {"@type": "Answer", "text": "Un algorithme propriétaire mesure votre potentiel de synergie avec chaque membre. Notre équipe valide et choisit ensuite votre rencontre à la main."}},
     {"@type": "Question", "name": "Et si je ne suis pas disponible une semaine ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous êtes disponible par défaut ; indiquez simplement quand vous ne l'êtes pas. Vos rencontres s'accumulent et vous les faites quand vous voulez."}},
     {"@type": "Question", "name": "Comment fonctionnent l'essai et le paiement ?", "acceptedAnswer": {"@type": "Answer", "text": "14 jours offerts, sans engagement. Une carte est demandée à l'inscription ; le premier débit de 290 € intervient à la fin des 14 jours. Annulable à tout moment pendant l'essai."}},
@@ -371,7 +371,7 @@ nav::before{
 }
 .how2-label{
   font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--t-lo);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--t-hi);
   display:block;margin-bottom:28px;
 }
 .how2-label.gold{color:var(--gold)}
@@ -946,7 +946,8 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
 <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="ki Ci init qi Hi pr Bi zi Di capture calculateEventProperties Qi register register_once register_for_session unregister unregister_for_session Ki getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Xi identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty Ji Gi createPersonProfile setInternalOrTestUser Yi Ai rn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Vi debug mr it getPageViewId captureTraceFeedback captureTraceMetric Oi".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     posthog.init('phc_DnjLTcDDVnXqQSobpQ5tsxw5MevP3MpQ6TGEbMqkdGXn', {
-        api_host: 'https://eu.i.posthog.com',
+        api_host: 'https://p.haloways.com',
+        ui_host: 'https://eu.posthog.com',
         defaults: '2026-05-30',
         person_profiles: 'identified_only'
     })
@@ -1010,7 +1011,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     </div>
   </a>
   <h1 class="hero-h1">Votre prochain client, partenaire ou allié. <em>On vous le présente.</em></h1>
-  <p class="hero-sub">Le club d'affaires sur-mesure qui sélectionne, pour vous, <em>les bonnes personnes</em> à rencontrer.</p>
+  <p class="hero-sub">Le club d'affaires sur-mesure qui sélectionne, pour vous, <em>les bonnes personnes</em> à rencontrer chaque semaine.</p>
   <div class="hero-actions">
     <a class="btn-primary" href="https://one.haloways.com/signup">Commencer mes 14 jours</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
@@ -1093,7 +1094,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <div class="ct-row">
         <div class="ct-crit">Les rencontres</div>
         <div class="ct-old">Les mêmes têtes, au hasard</div>
-        <div class="ct-new">Choisies pour vos synergies</div>
+        <div class="ct-new">Sélectionnées pour vos synergies</div>
       </div>
       <div class="ct-row">
         <div class="ct-crit">Engagement</div>
@@ -1103,7 +1104,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <div class="ct-row">
         <div class="ct-crit">Au bout d'un an</div>
         <div class="ct-old">Incertain</div>
-        <div class="ct-new">52 alliés choisis</div>
+        <div class="ct-new">52 alliés sélectionnés</div>
       </div>
     </div>
     <div class="section-cta">
@@ -1116,7 +1117,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
 <section class="section" id="how">
   <div class="how-head">
     <span class="section-label">Comment ça marche</span>
-    <h2 class="section-title">Les bonnes rencontres,<br>sans avoir à les chercher.</h2>
+    <h2 class="section-title">Chaque semaine, on mesure le potentiel de chaque rencontre, puis on la choisit à la main pour vous.</h2>
   </div>
   <div class="how2">
     <div class="how2-ours">
@@ -1125,13 +1126,13 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
         <li>On apprend à connaître votre activité et ce que vous cherchez vraiment.</li>
         <li>Un algorithme propriétaire mesure votre potentiel de synergie avec chaque membre.</li>
         <li>Notre équipe choisit votre rencontre de la semaine à la main.</li>
-        <li>On organise la visio et on cale le créneau pour vous.</li>
+        <li>On organise la visio et on réserve le créneau pour vous.</li>
       </ul>
     </div>
     <div class="how2-yours">
       <span class="how2-label gold">Ce que vous faites</span>
-      <p class="how2-big">Vous êtes là. 30 minutes. C'est tout.</p>
-      <p class="how2-sub">Le reste tourne en fond pendant que vous faites votre métier. 52 rencontres dans l'année, un club qui se construit tout seul.</p>
+      <p class="how2-big">Vous rencontrez la personne. 30 minutes, en visio.</p>
+      <p class="how2-sub">Le reste tourne en fond pendant que vous faites votre métier. 52 rencontres dans l'année, votre club qui se construit autour de vous.</p>
     </div>
   </div>
   <div class="section-cta">
@@ -1836,7 +1837,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       </div>
       <div class="faq-item">
         <button class="faq-q">Combien de temps ça me prend vraiment ?<span class="faq-icon"></span></button>
-        <div class="faq-a"><p>30 minutes par semaine. On choisit la personne, on prépare, on cale le créneau. Tout le reste tourne en fond pendant que vous faites votre métier.</p></div>
+        <div class="faq-a"><p>30 minutes par semaine. On choisit la personne, on prépare, on réserve le créneau. Tout le reste tourne en fond pendant que vous faites votre métier.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Comment sont choisies les personnes que je rencontre ?<span class="faq-icon"></span></button>
