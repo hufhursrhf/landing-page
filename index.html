@@ -902,11 +902,16 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   position:relative;
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
   mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
 }
 .brands-track{
   display:flex;
   width:max-content;
   animation:brands-scroll 50s linear infinite;
+  will-change:transform;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 .brands-track:hover{animation-play-state:paused}
 .brand-logo{
