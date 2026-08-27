@@ -776,6 +776,23 @@ nav::before{
   transform:rotate(-45deg);
 }
 .price-cta{width:100%;justify-content:center}
+.price-toggle{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--ink0);border:1px solid var(--border);border-radius:999px;
+  padding:4px;margin-bottom:24px;
+}
+.pt-btn{
+  border:none;cursor:pointer;background:transparent;
+  font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--t-mid);
+  padding:9px 22px;border-radius:999px;transition:background .2s,color .2s;
+}
+.pt-btn.active{background:var(--gold);color:var(--ink)}
+.pt-btn:not(.active):hover{color:var(--t-hi)}
+.price-equiv{
+  font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:300;
+  color:var(--t-mid);margin-top:8px;
+}
 
 /* ── FOOTER ── */
 footer{
@@ -1097,8 +1114,8 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       </div>
       <div class="ct-row">
         <div class="ct-crit">Prix</div>
-        <div class="ct-old">≈ 3 000 € / an</div>
-        <div class="ct-new">290 € / an</div>
+        <div class="ct-old">≈ 3 000 €/an, engagement 1 an</div>
+        <div class="ct-new">33 €/mois, sans engagement</div>
       </div>
       <div class="ct-row">
         <div class="ct-crit">Temps</div>
@@ -1821,15 +1838,18 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
 <section class="pricing" id="tarif">
   <div class="pricing-head">
     <span class="section-label">Tarif</span>
-    <h2 class="section-title">Un seul tarif. Tout compris.</h2>
+    <h2 class="section-title">Un tarif, tout compris.</h2>
   </div>
   <div class="price-card">
-    <span class="price-badge">Offre de l'été · jusqu'au 31 août</span>
-    <div class="price-amount">
-      <span class="price-was">390 €</span>
-      <span class="price-num">290 €</span>
-      <span class="price-unit">/ an</span>
+    <div class="price-toggle" role="tablist">
+      <button class="pt-btn active" data-plan="monthly" role="tab">Mensuel</button>
+      <button class="pt-btn" data-plan="annual" role="tab">Annuel</button>
     </div>
+    <div class="price-amount">
+      <span class="price-num">33 €</span>
+      <span class="price-unit">/ mois</span>
+    </div>
+    <p class="price-equiv">Sans engagement, résiliable à tout moment</p>
     <ul class="price-list">
       <li>52 rencontres sur-mesure dans l'année</li>
       <li>Sélection par algorithme et validation humaine</li>
@@ -1838,7 +1858,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <li>Démo personnalisée offerte pendant l'essai</li>
     </ul>
     <a class="btn-primary price-cta" href="https://one.haloways.com/signup">Commencer mes 14 jours</a>
-    <p class="price-note">14 jours offerts, puis 290 €/an. Carte requise, annulable à tout moment.</p>
+    <p class="price-note">14 jours offerts, puis 33 €/mois HT. Carte requise, annulable à tout moment.</p>
   </div>
 </section>
 
@@ -1976,6 +1996,41 @@ function closeMobileMenu() {
   }
   render()
   btn.addEventListener('click', function() { shown += 5; render() })
+})()
+// Pricing - switcher annuel / mensuel
+;(function() {
+  var card = document.querySelector('.price-card')
+  if (!card) return
+  var num = card.querySelector('.price-num')
+  var unit = card.querySelector('.price-unit')
+  var equiv = card.querySelector('.price-equiv')
+  var note = card.querySelector('.price-note')
+  var plans = {
+    monthly: {
+      num: '33 €', unit: '/ mois',
+      equiv: 'Sans engagement, résiliable à tout moment',
+      note: '14 jours offerts, puis 33 €/mois HT. Carte requise, annulable à tout moment.'
+    },
+    annual: {
+      num: '290 €', unit: '/ an',
+      equiv: 'soit 24 €/mois, facturé une fois par an',
+      note: '14 jours offerts, puis 290 €/an HT. Carte requise, annulable à tout moment.'
+    }
+  }
+  function set(plan) {
+    var d = plans[plan]
+    if (!d) return
+    num.textContent = d.num
+    unit.textContent = d.unit
+    equiv.textContent = d.equiv
+    note.textContent = d.note
+    card.querySelectorAll('.pt-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-plan') === plan)
+    })
+  }
+  card.querySelectorAll('.pt-btn').forEach(function(b) {
+    b.addEventListener('click', function() { set(b.getAttribute('data-plan')) })
+  })
 })()
 </script>
 
