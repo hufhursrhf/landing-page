@@ -172,7 +172,7 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 ${p.chapo ? `<p class="nyt-chapo">${esc(p.chapo)}</p>` : ''}
 </div>
 </header>
-<div class="body"><div><span class="label">L'interview</span><h2 class="itv-title">${echanges.length} questions à ${esc(prenom)}</h2>${blocs}
+<div class="body"><div><div class="itv-head"><span class="itv-k">L'interview</span><h2 class="itv-title"><em>${echanges.length}</em> questions à ${esc(prenom)}</h2><p class="itv-sub">Un échange avec Charles Vidonne</p></div>${blocs}
 <p class="credits">Propos recueillis par Charles Vidonne. Production : Nicolas De Monte.</p>
 ${recherche.length ? `<section class="seek" aria-labelledby="seek-t">
 <h2 id="seek-t">Ce que ${esc(prenom)} <em>recherche</em></h2><ul>${recherche.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
