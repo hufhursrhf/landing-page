@@ -162,12 +162,15 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 <article>
 <header class="hx">
 <div class="hx-in">
-<div class="hx-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</div>
-<p class="hx-who"><b>${esc(nom)}</b><span>${esc(role)}</span></p>
+<p class="hx-k"><span>Interview Haloways</span><i aria-hidden="true"></i><time datetime="${pubIso}">${esc(p.date_label || '')}</time><i aria-hidden="true"></i><span>${lecture} min de lecture</span></p>
 <h1 class="hx-t">${esc(p.titre)}</h1>
-<p class="hx-k"><span>Interview Haloways</span><i aria-hidden="true"></i><time datetime="${pubIso}">${esc(p.date_label || '')}</time><i aria-hidden="true"></i><span>${lecture} min</span></p>
+<div class="hx-id">
+<span class="hx-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</span>
+<span class="hx-nm"><span class="hx-l1"><b>${esc(nom)}</b>${f.linkedin ? `<a class="hx-li" href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</span><span class="hx-rl">${esc(role)}</span></span>
+${p.membre_haloways ? '<span class="hx-tag">Membre Haloways</span>' : ''}
+</div>
+${p.chapo ? `<p class="hx-chapo">${esc(p.chapo)}</p>` : ''}
 </div></header>
-${p.chapo ? `<section class="chapo2"><p>${esc(p.chapo)}</p></section>` : ''}
 <div class="body"><div><span class="label">L'interview</span><h2 class="itv-title">${echanges.length} questions à ${esc(prenom)}</h2>${blocs}
 <p class="credits">Propos recueillis par Charles Vidonne. Production : Nicolas De Monte.</p>
 ${recherche.length ? `<section class="seek" aria-labelledby="seek-t">
