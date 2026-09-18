@@ -69,7 +69,6 @@ function page(d, { token }) {
 </section>${pulls}`
   }).join('')
 
-  const reperes = (p.reperes || []).filter((r) => r && r.texte)
   const chips = [...(p.mots_cles || []).filter(Boolean).map((m) => `<span class="chip">${esc(m)}</span>`),
     p.membre_haloways ? '<span class="chip g">Membre Haloways</span>' : ''].join('')
   const recherche = (p.recherche || []).filter(Boolean)
@@ -166,8 +165,6 @@ ${p.accroche ? `<p class="tagline">${esc(p.accroche)}</p>` : ''}
 <p class="meta">${lecture} min de lecture · Propos recueillis par Charles Vidonne</p></div>
 <figure class="portrait np"><div class="mono" role="img" aria-label="Portrait de ${esc(nom)}">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : esc(initiales(nom))}</div>${p.portrait_credit ? `<figcaption>${esc(p.portrait_credit)}</figcaption>` : ''}</figure></header>
 ${p.chapo ? `<section class="chapo"><p>${esc(p.chapo)}</p></section>` : ''}
-${reperes.length >= 2 ? `<section class="reperes" aria-labelledby="rep-t"><span class="label">Repères</span><h2 id="rep-t">Un parcours en ${reperes.length} dates</h2>
-<ol class="tl" style="grid-template-columns:repeat(${Math.min(reperes.length, 6)},1fr)">${reperes.map((r) => `<li><b>${esc(r.date)}</b><span>${esc(r.texte)}</span></li>`).join('')}</ol></section>` : ''}
 <div class="body"><div><span class="label">L'interview</span><h2 class="itv-title">${echanges.length} questions à ${esc(prenom)}</h2>${blocs}
 <p class="credits">Propos recueillis par Charles Vidonne. Production : Nicolas De Monte.</p>
 ${recherche.length ? `<section class="seek" aria-labelledby="seek-t">
@@ -181,7 +178,6 @@ ${siteUrl ? `<a class="lk first" href="${esc(siteUrl)}" target="_blank" rel="noo
 ${f.linkedin ? `<a class="lk${siteUrl ? '' : ' first'}" href="${esc(f.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>` : ''}
 </div></aside></div></article>
 ${relecture}
-<section class="more"><a href="/interviews"><b>Tous les portraits d'entrepreneurs</b><span>Voir les interviews →</span></a></section>
 </main>
 <section class="cta-band" aria-labelledby="cta-t"><span class="label">Le club Haloways</span>
 <h2 id="cta-t">Rencontrez des entrepreneurs comme ${esc(prenom)}, chaque semaine.</h2>
