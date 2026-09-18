@@ -167,8 +167,10 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 <span class="hx-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</span>
 <span class="hx-who"><b>${esc(nom)}${f.linkedin ? `<a class="hx-li" href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b><span>${esc(role)}</span></span>
 </div>
+<div class="nyt-l">
 <p class="hx-k"><span>Interview Haloways</span><span>${esc(p.date_label || '')}</span><span>${lecture} min de lecture</span></p>
 <h1 class="hx-t">${esc(p.titre)}</h1>
+</div>
 ${p.chapo ? `<p class="nyt-chapo">${esc(p.chapo)}</p>` : ''}
 </div>
 </header>
