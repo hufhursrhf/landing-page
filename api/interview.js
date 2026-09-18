@@ -162,16 +162,17 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 <article>
 <header class="hx">
 <nav class="hx-crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>/</span><a href="/interviews">Interviews</a><span>/</span><span aria-current="page">${esc(nom)}</span></nav>
-<div class="nyt">
-<div class="nyt-id">
-<span class="hx-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</span>
-<span class="hx-who"><b>${esc(nom)}${f.linkedin ? `<a class="hx-li" href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b><span>${esc(role)}</span></span>
+<div class="vc">
+<div class="vc-id">
+<div class="vc-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</div>
+<b>${esc(nom)}${f.linkedin ? `<a class="hx-li" href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b>
+<span>${esc(role)}</span>
 </div>
-<div class="nyt-l">
+<div class="vc-txt">
 <p class="hx-k"><span>Interview Haloways</span><span>${esc(p.date_label || '')}</span><span>${lecture} min de lecture</span></p>
 <h1 class="hx-t">${esc(p.titre)}</h1>
+${p.chapo ? `<p class="vc-chapo">${esc(p.chapo)}</p>` : ''}
 </div>
-${p.chapo ? `<p class="nyt-chapo">${esc(p.chapo)}</p>` : ''}
 </div>
 </header>
 <div class="body"><div><div class="itv-head"><span class="itv-k">L'interview</span><h2 class="itv-title"><em>${echanges.length}</em> questions à ${esc(prenom)}</h2><p class="itv-sub">Un échange avec Charles Vidonne</p></div>${blocs}
