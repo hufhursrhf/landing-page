@@ -193,10 +193,12 @@ ${relecture}
 }
 
 module.exports = async (req, res) => {
-  const slug = String((req.query && req.query.slug) || '').toLowerCase()
-  const token = String((req.query && req.query.token) || '')
+  // req.query n'existe pas dans toutes les versions du runtime : on lit l'URL.
+  const q = new URL(req.url || '/', 'https://haloways.com').searchParams
+  const slug = String((req.query && req.query.slug) || q.get('slug') || '').toLowerCase()
+  const token = String((req.query && req.query.token) || q.get('token') || '')
   try {
-    if (!slug && !token) { res.statusCode = 404; return res.end('Introuvable') }
+    if (!slug && !token) { res.statusCode = 404; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); return res.end('Introuvable') }
     const d = await rpc('fn_interview_page', token ? { p_token: token } : { p_slug: slug })
     if (!d || !d.page) {
       res.statusCode = 404
