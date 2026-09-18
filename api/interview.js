@@ -161,15 +161,17 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 <main>
 <article>
 <header class="hx">
-<div class="hx-in">
-<p class="hx-k"><span>Interview Haloways</span><i aria-hidden="true"></i><time datetime="${pubIso}">${esc(p.date_label || '')}</time><i aria-hidden="true"></i><span>${lecture} min de lecture</span></p>
-<h1 class="hx-t">${esc(p.titre)}</h1>
-<div class="hx-id">
+<nav class="hx-crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>/</span><a href="/interviews">Interviews</a><span>/</span><span aria-current="page">${esc(nom)}</span></nav>
+<div class="nyt">
+<div class="nyt-id">
 <span class="hx-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</span>
 <span class="hx-who"><b>${esc(nom)}${f.linkedin ? `<a class="hx-li" href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b><span>${esc(role)}</span></span>
 </div>
-</div></header>
-${p.chapo ? `<section class="chapo2"><p>${esc(p.chapo)}</p></section>` : ''}
+<p class="hx-k"><span>Interview Haloways</span><span>${esc(p.date_label || '')}</span><span>${lecture} min de lecture</span></p>
+<h1 class="hx-t">${esc(p.titre)}</h1>
+${p.chapo ? `<p class="nyt-chapo">${esc(p.chapo)}</p>` : ''}
+</div>
+</header>
 <div class="body"><div><span class="label">L'interview</span><h2 class="itv-title">${echanges.length} questions à ${esc(prenom)}</h2>${blocs}
 <p class="credits">Propos recueillis par Charles Vidonne. Production : Nicolas De Monte.</p>
 ${recherche.length ? `<section class="seek" aria-labelledby="seek-t">
