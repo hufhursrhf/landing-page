@@ -15,6 +15,8 @@ const SUPABASE_URL = process.env.SUPABASE_URL || 'https://mbdvmvgxfqztcxeamzgo.s
 // Clé publique (anon), déjà embarquée dans l'app web. Elle ne donne accès qu'aux RPC autorisées.
 const SUPABASE_ANON = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iZHZtdmd4ZnF6dGN4ZWFtemdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMzg3OTYsImV4cCI6MjA4ODcxNDc5Nn0.5HNME7DJWug9EqTCbw2lwBNd2VRa2CrclPoFAluzYRk'
 const SITE = 'https://haloways.com'
+// Le logo LinkedIn officiel (le même que dans l'app, components/ui/BrandIcon).
+const LOGO_LINKEDIN = "<svg class=\"li\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"2\" fill=\"#fff\"/><path fill=\"#0A66C2\" d=\"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z\"/></svg>"
 
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -69,8 +71,6 @@ function page(d, { token }) {
 </section>${pulls}`
   }).join('')
 
-  const chips = [...(p.mots_cles || []).filter(Boolean).map((m) => `<span class="chip">${esc(m)}</span>`),
-    p.membre_haloways ? '<span class="chip g">Membre Haloways</span>' : ''].join('')
   const recherche = (p.recherche || []).filter(Boolean)
   const lignesFiche = [
     ['Entreprise', f.entreprise], ['Métier', f.metier], ['Basé à', f.lieu], ['À son compte depuis', f.depuis], ['Clients', f.clients],
@@ -155,27 +155,27 @@ ${apercu ? '' : POSTHOG}
 ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status === 'published' ? '' : ' : cette page n’est pas encore publiée'}. <a href="#relire" style="color:var(--gold)">Valider ou corriger ↓</a></div>` : ''}
 <main>
 <article>
-<header class="hero"><div>
-<nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/interviews">Interviews</a></li><li aria-current="page">${esc(nom)}</li></ol></nav>
-<span class="label">Interview · <time datetime="${pubIso}">${esc(p.date_label || '')}</time></span>
-<span class="surtitre">${esc(p.surtitre)}</span>
-<div class="idrow"><h1 class="q">${esc(p.titre)}</h1>${photo('hpic')}</div>
-${p.accroche ? `<p class="tagline">${esc(p.accroche)}</p>` : ''}
-<div class="chips">${chips}</div>
-<p class="meta">${lecture} min de lecture · Propos recueillis par Charles Vidonne</p></div>
-<figure class="portrait np"><div class="mono" role="img" aria-label="Portrait de ${esc(nom)}">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : esc(initiales(nom))}</div>${p.portrait_credit ? `<figcaption>${esc(p.portrait_credit)}</figcaption>` : ''}</figure></header>
+<header class="hx">
+<div class="hx-in">
+<figure class="hx-ph"><div class="hx-frame">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</div>${p.portrait_credit ? `<figcaption>${esc(p.portrait_credit)}</figcaption>` : ''}</figure>
+<div class="hx-txt">
+<p class="hx-k"><span>Interview</span><i aria-hidden="true"></i><time datetime="${pubIso}">${esc(p.date_label || '')}</time></p>
+<h1 class="hx-t">${esc(p.titre)}</h1>
+<p class="hx-who"><b>${esc(nom)}</b><span>${esc(role)}</span></p>
+<p class="hx-meta">${lecture} min de lecture · Propos recueillis par Charles Vidonne</p>
+</div></div></header>
 ${p.chapo ? `<section class="chapo"><p>${esc(p.chapo)}</p></section>` : ''}
 <div class="body"><div><span class="label">L'interview</span><h2 class="itv-title">${echanges.length} questions à ${esc(prenom)}</h2>${blocs}
 <p class="credits">Propos recueillis par Charles Vidonne. Production : Nicolas De Monte.</p>
 ${recherche.length ? `<section class="seek" aria-labelledby="seek-t">
 <h2 id="seek-t">Ce que ${esc(prenom)} <em>recherche</em></h2><ul>${recherche.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
-<div class="acts">${siteUrl ? `<a class="btn" href="${esc(siteUrl)}" target="_blank" rel="noopener">Découvrir ${esc(f.entreprise || siteNu)} ↗</a>` : ''}${f.linkedin ? `<a class="btn ghost" href="${esc(f.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ''}</div>
+<div class="acts">${siteUrl ? `<a class="btn" href="${esc(siteUrl)}" target="_blank" rel="noopener">Découvrir ${esc(f.entreprise || siteNu)} ↗</a>` : ''}${f.linkedin ? `<a class="btn ghost" href="${esc(f.linkedin)}" target="_blank" rel="noopener">${LOGO_LINKEDIN}LinkedIn</a>` : ''}</div>
 <p class="hw">Chaque semaine, Haloways croise les besoins de ses membres pour leur présenter les bonnes personnes. <a href="/#how">Voir comment ça marche →</a></p></section>` : ''}
 </div>
 <aside class="side" aria-label="Fiche de ${esc(nom)}"><div class="card">${photo('')}
 <p class="nm">${esc(nom)}</p><p class="rl">${esc(role)}</p><dl>${lignesFiche}${p.membre_haloways ? '<div><dt>Réseau</dt><dd class="g">Membre Haloways</dd></div>' : ''}</dl>
 ${siteUrl ? `<a class="lk first" href="${esc(siteUrl)}" target="_blank" rel="noopener"><span>${esc(siteNu)}</span><span aria-hidden="true">↗</span></a>` : ''}
-${f.linkedin ? `<a class="lk${siteUrl ? '' : ' first'}" href="${esc(f.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>` : ''}
+${f.linkedin ? `<a class="lk${siteUrl ? '' : ' first'}" href="${esc(f.linkedin)}" target="_blank" rel="noopener"><span class="lk-li">${LOGO_LINKEDIN}LinkedIn</span><span aria-hidden="true">↗</span></a>` : ''}
 </div></aside></div></article>
 ${relecture}
 </main>
