@@ -905,7 +905,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   margin-top:24px;flex-wrap:wrap;
 }
 .bstat{text-align:center}
-.bstat-n{font-family:'DM Sans',sans-serif;font-size:1.5rem;font-weight:300;color:var(--gold);display:block;line-height:1}
+.bstat-n{font-family:'DM Sans',sans-serif;font-size:1.5rem;font-weight:300;color:var(--gold);display:block;line-height:1;font-variant-numeric:tabular-nums}
 .bstat-l{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--t-mid);margin-top:7px;display:block}
 .bstat-sep{width:1px;height:30px;background:var(--border-hi)}
 @media(max-width:480px){.brands-stats{gap:28px}}
@@ -1090,9 +1090,9 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     </div>
   </div>
   <div class="brands-stats">
-    <div class="bstat"><span class="bstat-n">+300</span><span class="bstat-l">Membres</span></div>
+    <div class="bstat"><span class="bstat-n" data-cible="300">300+</span><span class="bstat-l">Membres</span></div>
     <div class="bstat-sep"></div>
-    <div class="bstat"><span class="bstat-n">+1000</span><span class="bstat-l">Introductions</span></div>
+    <div class="bstat"><span class="bstat-n" data-cible="5000">5000+</span><span class="bstat-l">Introductions</span></div>
   </div>
 </section>
 
@@ -2060,6 +2060,31 @@ function closeMobileMenu() {
       : null;
     if (a) track(a);
   }, true);
+})();
+</script>
+<script>
+/* Les compteurs montent de 0 jusqu'à leur valeur quand ils apparaissent.
+   La valeur finale est déjà écrite dans la page : sans JavaScript ou avec
+   la réduction des animations, elle s'affiche telle quelle. */
+(function(){
+  var ns=document.querySelectorAll('.bstat-n[data-cible]');
+  if(!ns.length||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function compter(el){
+    var cible=+el.getAttribute('data-cible'), t0=null, duree=1600;
+    function pas(t){
+      if(!t0) t0=t;
+      var p=Math.min(1,(t-t0)/duree), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(cible*e)+'+';
+      if(p<1) requestAnimationFrame(pas);
+    }
+    el.textContent='0+';
+    requestAnimationFrame(pas);
+  }
+  if(!('IntersectionObserver' in window)){ ns.forEach(compter); return }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); compter(e.target) } });
+  },{threshold:0.4});
+  ns.forEach(function(el){ io.observe(el) });
 })();
 </script>
 </body>
