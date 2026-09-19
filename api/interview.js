@@ -23,7 +23,9 @@ const HOTE = {
 // Le logo LinkedIn officiel (le même que dans l'app, components/ui/BrandIcon).
 const LOGO_LINKEDIN = "<svg class=\"li\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"2\" fill=\"#fff\"/><path fill=\"#0A66C2\" d=\"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z\"/></svg>"
 
-const esc = (s) => String(s == null ? '' : s)
+// Typographie française : l'espace avant ? ! : ; ne doit jamais laisser le signe seul en début de ligne.
+const insecables = (t) => t.replace(/ ([?!:;»])/g, '\u00a0$1').replace(/« /g, '«\u00a0')
+const esc = (s) => insecables(String(s == null ? '' : s))
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#x27;')
 
@@ -71,7 +73,7 @@ function page(d, { token }) {
     const pulls = exergues.filter((x) => Number(x.apres_echange) === n && x.texte)
       .map((x) => `<blockquote class="pull"><p>« ${esc(x.texte)} »</p><cite>${esc(nom)}</cite></blockquote>`).join('')
     return `<section class="ex" id="q${n}">
-<div class="row q msg"><span class="av m hote" aria-hidden="true"><img src="${esc(HOTE.photo)}" alt=""></span><div class="bw"><p class="who"><img class="mini" src="${esc(HOTE.photo)}" alt="">${esc(HOTE.nom)}</p><div class="bq"><h2>${esc(e.question)}</h2></div></div></div>
+<div class="oc-q msg"><h2>${esc(e.question)}</h2></div>
 <div class="row a msg"><div class="bw"><p class="who">${esc(nom)}${portrait ? `<img class="mini" src="${esc(portrait)}" alt="">` : ''}</p><div class="ba"><span class="tape" aria-hidden="true"><i></i><i></i><i></i></span><div class="txt">${paragraphes(e.reponse)}</div></div></div>${photo('av m')}</div>
 </section>${pulls}`
   }).join('')
@@ -95,7 +97,7 @@ function page(d, { token }) {
 
   const relecture = apercu ? `
 <section class="relire" id="relire"><div class="box">
-<h2>Votre interview vous convient ?</h2>
+<h2>Votre interview vous convient&nbsp;?</h2>
 <p>Validez-la telle quelle, ou dites-nous ce qu'il faut corriger. Vous pouvez retirer un nom, il appartient à la personne citée. Les faits que vous avez racontés restent, ils appartiennent au récit.</p>
 ${d.status === 'approved' || d.status === 'published' ? '<p class="ok">Merci, votre interview est validée.</p>' : ''}
 <textarea id="corr" placeholder="Vos corrections, précisément (ex. : c'était en 2022, pas en 2021)"></textarea>
@@ -207,7 +209,7 @@ ${relecture}
     es.forEach(function(e){
       if(!e.isIntersecting) return;
       var ex=e.target; io.unobserve(ex);
-      var q=ex.querySelector('.row.q'), a=ex.querySelector('.row.a');
+      var q=ex.querySelector('.oc-q'), a=ex.querySelector('.row.a');
       if(q) q.classList.add('vu');
       if(a){ setTimeout(function(){ a.classList.add('vu','ecrit') }, 420);
              setTimeout(function(){ a.classList.remove('ecrit') }, 1250); }
