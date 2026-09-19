@@ -157,7 +157,7 @@ ${apercu ? '' : POSTHOG}
 </head>
 <body>
 <header class="top"><a class="logo" href="/" aria-label="Haloways, accueil">HALOWAYS</a>
-<nav aria-label="Navigation principale"><a class="nl on" href="/interviews">Interviews</a><a class="nl" href="/#tarif">Tarif</a><a class="nl" href="https://one.haloways.com/login">Se connecter</a>
+<nav aria-label="Navigation principale"><a class="nl" href="/#tarif">Tarif</a><a class="nl" href="https://one.haloways.com/login">Se connecter</a>
 <a class="btn sm" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a></nav></header>
 ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status === 'published' ? '' : ' : cette page n’est pas encore publiée'}. <a href="#relire" style="color:var(--gold)">Valider ou corriger ↓</a></div>` : ''}
 <main>
