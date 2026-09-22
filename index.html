@@ -89,7 +89,7 @@
     {"@type": "Question", "name": "Combien de temps ça me prend vraiment ?", "acceptedAnswer": {"@type": "Answer", "text": "30 minutes par semaine. On choisit la personne, on prépare, on réserve le créneau. Tout le reste tourne en fond pendant que vous faites votre métier."}},
     {"@type": "Question", "name": "Comment sont choisies les personnes que je rencontre ?", "acceptedAnswer": {"@type": "Answer", "text": "Un algorithme propriétaire mesure votre potentiel de synergie avec chaque membre. Notre équipe valide et choisit ensuite votre rencontre à la main."}},
     {"@type": "Question", "name": "Et si je ne suis pas disponible une semaine ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous êtes disponible par défaut ; indiquez simplement quand vous ne l'êtes pas. Vos rencontres s'accumulent et vous les faites quand vous voulez."}},
-    {"@type": "Question", "name": "Comment fonctionnent l'essai et le paiement ?", "acceptedAnswer": {"@type": "Answer", "text": "14 jours offerts, sans engagement. Une carte est demandée à l'inscription ; le premier débit de 290 € intervient à la fin des 14 jours. Annulable à tout moment pendant l'essai."}},
+    {"@type": "Question", "name": "Comment fonctionnent l'essai et le paiement ?", "acceptedAnswer": {"@type": "Answer", "text": "14 jours offerts, sans engagement. Une carte est demandée à l'inscription, mais rien n'est prélevé pendant l'essai. À la fin des 14 jours, le premier prélèvement dépend de la formule choisie : 33 € HT pour la formule mensuelle, puis chaque mois ; ou 290 € HT en une fois pour la formule annuelle, soit 24 € HT par mois. Annulable à tout moment pendant l'essai, sans frais."}},
     {"@type": "Question", "name": "Puis-je me faire présenter à d'autres personnes ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Pour chaque membre rencontré, vous voyez son réseau et ses cibles, et vous pouvez demander une introduction en un clic."}},
     {"@type": "Question", "name": "Puis-je avoir une démo avant de me lancer ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Une démo personnalisée est offerte pendant vos 14 jours d'essai, pour comprendre comment Haloways peut vous aider à atteindre vos objectifs."}}
   ]
@@ -1953,7 +1953,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
     </div>
     <div class="price-amount">
       <span class="price-num">33 €</span>
-      <span class="price-unit">/ mois</span>
+      <span class="price-unit">HT / mois</span>
     </div>
     <p class="price-equiv">Sans engagement, résiliable à tout moment</p>
     <ul class="price-list">
@@ -1964,7 +1964,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
       <li>Démo personnalisée offerte pendant l'essai</li>
     </ul>
     <a class="btn-primary price-cta" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-    <p class="price-note">14 jours offerts, puis 33 €/mois HT. Carte requise, annulable à tout moment.</p>
+    <p class="price-note">Rien à payer pendant les 14 jours d'essai. Ensuite, 33 € HT prélevés chaque mois. Annulable à tout moment.</p>
   </div>
 </section>
 
@@ -1994,7 +1994,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
       </div>
       <div class="faq-item">
         <button class="faq-q">Comment fonctionnent l'essai et le paiement ?<span class="faq-icon"></span></button>
-        <div class="faq-a"><p>14 jours offerts, sans engagement. Une carte est demandée à l'inscription ; le premier débit de 290 € intervient seulement à la fin des 14 jours. Annulable à tout moment pendant l'essai.</p></div>
+        <div class="faq-a"><p>14&nbsp;jours offerts, sans engagement. Une carte est demandée à l'inscription, mais rien n'est prélevé pendant l'essai. À la fin des 14&nbsp;jours, le premier prélèvement dépend de la formule choisie : 33&nbsp;€ HT pour la formule mensuelle, puis chaque mois ; ou 290&nbsp;€ HT en une fois pour la formule annuelle, soit 24&nbsp;€ HT par mois. Annulable à tout moment pendant l'essai, sans frais.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Puis-je me faire présenter à d'autres personnes ?<span class="faq-icon"></span></button>
@@ -2127,14 +2127,14 @@ function closeMobileMenu() {
   var note = card.querySelector('.price-note')
   var plans = {
     monthly: {
-      num: '33 €', unit: '/ mois',
+      num: '33 €', unit: 'HT / mois',
       equiv: 'Sans engagement, résiliable à tout moment',
-      note: '14 jours offerts, puis 33 €/mois HT. Carte requise, annulable à tout moment.'
+      note: 'Rien à payer pendant les 14 jours d\'essai. Ensuite, 33 € HT prélevés chaque mois. Annulable à tout moment.'
     },
     annual: {
-      num: '24 €', unit: '/ mois',
-      equiv: 'soit 290 €/an, facturé une fois par an',
-      note: '14 jours offerts, puis 290 €/an HT. Carte requise, annulable à tout moment.'
+      num: '24 €', unit: 'HT / mois',
+      equiv: 'soit 290 € HT par an, prélevés en une fois',
+      note: 'Rien à payer pendant les 14 jours d\'essai. Ensuite, 290 € HT prélevés en une fois pour l\'année. Annulable à tout moment.'
     }
   }
   function set(plan) {
