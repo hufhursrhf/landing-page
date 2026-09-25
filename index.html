@@ -415,9 +415,16 @@ nav::before{
   border-radius:999px;background:#1b2744;border:1px solid rgba(201,168,76,.45);box-shadow:0 4px 10px rgba(0,0,0,.25);
   font-size:10.5px;font-weight:500;color:#f2efe6;white-space:nowrap;opacity:0;will-change:transform
 }
-.sw-lien{position:absolute;left:100px;top:43px;width:100px;height:2px}
-.sw-lien i{display:block;height:2px;border-radius:1px;background:var(--gold);transform:scaleX(0)}
-.sw-lien-t{position:absolute;left:110px;top:24px;width:80px;text-align:center;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:0}
+/* Deux fils d'or qui poussent de chaque photo et se rejoignent au milieu */
+.sw-fil{position:absolute;top:43.25px;width:48px;height:1.5px;overflow:hidden;border-radius:1px}
+.sw-fil.g{left:102px}
+.sw-fil.d{left:150px}
+.sw-fil i{position:absolute;inset:0;opacity:0}
+.sw-fil.g i{background:linear-gradient(to right,rgba(201,168,76,0),#C9A84C)}
+.sw-fil.d i{background:linear-gradient(to left,rgba(201,168,76,0),#C9A84C)}
+.sw-noeud-or{position:absolute;left:146px;top:40px;width:8px;height:8px;border-radius:1.5px;background:var(--gold);box-shadow:0 0 10px rgba(201,168,76,.8);opacity:0}
+.sw-noeud-h{position:absolute;left:145px;top:39px;width:10px;height:10px;border-radius:50%;border:1px solid var(--gold);box-sizing:border-box;opacity:0}
+.sw-lien-t{position:absolute;left:90px;top:20px;width:120px;text-align:center;font-size:9.5px;font-weight:500;text-transform:uppercase;color:var(--gold);opacity:0}
 
 /* 5. réseau */
 .sw-reseau{position:relative;width:160px;height:120px;display:flex;align-items:center;justify-content:center}
@@ -1281,7 +1288,10 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
         <!-- 4. De l'entraide concrète : quatre coups de main, dans les deux sens -->
         <div class="sw-t">
           <div class="sw-ech" id="sw-ech">
-            <i class="sw-lien" id="sw-lien"><i></i></i>
+            <i class="sw-fil g"><i id="sw-fil-g"></i></i>
+            <i class="sw-fil d"><i id="sw-fil-d"></i></i>
+            <i class="sw-noeud-h" id="sw-noeud-h"></i>
+            <i class="sw-noeud-or" id="sw-noeud"></i>
             <span class="sw-lien-t" id="sw-lien-t">Entraide</span>
             <i class="sw-onde" id="sw-onde-v" style="left:54px;top:22px"></i>
             <i class="sw-onde" id="sw-onde-c" style="left:202px;top:22px"></i>
@@ -2341,7 +2351,7 @@ function closeMobileMenu() {
     var versVous=i%2===0;
     return {el:el,w:el.offsetWidth||90,de:versVous?CLAIRE_X:VOUS_X,a:versVous?VOUS_X:CLAIRE_X,y:PILE[i>>1],debut:.08+i*.17,versVous:versVous};
   });
-  var ondeV=$('sw-onde-v'), ondeC=$('sw-onde-c'), lien=$('sw-lien').firstChild, lienT=$('sw-lien-t');
+  var ondeV=$('sw-onde-v'), ondeC=$('sw-onde-c'), filG=$('sw-fil-g'), filD=$('sw-fil-d'), noeud=$('sw-noeud'), noeudH=$('sw-noeud-h'), lienT=$('sw-lien-t');
   var echAv=$('sw-ech').querySelectorAll('.sw-ech-av,.sw-legende-n');
   // Largeurs mesurées une fois les polices chargées (sinon décalées de quelques px).
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){DONS.forEach(function(d){d.w=d.el.offsetWidth||d.w})});
@@ -2414,8 +2424,14 @@ function closeMobileMenu() {
     [[ondeV,ondes.v],[ondeC,ondes.c]].forEach(function(p){
       p[0].style.opacity=p[1]>0?(1-p[1])*.9:0; p[0].style.transform='scale('+(1+p[1]*.7)+')';
     });
-    lien.style.transform='scaleX('+lisse(fen(l,.74,.84))+')';
-    a=fen(l,.8,.88); lienT.style.opacity=a; lienT.style.transform='translateY('+((1-a)*5)+'px)';
+    // Les fils poussent de chaque photo vers le milieu, le nœud s'allume à
+    // leur rencontre, puis le mot se pose en resserrant ses lettres.
+    a=lisse(fen(l,.72,.81));
+    filG.style.opacity=filD.style.opacity=a>0?1:0;
+    filG.style.transform='translateX('+(-(1-a)*48)+'px)'; filD.style.transform='translateX('+((1-a)*48)+'px)';
+    a=fen(l,.8,.86); noeud.style.opacity=a; noeud.style.transform='rotate(45deg) scale('+(a===0?0:a+Math.sin(a*Math.PI)*.6)+')';
+    a=fen(l,.8,.95); noeudH.style.opacity=a>0&&a<1?(1-a)*.8:0; noeudH.style.transform='scale('+(1+a*3.2)+')';
+    a=lisse(fen(l,.83,.93)); lienT.style.opacity=a; lienT.style.letterSpacing=(5-a*3.4)+'px'; lienT.style.transform='translateY('+((1-a)*4)+'px)';
 
     // 5. le réseau
     l=loc(c,4);
