@@ -405,16 +405,19 @@ nav::before{
 .sw-g{position:relative;width:92px;text-align:center;line-height:26px;font-size:11px;font-weight:500;color:rgba(242,239,230,.75)}
 .sw-g b{position:absolute;inset:0;font-weight:500;color:var(--gold);opacity:0}
 
-/* 4. entraide */
-.sw-carte{position:absolute;left:0;top:18px;width:300px;height:140px}
-.sw-noeud{position:absolute;width:34px;height:34px}
-.sw-trait{position:absolute;height:2px;transform-origin:50% 50%}
-.sw-trait i{display:block;height:2px;width:0;overflow:hidden;border-radius:1px}
-.sw-relation,.sw-halo{position:absolute;left:238px;top:28px;width:28px;height:28px;border-radius:50%}
-.sw-relation{background:var(--gold)}
-.sw-halo{border:1.5px solid var(--gold);box-sizing:border-box}
+/* 4. entraide : deux personnes, quatre coups de main échangés */
+.sw-ech{position:absolute;inset:0}
+.sw-ech-av{position:absolute;width:44px;height:44px}
+.sw-onde{position:absolute;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);box-sizing:border-box;opacity:0}
 .sw-legende-n{position:absolute;width:80px;text-align:center;font-size:10.5px;font-weight:500;color:rgba(242,239,230,.6)}
-.sw-etiquette{position:absolute;left:182px;top:60px;width:140px;text-align:center;font-size:10.5px;font-weight:500;color:var(--gold)}
+.sw-don{
+  position:absolute;left:0;top:0;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;
+  border-radius:999px;background:#1b2744;border:1px solid rgba(201,168,76,.45);box-shadow:0 4px 10px rgba(0,0,0,.25);
+  font-size:10.5px;font-weight:500;color:#f2efe6;white-space:nowrap;opacity:0;will-change:transform
+}
+.sw-lien{position:absolute;left:100px;top:43px;width:100px;height:2px}
+.sw-lien i{display:block;height:2px;border-radius:1px;background:var(--gold);transform:scaleX(0)}
+.sw-lien-t{position:absolute;left:110px;top:24px;width:80px;text-align:center;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:0}
 
 /* 5. réseau */
 .sw-reseau{position:relative;width:160px;height:120px;display:flex;align-items:center;justify-content:center}
@@ -1345,20 +1348,25 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
           </div>
         </div>
 
-        <!-- 4. De l'entraide concrète -->
+        <!-- 4. De l'entraide concrète : quatre coups de main, dans les deux sens -->
         <div class="sw-t">
-          <div class="sw-carte" id="sw-carte">
-            <img class="sw-av sw-noeud" data-x="58" data-y="96" src="photos/scene-vous.jpg" alt="">
-            <img class="sw-av sw-noeud" data-x="172" data-y="96" src="photos/scene-claire.jpg" alt="">
-            <i class="sw-halo" id="sw-halo"></i>
-            <i class="sw-relation" id="sw-relation"></i>
-            <span class="sw-legende-n" style="left:18px;top:118px">Vous</span>
-            <span class="sw-legende-n" style="left:132px;top:118px">Claire</span>
-            <span class="sw-etiquette" id="sw-etiquette">Sa relation, votre cible</span>
+          <div class="sw-ech" id="sw-ech">
+            <i class="sw-lien" id="sw-lien"><i></i></i>
+            <span class="sw-lien-t" id="sw-lien-t">Entraide</span>
+            <i class="sw-onde" id="sw-onde-v" style="left:54px;top:22px"></i>
+            <i class="sw-onde" id="sw-onde-c" style="left:202px;top:22px"></i>
+            <img class="sw-av sw-ech-av" src="photos/scene-vous.jpg" alt="" style="left:54px;top:22px">
+            <img class="sw-av sw-ech-av" src="photos/scene-claire.jpg" alt="" style="left:202px;top:22px">
+            <span class="sw-legende-n" style="left:36px;top:70px">Vous</span>
+            <span class="sw-legende-n" style="left:184px;top:70px">Claire</span>
+            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6V16h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z"/></svg>Un conseil</span>
+            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>Un retour</span>
+            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11H4zM9 8V5h6v3M4 13h16"/></svg>Un client</span>
+            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Une mise en relation</span>
           </div>
         </div>
 
-        <!-- 5. Le réseau qui grandit -->
+<!-- 5. Le réseau qui grandit -->
         <div class="sw-t">
           <div class="sw-reseau" id="sw-reseau">
             <span class="sw-centre"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#C9A84C" d="M5 4.5h5v1.1H8.6v5.6h6.8V5.6H14V4.5h5v1.1h-1.4v12.8H19v1.1h-5v-1.1h1.4v-6.1H8.6v6.1H10v1.1H5v-1.1h1.4V5.6H5z"/></svg></span>
@@ -2311,7 +2319,7 @@ function closeMobileMenu() {
   var tabs=inner.querySelectorAll('.sw-t');
   var etapes=root.querySelectorAll('.sw-etape'), rails=root.querySelectorAll('.sw-rail i');
 
-  var N=5, DT=3470, POIDS=[1,1,2.2,1,1];
+  var N=5, DT=3470, POIDS=[1,1,2.2,1.8,1];
   var TOTAL=POIDS.reduce(function(a,b){return a+b},0), CYCLE=DT*TOTAL, B=[0];
   POIDS.forEach(function(p){B.push(B[B.length-1]+p/TOTAL)});
   function fen(v,a,b){return v<=a?0:v>=b?1:(v-a)/(b-a)}
@@ -2325,23 +2333,17 @@ function closeMobileMenu() {
   echelle();
   if(window.ResizeObserver) new ResizeObserver(echelle).observe(stage); else addEventListener('resize',echelle);
 
-  // ── Tableau 4 : nœuds et traits, posés une fois.
-  var carte=$('sw-carte');
-  carte.querySelectorAll('.sw-noeud').forEach(function(n){
-    n.style.left=(+n.dataset.x-17)+'px'; n.style.top=(+n.dataset.y-17)+'px';
+  // ── Tableau 4 : qui donne quoi à qui. Chacun reçoit deux coups de main.
+  var VOUS_X=76, CLAIRE_X=224, AV_Y=44, PILE=[102,128];
+  var DONS=Array.prototype.map.call($('sw-ech').querySelectorAll('.sw-don'),function(el,i){
+    var versVous=i%2===0;
+    return {el:el,w:el.offsetWidth||90,de:versVous?CLAIRE_X:VOUS_X,a:versVous?VOUS_X:CLAIRE_X,y:PILE[i>>1],debut:.08+i*.17,versVous:versVous};
   });
-  var VOUS={x:58,y:96}, CLAIRE={x:172,y:96}, REL={x:252,y:42};
-  function trait(de,a,couleur,pointille){
-    var dx=a.x-de.x, dy=a.y-de.y, long=Math.sqrt(dx*dx+dy*dy);
-    var t=document.createElement('span'); t.className='sw-trait';
-    t.style.left=((de.x+a.x)/2-long/2)+'px'; t.style.top=((de.y+a.y)/2-1)+'px'; t.style.width=long+'px';
-    t.style.transform='rotate('+Math.atan2(dy,dx)+'rad)';
-    var i=document.createElement('i');
-    i.style.background=pointille?'repeating-linear-gradient(90deg,'+couleur+' 0 4px,transparent 4px 8px)':couleur;
-    t.appendChild(i); carte.insertBefore(t,carte.firstChild);
-    return {el:i,long:long};
-  }
-  var T1=trait(VOUS,CLAIRE,'rgba(201,168,76,.55)'), T2=trait(CLAIRE,REL,'rgba(242,239,230,.35)'), T3=trait(REL,VOUS,'#C9A84C',true);
+  var ondeV=$('sw-onde-v'), ondeC=$('sw-onde-c'), lien=$('sw-lien').firstChild, lienT=$('sw-lien-t');
+  var echAv=$('sw-ech').querySelectorAll('.sw-ech-av,.sw-legende-n');
+  // Largeurs mesurées une fois les polices chargées (sinon décalées de quelques px).
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){DONS.forEach(function(d){d.w=d.el.offsetWidth||d.w})});
+  function lisse(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
 
   // ── Tableau 5 : quatorze allié·e·s sur deux anneaux.
   var reseau=$('sw-reseau'), ALLIES=[];
@@ -2356,7 +2358,7 @@ function closeMobileMenu() {
   var notif=$('sw-notif'), mail=$('sw-mail'), quiA=$('sw-quiA'), quiB=$('sw-quiB'), coche=$('sw-coche');
   var crs=inner.querySelectorAll('.sw-cr'), tuiles=$('sw-tuiles'), direct=$('sw-direct'), curseur=$('sw-curseur');
   var guideOr=inner.querySelectorAll('.sw-g b'), guide=inner.querySelectorAll('.sw-g');
-  var noeuds=carte.querySelectorAll('.sw-noeud,.sw-legende-n'), rel=$('sw-relation'), halo=$('sw-halo'), etiq=$('sw-etiquette'), compte=$('sw-compte');
+  var compte=$('sw-compte');
   var ARRETS=[[.18,.42],[.48,.68],[.74,.96]];
   var etapeCourante=-1;
 
@@ -2394,15 +2396,24 @@ function closeMobileMenu() {
       guideOr[i].style.opacity=o; guide[i].style.opacity=.55+.45*o;
     });
 
-    // 4. l'entraide
-    l=loc(c,3); a=fen(l,.02,.14);
-    noeuds.forEach(function(nd){nd.style.opacity=a});
-    T1.el.style.width=fen(l,.04,.18)*T1.long+'px'; T1.el.parentNode.style.opacity=a;
-    T2.el.style.width=fen(l,.14,.24)*T2.long+'px'; T2.el.parentNode.style.opacity=a;
-    T3.el.style.width=fen(l,.4,.7)*T3.long+'px';
-    a=fen(l,.2,.32); rel.style.opacity=.3+a*.7; rel.style.transform='scale('+(.85+a*.15+Math.sin(a*Math.PI)*.15)+')';
-    a=fen(l,.3,.6); halo.style.opacity=(1-a)*.8*(a>0?1:0); halo.style.transform='scale('+(1+a*1.2)+')';
-    a=fen(l,.72,.82); etiq.style.opacity=a; etiq.style.transform='translateY('+((1-a)*6)+'px)';
+    // 4. l'entraide : un conseil, un retour, un client, une mise en relation
+    l=loc(c,3); a=fen(l,0,.08);
+    echAv.forEach(function(x){x.style.opacity=a});
+    var ondes={v:0,c:0};
+    DONS.forEach(function(d){
+      var t=lisse(fen(l,d.debut,d.debut+.13));
+      var x=d.de+(d.a-d.de)*t, y=AV_Y+(d.y-AV_Y)*t-Math.sin(t*Math.PI)*42;
+      d.el.style.opacity=fen(l,d.debut,d.debut+.02);
+      d.el.style.transform='translate('+(x-d.w/2)+'px,'+(y-11)+'px) scale('+(.55+.45*Math.min(1,t*1.6))+')';
+      // Le receveur accuse réception : une onde part de sa photo.
+      var o=fen(l,d.debut+.13,d.debut+.25);
+      if(o>0&&o<1){if(d.versVous) ondes.v=o; else ondes.c=o}
+    });
+    [[ondeV,ondes.v],[ondeC,ondes.c]].forEach(function(p){
+      p[0].style.opacity=p[1]>0?(1-p[1])*.9:0; p[0].style.transform='scale('+(1+p[1]*.7)+')';
+    });
+    lien.style.transform='scaleX('+lisse(fen(l,.74,.84))+')';
+    a=fen(l,.8,.88); lienT.style.opacity=a; lienT.style.transform='translateY('+((1-a)*5)+'px)';
 
     // 5. le réseau
     l=loc(c,4);
