@@ -120,104 +120,9 @@
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--t-hi);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
 
-/* ── LIGNE DIRECTE : bandeau haut + pastille bas droite ── */
-:root{--band-h:46px}
-body{padding-top:var(--band-h)}
-.callband{
-  position:fixed;top:0;left:0;right:0;z-index:101;
-  height:var(--band-h);
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  padding:0 20px;
-  background:#0E1728;border-bottom:1px solid rgba(201,168,76,.22);
-  font-size:.82rem;
-}
-.callband .band-txt{color:rgba(245,240,232,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.callband .band-num{
-  color:var(--gold);font-size:.95rem;font-weight:700;letter-spacing:.03em;
-  text-decoration:none;white-space:nowrap;
-}
-.callband .band-num:hover{color:#E0CB86}
-.callband .band-short{display:none}
-.callband .band-closed{display:none;color:rgba(245,240,232,.6)}
-.callband[data-state="closed"]{border-bottom-color:rgba(245,240,232,.08)}
-.callband[data-state="closed"] .band-txt,
-.callband[data-state="closed"] .band-num,
-.callband[data-state="closed"] .live{display:none}
-.callband[data-state="closed"] .band-closed{display:inline;position:relative;padding-left:16px}
-.callband[data-state="closed"] .band-closed::before{
-  content:'';position:absolute;left:0;top:50%;margin-top:-3.5px;
-  width:7px;height:7px;border-radius:50%;background:rgba(245,240,232,.35);
-}
-.live{position:relative;width:9px;height:9px;border-radius:50%;background:#5BBF8A;flex-shrink:0}
-.live::before,.live::after{
-  content:'';position:absolute;inset:0;border-radius:50%;background:#5BBF8A;
-  animation:halo 2.4s cubic-bezier(.2,.6,.3,1) infinite;
-}
-.live::after{animation-delay:1.2s}
-@keyframes halo{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(3.4);opacity:0}}
-.calldock{
-  position:fixed;right:28px;bottom:28px;z-index:98;
-  display:flex;align-items:center;gap:14px;
-}
-.calldock[hidden]{display:none}
-.calldock-card{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 16px 10px 11px;
-  background:var(--ink2);border:1px solid rgba(245,240,232,.1);
-  border-radius:3px;box-shadow:0 16px 36px rgba(5,9,18,.45);
-}
-.calldock-mark{
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  width:40px;height:40px;border-radius:50%;
-  background:var(--ink);border:1px solid rgba(201,168,76,.4);
-  font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);
-}
-.calldock-card b{display:block;font-size:.82rem;font-weight:400;color:var(--ivory)}
-.calldock-card b+span{display:block;font-size:.7rem;color:rgba(245,240,232,.5);margin-top:2px}
-.calldock-fab{
-  position:relative;width:64px;height:64px;flex-shrink:0;border-radius:50%;
-  background:var(--gold);color:var(--ink);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 18px 40px rgba(5,9,18,.5);
-  transition:transform .15s ease;
-}
-.calldock-fab:hover{transform:translateY(-2px)}
-.calldock-fab::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  border:1px solid rgba(201,168,76,.6);
-  animation:ring 2.6s ease-out infinite;
-}
-@keyframes ring{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.5);opacity:0}}
-.calldock-fab .fab-dot{
-  position:absolute;right:2px;top:2px;width:13px;height:13px;border-radius:50%;
-  background:#5BBF8A;border:2px solid var(--ink);
-}
-.calldock-x{
-  position:absolute;top:-10px;left:-10px;
-  width:24px;height:24px;border-radius:50%;
-  background:var(--ink2);border:1px solid rgba(245,240,232,.14);
-  color:rgba(245,240,232,.55);font-family:'DM Sans',sans-serif;font-size:.8rem;line-height:1;
-  cursor:pointer;
-}
-.calldock-x:hover{color:var(--ivory)}
-@media(prefers-reduced-motion:reduce){
-  .live::before,.live::after,.calldock-fab::after{animation:none}
-}
-@media(max-width:768px){
-  :root{--band-h:40px}
-  .callband{font-size:.74rem;gap:10px;padding:0 14px}
-  .callband .band-full{display:none}
-  .callband .band-short{display:inline}
-  .callband .band-num{font-size:.82rem}
-  .calldock{right:16px;bottom:18px}
-  .calldock-card{display:none}
-  .calldock-x{left:auto;right:-6px;top:-6px}
-  .calldock-fab{width:56px;height:56px}
-}
-
 /* ── NAV ── */
 nav{
-  position:fixed;top:var(--band-h);left:0;right:0;z-index:100;
+  position:fixed;top:0;left:0;right:0;z-index:100;
   height:68px;display:flex;align-items:center;justify-content:space-between;
   padding:0 44px;
   background:linear-gradient(to bottom,rgba(16,26,48,.95) 0%,rgba(16,26,48,.82) 45%,rgba(16,26,48,0) 100%);
@@ -279,7 +184,7 @@ nav::before{
 .burger span{display:block;width:18px;height:1px;background:var(--gold);margin:5px 0;transition:transform .3s,opacity .2s}
 .mobile-menu{
   display:none;position:fixed;
-  top:calc(64px + var(--band-h));left:0;right:0;bottom:0;
+  top:64px;left:0;right:0;bottom:0;
   z-index:99;
   background:var(--ink);
   flex-direction:column;align-items:stretch;
@@ -451,48 +356,114 @@ nav::before{
   color:var(--ivory);line-height:1.2;
   margin-bottom:60px;
 }
-/* ── COMMENT ÇA MARCHE (asymétrie) ── */
-.how-head{max-width:1000px;margin:0 auto 48px}
-.how2{
+/* ── COMMENT ÇA MARCHE : la semaine d'un membre (scène animée) ──
+   Même scène que l'onboarding de l'app. La scène est dessinée à 300 × 176
+   et mise à l'échelle de son cadre ; l'étape en cours est reprise à côté,
+   avec son rail de progression. */
+.how-head{max-width:1000px;margin:0 auto 44px}
+.sw-titre{margin-bottom:14px}
+.sw-sub{font-size:1.02rem;font-weight:300;color:var(--t-mid);line-height:1.6;max-width:560px}
+.sw{
   max-width:1000px;margin:0 auto;
-  display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;align-items:stretch;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;
 }
-.how2-ours,.how2-yours{
-  border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:42px 40px;
+.sw-stage{
+  position:relative;width:100%;max-width:480px;justify-self:center;
+  aspect-ratio:300/176;border-radius:var(--radius-lg);overflow:hidden;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
 }
-.how2-yours{
-  background:var(--ink2);
-  border-color:rgba(201,168,76,.3);
-  display:flex;flex-direction:column;justify-content:center;
+.sw-inner{position:absolute;left:0;top:0;width:300px;height:176px;transform-origin:0 0}
+.sw-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;visibility:hidden}
+.sw-av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;border:1px solid rgba(242,239,230,.35);background:#1d2742}
+.sw-av-s{width:22px;height:22px}
+.sw-vous{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--gold);background:#2a2b2f;border-color:var(--gold)}
+
+/* 1. alerte */
+.sw-jour{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,230,.45)}
+.sw-notif{width:256px;border-radius:14px;padding:11px;display:flex;flex-direction:column;gap:8px;background:#f2efe6;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.sw-notif-tete{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:500;color:rgba(20,28,51,.55)}
+.sw-point{width:8px;height:8px;border-radius:50%;background:#25D366}
+.sw-notif-corps{display:flex;align-items:center;gap:9px}
+.sw-notif-corps b{display:block;font-size:12.5px;font-weight:500;color:#141c33}
+.sw-notif-corps span{display:block;font-size:11px;line-height:15px;color:rgba(20,28,51,.7);margin-top:1px}
+.sw-puce{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid rgba(242,239,230,.2);font-size:10.5px;color:rgba(242,239,230,.7)}
+
+/* 2. créneaux */
+.sw-duo{position:relative;height:24px;align-self:stretch}
+.sw-qui{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:500;color:rgba(242,239,230,.8)}
+.sw-creneaux{display:flex;gap:8px}
+.sw-cr{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;border-radius:10px;border:1px solid rgba(201,168,76,.3);font-size:12px;font-weight:500;color:#f2efe6}
+
+/* 3. visio */
+.sw-tuiles{display:flex;gap:10px}
+.sw-tuile{position:relative;width:124px;height:92px;border-radius:12px;overflow:hidden;background:#0f1628;border:1px solid rgba(255,255,255,.1)}
+.sw-tuile img{width:100%;height:100%;object-fit:cover;display:block}
+.sw-tuile span{position:absolute;left:6px;bottom:6px;padding:2px 7px;border-radius:6px;background:rgba(10,15,30,.6);font-size:10px;font-weight:500;color:#f2efe6}
+.sw-direct{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:rgb(126,200,152)}
+.sw-guide{position:relative;display:flex;width:276px;height:26px;border-radius:8px;background:rgba(255,255,255,.04)}
+.sw-curseur{position:absolute;left:0;top:0;width:92px;height:26px;border-radius:8px;border:1px solid var(--gold);background:rgba(201,168,76,.1);box-sizing:border-box}
+.sw-g{position:relative;width:92px;text-align:center;line-height:26px;font-size:11px;font-weight:500;color:rgba(242,239,230,.75)}
+.sw-g b{position:absolute;inset:0;font-weight:500;color:var(--gold);opacity:0}
+
+/* 4. entraide */
+.sw-carte{position:absolute;left:0;top:18px;width:300px;height:140px}
+.sw-noeud{position:absolute;width:34px;height:34px}
+.sw-trait{position:absolute;height:2px;transform-origin:50% 50%}
+.sw-trait i{display:block;height:2px;width:0;overflow:hidden;border-radius:1px}
+.sw-relation,.sw-halo{position:absolute;left:238px;top:28px;width:28px;height:28px;border-radius:50%}
+.sw-relation{background:var(--gold)}
+.sw-halo{border:1.5px solid var(--gold);box-sizing:border-box}
+.sw-legende-n{position:absolute;width:80px;text-align:center;font-size:10.5px;font-weight:500;color:rgba(242,239,230,.6)}
+.sw-etiquette{position:absolute;left:182px;top:60px;width:140px;text-align:center;font-size:10.5px;font-weight:500;color:var(--gold)}
+
+/* 5. réseau */
+.sw-reseau{position:relative;width:160px;height:120px;display:flex;align-items:center;justify-content:center}
+.sw-allie{position:absolute;left:75px;top:55px;width:10px;height:10px;border-radius:50%;background:rgba(242,239,230,.55)}
+.sw-allie.or{left:74px;top:54px;width:12px;height:12px;background:var(--gold)}
+.sw-centre{position:relative;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#141c33;border:1px solid rgba(201,168,76,.6)}
+.sw-compte{display:flex;align-items:baseline;gap:6px}
+.sw-compte b{font-size:20px;font-weight:500;color:var(--gold)}
+.sw-compte span{font-size:12px;color:rgba(242,239,230,.7)}
+
+/* Les étapes, synchronisées avec la scène */
+.sw-etapes{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+.sw-etape{
+  position:relative;display:block;width:100%;text-align:left;cursor:pointer;
+  padding:12px 14px 12px 22px;border:0;border-radius:var(--radius-sm);background:transparent;
+  font-family:inherit;color:inherit;transition:background .25s;
 }
-.how2-label{
-  font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--t-hi);
-  display:block;margin-bottom:28px;
+.sw-etape:hover{background:rgba(255,255,255,.025)}
+.sw-etape:focus-visible{outline:1px solid rgba(201,168,76,.6);outline-offset:2px}
+.sw-rail{position:absolute;left:6px;top:14px;bottom:14px;width:2px;border-radius:2px;background:rgba(245,240,232,.1);overflow:hidden}
+.sw-rail i{position:absolute;left:0;top:0;width:100%;height:0;background:var(--gold)}
+.sw-etape b{display:block;font-size:1.02rem;font-weight:400;color:var(--t-mid);line-height:1.35;transition:color .25s}
+.sw-etape span:not(.sw-rail){display:block;font-size:.9rem;font-weight:300;color:var(--t-lo);line-height:1.55;margin-top:4px;transition:color .25s}
+.sw-etape.on{background:rgba(255,255,255,.03)}
+.sw-etape.on b{color:var(--ivory)}
+.sw-etape.on span:not(.sw-rail){color:var(--t-mid)}
+
+@media(max-width:820px){
+  .sw{grid-template-columns:1fr;gap:28px}
+  .sw-etape{padding:10px 12px 10px 20px}
+  .sw-etape:not(.on) span:not(.sw-rail){display:none}
 }
-.how2-label.gold{color:var(--gold)}
-.how2-list{list-style:none;display:flex;flex-direction:column;gap:24px}
-.how2-list li{
-  position:relative;padding-left:36px;
-  font-family:'DM Sans',sans-serif;font-size:1.02rem;font-weight:300;
-  color:var(--t-hi);line-height:1.5;
+
+/* ── AVIS QUI DÉFILENT ── */
+.avis{padding:36px 0 12px;overflow:hidden}
+.avis-piste{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.avis-piste::-webkit-scrollbar{display:none}
+.avis-rail{display:flex;gap:14px;width:max-content;padding:4px 24px}
+.avis-rail.defile{animation:avis-defile 90s linear infinite}
+.avis-piste:hover .avis-rail.defile,.avis-piste:focus-within .avis-rail.defile{animation-play-state:paused}
+@keyframes avis-defile{to{transform:translateX(calc(-50% - 7px))}}
+.avis-carte{
+  width:340px;flex:none;margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:18px;
+  border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:var(--ink2);position:relative;
 }
-.how2-list li::before{
-  content:'';position:absolute;left:0;top:5px;
-  width:18px;height:18px;border-radius:50%;
-  background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.5);
-}
-.how2-list li::after{
-  content:'';position:absolute;left:6px;top:11px;
-  width:6px;height:6px;border-radius:50%;background:var(--gold);
-}
-.how2-big{
-  font-family:'DM Sans',sans-serif;font-size:clamp(1.6rem,3vw,2.15rem);
-  font-weight:300;color:var(--ivory);line-height:1.25;margin-bottom:18px;
-}
-.how2-sub{font-size:.98rem;font-weight:300;color:var(--t-mid);line-height:1.6}
-@media(max-width:768px){.how2{grid-template-columns:1fr}}
+.avis-carte::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.2),transparent)}
+.avis-carte blockquote{margin:0;font-size:.95rem;font-style:italic;font-weight:300;line-height:1.6;color:rgba(245,240,232,.75)}
+@media(max-width:768px){.avis-carte{width:280px;padding:20px}}
+@media(prefers-reduced-motion:reduce){.avis-rail.defile{animation:none}}
 
 /* CTA de section */
 .section-cta{text-align:center;margin-top:52px}
@@ -932,7 +903,7 @@ footer{
     transparent 38px
   );
 }
-body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not(#calldock){position:relative;z-index:1}
+body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;z-index:1}
 
 /* ── SPLASH SCREEN ── */
 #splash{
@@ -1100,15 +1071,6 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
 <!-- LINES BACKGROUND -->
 <div class="lines-bg"></div>
 
-<!-- LIGNE DIRECTE : bandeau -->
-<div class="callband" id="callband" data-state="open">
-  <span class="live" aria-hidden="true"></span>
-  <span class="band-txt band-full">Une question sur le club&nbsp;? Un expert Haloways répond au téléphone maintenant</span>
-  <span class="band-txt band-short">Un expert Haloways répond</span>
-  <a class="band-num" href="tel:+33782839658" data-call-zone="bandeau">07&nbsp;82&nbsp;83&nbsp;96&nbsp;58</a>
-  <span class="band-closed">Ligne fermée, elle rouvre à 8&nbsp;h</span>
-</div>
-
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#" aria-label="Haloways">HALOWAYS</a>
@@ -1200,6 +1162,78 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
   </div>
 </section>
 
+<!-- AVIS QUI DÉFILENT : quelques témoignages choisis, plus haut que le mur -->
+<section class="avis" aria-label="Avis de membres">
+  <div class="avis-piste">
+    <div class="avis-rail" id="avis-rail">
+      <figure class="avis-carte">
+        <blockquote>"Ce qui m'a convaincu c'est la réciprocité. On ne vient pas pour prendre. On prépare aussi ce qu'on peut apporter à l'autre. Les rencontres sont plus équilibrées et cela crée une vraie relation d'entre-aide."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/simon-kushnirenko.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Simon Kushnirenko</div><div class="author-role">Entrepreneur in Residence · Pioneers</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"En trois semaines, j'ai rencontré deux personnes qui m'ont introduit auprès de décideurs que je ciblais depuis des mois. Aucune prospection. Juste les bonnes rencontres."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/antoine-torrini.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Antoine Torrini</div><div class="author-role">Fondateur · Boxy</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"J'avais le réseau mais pas la structure pour l'activer régulièrement. Haloways a changé ça. Chaque semaine une rencontre avec quelqu'un qui peut m'ouvrir des portes concrètes. Et ce qui se passe pendant la visio est vraiment différent de tout ce que j'avais essayé avant."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/philippe-bonjour-de-montfleury.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Philippe Bonjour de Montfleury</div><div class="author-role">Directeur Général · Invictus Management</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"Mon réseau existant s'essoufflait. Haloways m'a remis en contact avec des dirigeants que je n'aurais jamais croisés autrement. Deux nouveaux clients en six semaines."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/anthony-naudeau.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Anthony Naudeau</div><div class="author-role">Expert en comptabilité d'entreprise</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"Je passais trop de temps à entretenir des relations qui n'allaient nulle part. Haloways a changé ça&nbsp;! Chaque rencontre a une raison d'être claire, et les deux côtés en ressortent avec des intros pour avancer."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/charlene-lin.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Charlene Lin</div><div class="author-role">Operating Partner Freelance · Atscale</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"J'arrive préparé à chaque rencontre. Je sais ce que l'autre cherche, il sait ce que je peux lui apporter. Les introductions se font pendant l'appel, en quelques secondes. Pour quelqu'un qui n'aime pas forcément prospecter, c'est exactement le bon format."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/fabio-bigini.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Fabio Bigini</div><div class="author-role">CTO · Stealth AI Startup</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"En conseil indépendant, les clients viennent par recommandation. Haloways a structuré ça pour moi. Une rencontre par semaine avec quelqu'un qui peut m'introduire auprès des bons profils. En deux mois on m'a ouvert la porte de 3 nouveaux clients."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/pierre-yves-portafaix.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Pierre-Yves Portafaix</div><div class="author-role">Consultant indépendant · Money Time Consulting</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"La qualité des mises en relation change vraiment la donne. J'ai signé deux deals majeurs en moins d'un mois."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/daniel-laska.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Daniel Laska</div><div class="author-role">Founder · Lensily</div></div>
+        </figcaption>
+      </figure>
+      <figure class="avis-carte">
+        <blockquote>"Je cherchais des missions longues, pas des one-shots. Les introductions que j'ai reçues via Haloways m'ont menée exactement là. Des conversations sérieuses, dès le premier échange."</blockquote>
+        <figcaption class="card-author">
+          <div class="avatar"><img src="photos/carole-anne-pelletier.png" alt="" loading="lazy"></div>
+          <div class="author-info"><div class="author-name">Carole-Anne Pelletier</div><div class="author-role">Freelance en stratégie produit</div></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
 <!-- COMPARATIF -->
 <section class="section" id="compare">
   <div class="compare">
@@ -1255,28 +1289,95 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- HOW IT WORKS : la semaine d'un membre, même scène que l'onboarding de l'app
+     (components/scenes/SceneSemaine.tsx), portée en HTML/CSS/JS sans dépendance. -->
 <section class="section" id="how">
   <div class="how-head">
     <span class="section-label">Comment ça marche</span>
-    <h2 class="section-title">Chaque semaine, on mesure le potentiel de chaque rencontre, puis on la choisit à la main pour vous.</h2>
+    <h2 class="section-title sw-titre">Chaque semaine, une rencontre pour s'entraider.</h2>
+    <p class="sw-sub">30 minutes avec un membre choisi pour votre activité. Des relations qui durent.</p>
   </div>
-  <div class="how2">
-    <div class="how2-ours">
-      <span class="how2-label">Ce qu'on fait pour vous</span>
-      <ul class="how2-list">
-        <li>On apprend à connaître votre activité et ce que vous cherchez vraiment.</li>
-        <li>Un algorithme propriétaire mesure votre potentiel de synergie avec chaque membre.</li>
-        <li>Notre équipe choisit votre rencontre de la semaine à la main.</li>
-        <li>On organise la visio et on réserve le créneau pour vous.</li>
-      </ul>
+
+  <div class="sw" id="sw">
+    <div class="sw-stage" id="sw-stage" aria-hidden="true">
+      <div class="sw-inner" id="sw-inner">
+
+        <!-- 1. L'alerte du lundi -->
+        <div class="sw-t">
+          <span class="sw-jour">Lundi, 14&nbsp;h</span>
+          <div class="sw-notif" id="sw-notif">
+            <div class="sw-notif-tete"><span class="sw-point"></span><span>WhatsApp · Haloways</span></div>
+            <div class="sw-notif-corps">
+              <img class="sw-av" src="photos/scene-claire.jpg" alt="">
+              <div><b>Votre rencontre de la semaine</b><span>Claire, dirigeante d'un cabinet RH. Son réseau compte vos cibles.</span></div>
+            </div>
+          </div>
+          <span class="sw-puce" id="sw-mail">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z M3 7l9 6 9-6" stroke="rgba(242,239,230,.7)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Et par email
+          </span>
+        </div>
+
+        <!-- 2. L'un propose, l'autre choisit -->
+        <div class="sw-t">
+          <div class="sw-duo">
+            <span class="sw-qui" id="sw-quiA"><img class="sw-av sw-av-s" src="photos/scene-claire.jpg" alt="">Claire propose ses moments libres</span>
+            <span class="sw-qui" id="sw-quiB"><span class="sw-av sw-av-s sw-vous">V</span>Vous choisissez, c'est calé</span>
+          </div>
+          <div class="sw-creneaux">
+            <span class="sw-cr">Mar. 9&nbsp;h</span>
+            <span class="sw-cr">Mer. 14&nbsp;h<svg class="sw-coche" id="sw-coche" width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="sw-cr">Ven. 16&nbsp;h</span>
+          </div>
+        </div>
+
+        <!-- 3. La visio guidée : Présentations, Besoins, Entraide -->
+        <div class="sw-t">
+          <div class="sw-tuiles" id="sw-tuiles">
+            <div class="sw-tuile"><img src="photos/scene-vous.jpg" alt=""><span>Vous</span></div>
+            <div class="sw-tuile"><img src="photos/scene-claire.jpg" alt=""><span>Claire</span><i class="sw-direct" id="sw-direct"></i></div>
+          </div>
+          <div class="sw-guide">
+            <i class="sw-curseur" id="sw-curseur"></i>
+            <span class="sw-g">Présentations<b>Présentations</b></span>
+            <span class="sw-g">Besoins<b>Besoins</b></span>
+            <span class="sw-g">Entraide<b>Entraide</b></span>
+          </div>
+        </div>
+
+        <!-- 4. De l'entraide concrète -->
+        <div class="sw-t">
+          <div class="sw-carte" id="sw-carte">
+            <img class="sw-av sw-noeud" data-x="58" data-y="96" src="photos/scene-vous.jpg" alt="">
+            <img class="sw-av sw-noeud" data-x="172" data-y="96" src="photos/scene-claire.jpg" alt="">
+            <i class="sw-halo" id="sw-halo"></i>
+            <i class="sw-relation" id="sw-relation"></i>
+            <span class="sw-legende-n" style="left:18px;top:118px">Vous</span>
+            <span class="sw-legende-n" style="left:132px;top:118px">Claire</span>
+            <span class="sw-etiquette" id="sw-etiquette">Sa relation, votre cible</span>
+          </div>
+        </div>
+
+        <!-- 5. Le réseau qui grandit -->
+        <div class="sw-t">
+          <div class="sw-reseau" id="sw-reseau">
+            <span class="sw-centre"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#C9A84C" d="M5 4.5h5v1.1H8.6v5.6h6.8V5.6H14V4.5h5v1.1h-1.4v12.8H19v1.1h-5v-1.1h1.4v-6.1H8.6v6.1H10v1.1H5v-1.1h1.4V5.6H5z"/></svg></span>
+          </div>
+          <div class="sw-compte" id="sw-compte"><b>52</b><span>allié·e·s par an</span></div>
+        </div>
+
+      </div>
     </div>
-    <div class="how2-yours">
-      <span class="how2-label gold">Ce que vous faites</span>
-      <p class="how2-big">Vous rencontrez la personne. 30 minutes, en visio.</p>
-      <p class="how2-sub">Le reste tourne en fond pendant que vous faites votre métier. 52 rencontres dans l'année, votre club qui se construit autour de vous.</p>
-    </div>
+
+    <ol class="sw-etapes" id="sw-etapes">
+      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>Votre rencontre de la semaine</b><span>Un membre choisi pour vos synergies. L'alerte arrive sur WhatsApp et par email.</span></button></li>
+      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>L'un propose, l'autre choisit</b><span>Quelques créneaux pris sur les moments libres de l'agenda. Un clic pour confirmer.</span></button></li>
+      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>30 minutes de visio guidée</b><span>L'interface vous guide : les présentations, vos besoins, puis l'entraide.</span></button></li>
+      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>De l'entraide concrète</b><span>Un conseil, un retour, un client, une mise en relation : chacun aide l'autre là où il peut.</span></button></li>
+      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>Un·e nouvel·le allié·e chaque semaine</b><span>Votre réseau grandit. Une semaine chargée ? Vous la passez.</span></button></li>
+    </ol>
   </div>
+
   <div class="section-cta">
     <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
   </div>
@@ -2030,17 +2131,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu):not(#callband):not
 </footer>
 
 <!-- LIGNE DIRECTE : pastille -->
-<aside class="calldock" id="calldock" aria-label="Appeler Haloways" hidden>
-  <span class="calldock-card">
-    <span class="calldock-mark" aria-hidden="true">H</span>
-    <span><b>Un expert Haloways est en ligne</b><span>Réponse en moins d'une minute</span></span>
-  </span>
-  <a class="calldock-fab" href="tel:+33782839658" data-call-zone="pastille" aria-label="Appeler un expert Haloways au 07 82 83 96 58">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
-    <span class="fab-dot" aria-hidden="true"></span>
-  </a>
-  <button type="button" class="calldock-x" id="calldock-x" aria-label="Masquer l'appel direct">&times;</button>
-</aside>
+
 
 <script>
 setTimeout(function() {
@@ -2180,63 +2271,7 @@ function closeMobileMenu() {
 })();
 </script>
 
-<!-- Ligne directe : ouverte de 8 h à 22 h, tous les jours -->
-<script>
-(function () {
-  var OUVERTURE = 8, FERMETURE = 22;          // heures locales du visiteur
-  var band = document.getElementById('callband');
-  var dock = document.getElementById('calldock');
-  var croix = document.getElementById('calldock-x');
-  if (!band || !dock) return;
 
-  var masquee = false;
-  try { masquee = sessionStorage.getItem('calldock-off') === '1'; } catch (e) {}
-
-  function ouverte() {
-    var h = new Date().getHours();
-    return h >= OUVERTURE && h < FERMETURE;
-  }
-  function appliquer() {
-    var o = ouverte();
-    band.setAttribute('data-state', o ? 'open' : 'closed');
-    dock.hidden = !o || masquee;
-  }
-  if (croix) {
-    croix.addEventListener('click', function () {
-      masquee = true;
-      try { sessionStorage.setItem('calldock-off', '1'); } catch (e) {}
-      appliquer();
-    });
-  }
-  appliquer();
-  setInterval(appliquer, 5 * 60 * 1000);       // bascule sans rechargement
-})();
-</script>
-
-<!-- Track call clicks → PostHog event 'landing_call_click' (acquisition, hors entonnoir) -->
-<script>
-(function () {
-  // Même principe que le suivi des CTA d'essai : délégation en phase de capture,
-  // pour partir avant que le téléphone ne prenne la main sur le lien tel:.
-  // L'événement sert à mesurer l'acquisition ; il n'est volontairement branché
-  // sur aucun entonnoir de conversion pour l'instant.
-  document.addEventListener('click', function (e) {
-    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
-    if (!a) return;
-    try {
-      if (!window.posthog || typeof window.posthog.capture !== 'function') return;
-      var section = a.closest ? a.closest('section') : null;
-      window.posthog.capture('landing_call_click', {
-        category: 'acquisition',
-        location: a.getAttribute('data-call-zone')
-          || (section && section.id ? section.id : (a.className || 'unknown')),
-        phone: a.getAttribute('href').replace('tel:', ''),
-        link_text: (a.textContent || '').trim().slice(0, 60)
-      });
-    } catch (err) {}
-  }, true);
-})();
-</script>
 <script>
 /* Les compteurs montent de 0 jusqu'à leur valeur quand ils apparaissent.
    La valeur finale est déjà écrite dans la page : sans JavaScript ou avec
@@ -2260,6 +2295,164 @@ function closeMobileMenu() {
     es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); compter(e.target) } });
   },{threshold:0.4});
   ns.forEach(function(el){ io.observe(el) });
+})();
+</script>
+<script>
+/* Comment ça marche : la semaine d'un membre, en cinq tableaux.
+   Portage de la scène de l'onboarding (components/scenes/SceneSemaine.tsx) :
+   même rythme (3,47 s par tableau, la visio plus longue pour marquer
+   Présentations, Besoins, Entraide), mêmes fenêtres d'animation.
+   Une seule horloge pilote tout. Elle s'arrête hors écran et onglet caché.
+   Avec la réduction des animations : un état fixe par étape, au clic. */
+(function(){
+  var root=document.getElementById('sw');
+  if(!root) return;
+  var stage=document.getElementById('sw-stage'), inner=document.getElementById('sw-inner');
+  var tabs=inner.querySelectorAll('.sw-t');
+  var etapes=root.querySelectorAll('.sw-etape'), rails=root.querySelectorAll('.sw-rail i');
+
+  var N=5, DT=3470, POIDS=[1,1,2.2,1,1];
+  var TOTAL=POIDS.reduce(function(a,b){return a+b},0), CYCLE=DT*TOTAL, B=[0];
+  POIDS.forEach(function(p){B.push(B[B.length-1]+p/TOTAL)});
+  function fen(v,a,b){return v<=a?0:v>=b?1:(v-a)/(b-a)}
+  function pos(c){for(var k=0;k<N;k++){if(c<B[k+1]) return k+(c-B[k])/(B[k+1]-B[k])}return N}
+  function loc(c,k){return Math.min(1,Math.max(0,pos(c)-k))}
+  function vis(c,k){var p=pos(c);if(!(p>=k&&p<k+1)) return 0;var l=p-k;return fen(l,0,.08)*(1-fen(l,.92,1))}
+  function $(id){return document.getElementById(id)}
+
+  // ── Mise à l'échelle : la scène est dessinée à 300 × 176.
+  function echelle(){inner.style.transform='scale('+(stage.clientWidth/300)+')'}
+  echelle();
+  if(window.ResizeObserver) new ResizeObserver(echelle).observe(stage); else addEventListener('resize',echelle);
+
+  // ── Tableau 4 : nœuds et traits, posés une fois.
+  var carte=$('sw-carte');
+  carte.querySelectorAll('.sw-noeud').forEach(function(n){
+    n.style.left=(+n.dataset.x-17)+'px'; n.style.top=(+n.dataset.y-17)+'px';
+  });
+  var VOUS={x:58,y:96}, CLAIRE={x:172,y:96}, REL={x:252,y:42};
+  function trait(de,a,couleur,pointille){
+    var dx=a.x-de.x, dy=a.y-de.y, long=Math.sqrt(dx*dx+dy*dy);
+    var t=document.createElement('span'); t.className='sw-trait';
+    t.style.left=((de.x+a.x)/2-long/2)+'px'; t.style.top=((de.y+a.y)/2-1)+'px'; t.style.width=long+'px';
+    t.style.transform='rotate('+Math.atan2(dy,dx)+'rad)';
+    var i=document.createElement('i');
+    i.style.background=pointille?'repeating-linear-gradient(90deg,'+couleur+' 0 4px,transparent 4px 8px)':couleur;
+    t.appendChild(i); carte.insertBefore(t,carte.firstChild);
+    return {el:i,long:long};
+  }
+  var T1=trait(VOUS,CLAIRE,'rgba(201,168,76,.55)'), T2=trait(CLAIRE,REL,'rgba(242,239,230,.35)'), T3=trait(REL,VOUS,'#C9A84C',true);
+
+  // ── Tableau 5 : quatorze allié·e·s sur deux anneaux.
+  var reseau=$('sw-reseau'), ALLIES=[];
+  for(var i=0;i<14;i++){
+    var anneau=i<6?44:70, n=i<6?6:8, j=i<6?i:i-6;
+    var ang=(j/n)*Math.PI*2-Math.PI/2+(i<6?0:Math.PI/8);
+    var d=document.createElement('i'); d.className='sw-allie'+(i===0?' or':'');
+    reseau.insertBefore(d,reseau.firstChild);
+    ALLIES.push({el:d,x:Math.cos(ang)*anneau,y:Math.sin(ang)*anneau*.78,i:i});
+  }
+
+  var notif=$('sw-notif'), mail=$('sw-mail'), quiA=$('sw-quiA'), quiB=$('sw-quiB'), coche=$('sw-coche');
+  var crs=inner.querySelectorAll('.sw-cr'), tuiles=$('sw-tuiles'), direct=$('sw-direct'), curseur=$('sw-curseur');
+  var guideOr=inner.querySelectorAll('.sw-g b'), guide=inner.querySelectorAll('.sw-g');
+  var noeuds=carte.querySelectorAll('.sw-noeud,.sw-legende-n'), rel=$('sw-relation'), halo=$('sw-halo'), etiq=$('sw-etiquette'), compte=$('sw-compte');
+  var ARRETS=[[.18,.42],[.48,.68],[.74,.96]];
+  var etapeCourante=-1;
+
+  function rendre(c){
+    for(var k=0;k<N;k++){var v=vis(c,k);tabs[k].style.opacity=v;tabs[k].style.visibility=v>0?'visible':'hidden'}
+    var e=Math.min(N-1,Math.floor(pos(c)));
+    if(e!==etapeCourante){etapes.forEach(function(x,i){x.classList.toggle('on',i===e)});etapeCourante=e}
+    var p=pos(c);
+    rails.forEach(function(r,i){r.style.height=(i<e?0:i===e?(p-i)*100:0)+'%'});
+
+    // 1. l'alerte
+    var l=loc(c,0), a=fen(l,.05,.22);
+    notif.style.opacity=a; notif.style.transform='translateY('+((1-a)*-24)+'px)';
+    a=fen(l,.42,.56); mail.style.opacity=a; mail.style.transform='translateY('+((1-a)*8)+'px)';
+
+    // 2. les créneaux
+    l=loc(c,1);
+    quiA.style.opacity=fen(l,.02,.1)*(1-fen(l,.52,.58)); quiB.style.opacity=fen(l,.58,.66);
+    var choix=fen(l,.6,.7);
+    crs.forEach(function(cr,i){
+      var on=fen(l,.1+i*.1,.2+i*.1), choisi=i===1;
+      cr.style.opacity=on*(choisi?1:1-choix*.65);
+      cr.style.transform='translateY('+((1-on)*10)+'px) scale('+(choisi?1+Math.sin(choix*Math.PI)*.08:1)+')';
+      if(choisi){cr.style.borderColor='rgba(201,168,76,'+(.3+choix*.7)+')';cr.style.background='rgba(201,168,76,'+(choix*.14)+')'}
+    });
+    coche.style.opacity=fen(l,.66,.74);
+
+    // 3. la visio, avec un arrêt sur chaque étape
+    l=loc(c,2); a=fen(l,.04,.2);
+    tuiles.style.opacity=a; tuiles.style.transform='scale('+(.92+a*.08)+')';
+    curseur.style.transform='translateX('+((fen(l,.42,.48)+fen(l,.68,.74))*92)+'px)';
+    direct.style.opacity=.4+Math.abs(Math.sin(l*Math.PI*4))*.6;
+    ARRETS.forEach(function(r,i){
+      var o=fen(l,r[0],r[0]+.04)*(1-fen(l,r[1],r[1]+.03));
+      guideOr[i].style.opacity=o; guide[i].style.opacity=.55+.45*o;
+    });
+
+    // 4. l'entraide
+    l=loc(c,3); a=fen(l,.02,.14);
+    noeuds.forEach(function(nd){nd.style.opacity=a});
+    T1.el.style.width=fen(l,.04,.18)*T1.long+'px'; T1.el.parentNode.style.opacity=a;
+    T2.el.style.width=fen(l,.14,.24)*T2.long+'px'; T2.el.parentNode.style.opacity=a;
+    T3.el.style.width=fen(l,.4,.7)*T3.long+'px';
+    a=fen(l,.2,.32); rel.style.opacity=.3+a*.7; rel.style.transform='scale('+(.85+a*.15+Math.sin(a*Math.PI)*.15)+')';
+    a=fen(l,.3,.6); halo.style.opacity=(1-a)*.8*(a>0?1:0); halo.style.transform='scale('+(1+a*1.2)+')';
+    a=fen(l,.72,.82); etiq.style.opacity=a; etiq.style.transform='translateY('+((1-a)*6)+'px)';
+
+    // 5. le réseau
+    l=loc(c,4);
+    ALLIES.forEach(function(al){
+      var q=fen(l,.06+al.i*.045,.14+al.i*.045);
+      al.el.style.opacity=q; al.el.style.transform='translate('+al.x+'px,'+al.y+'px) scale('+(.4+q*.6)+')';
+    });
+    a=fen(l,.6,.72); compte.style.opacity=a; compte.style.transform='translateY('+((1-a)*6)+'px)';
+  }
+
+  // ── Sans animation : un état lisible par étape, choisi au clic.
+  var FIGE=[.8,.85,.6,.9,.9];
+  function figer(k){rendre(B[k]+FIGE[k]*(B[k+1]-B[k]))}
+  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduit){
+    figer(0);
+    etapes.forEach(function(b,k){b.addEventListener('click',function(){figer(k)})});
+    return;
+  }
+
+  // ── L'horloge : avance seulement quand la scène est visible.
+  var ecoule=0, dernier=null, visible=false, raf=null;
+  function boucle(t){
+    if(dernier!==null) ecoule+=t-dernier;
+    dernier=t;
+    rendre((ecoule%CYCLE)/CYCLE);
+    raf=requestAnimationFrame(boucle);
+  }
+  function lancer(){if(raf===null&&visible&&!document.hidden){dernier=null;raf=requestAnimationFrame(boucle)}}
+  function arreter(){if(raf!==null){cancelAnimationFrame(raf);raf=null}}
+  rendre(0);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;visible?lancer():arreter()},{threshold:.2}).observe(stage);
+  } else {visible=true;lancer()}
+  document.addEventListener('visibilitychange',function(){document.hidden?arreter():lancer()});
+  etapes.forEach(function(b,k){b.addEventListener('click',function(){
+    ecoule=B[k]*CYCLE+1; rendre(B[k]);
+    try{window.posthog&&posthog.capture('landing_semaine_etape',{etape:k+1})}catch(e){}
+  })});
+})();
+</script>
+<script>
+/* Les avis défilent en boucle : la piste est doublée (copie masquée aux
+   lecteurs d'écran), puis translatée de moitié. Sans JavaScript ou avec la
+   réduction des animations, elle se fait défiler à la main. */
+(function(){
+  var rail=document.getElementById('avis-rail');
+  if(!rail||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  Array.prototype.slice.call(rail.children).forEach(function(c){var d=c.cloneNode(true);d.setAttribute('aria-hidden','true');rail.appendChild(d)});
+  rail.classList.add('defile');
 })();
 </script>
 </body>
