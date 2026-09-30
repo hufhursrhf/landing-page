@@ -383,129 +383,35 @@ nav::before{
   color:var(--ivory);line-height:1.2;
   margin-bottom:60px;
 }
-/* ── COMMENT ÇA MARCHE : la semaine d'un membre (scène animée) ──
-   Même scène que l'onboarding de l'app. La scène est dessinée à 300 × 176
-   et mise à l'échelle de son cadre ; l'étape en cours est reprise à côté,
-   avec son rail de progression. */
-.how-head{max-width:1000px;margin:0 auto 44px}
+/* ── COMMENT ÇA MARCHE : trois étapes, chacune avec une boucle muette tirée de la vidéo ── */
+.how-head{max-width:1100px;margin:0 auto 64px}
 .sw-titre{margin-bottom:14px}
 .sw-sub{font-size:1.02rem;font-weight:300;color:var(--t-mid);line-height:1.6;max-width:560px}
-.sw{
-  max-width:1000px;margin:0 auto;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;
-}
-.sw-stage{
-  position:relative;width:100%;max-width:480px;justify-self:center;
-  aspect-ratio:300/176;border-radius:var(--radius-lg);overflow:hidden;
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
-}
-.sw-inner{position:absolute;left:0;top:0;width:300px;height:176px;transform-origin:0 0}
-.sw-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;visibility:hidden}
-.sw-av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;border:1px solid rgba(242,239,230,.35);background:#1d2742}
-.sw-av-s{width:22px;height:22px}
-.sw-vous{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--gold);background:#2a2b2f;border-color:var(--gold)}
-
-/* 1. alerte */
-.sw-jour{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,230,.45)}
-.sw-notif{width:256px;border-radius:14px;padding:11px;display:flex;flex-direction:column;gap:8px;background:#f2efe6;box-shadow:0 6px 14px rgba(0,0,0,.3)}
-.sw-notif-tete{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:500;color:rgba(20,28,51,.55)}
-.sw-point{width:8px;height:8px;border-radius:50%;background:#25D366}
-.sw-notif-corps{display:flex;align-items:center;gap:9px}
-.sw-notif-corps b{display:block;font-size:12.5px;font-weight:500;color:#141c33}
-.sw-notif-corps span{display:block;font-size:11px;line-height:15px;color:rgba(20,28,51,.7);margin-top:1px}
-.sw-puce{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid rgba(242,239,230,.2);font-size:10.5px;color:rgba(242,239,230,.7)}
-
-/* 2. créneaux */
-.sw-duo{position:relative;height:24px;align-self:stretch}
-.sw-qui{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:500;color:rgba(242,239,230,.8)}
-.sw-creneaux{display:flex;gap:8px}
-.sw-cr{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;border-radius:10px;border:1px solid rgba(201,168,76,.3);font-size:12px;font-weight:500;color:#f2efe6}
-
-/* 3. visio */
-.sw-tuiles{display:flex;gap:10px}
-.sw-tuile{position:relative;width:124px;height:92px;border-radius:12px;overflow:hidden;background:#0f1628;border:1px solid rgba(255,255,255,.1)}
-.sw-tuile img{width:100%;height:100%;object-fit:cover;display:block}
-.sw-tuile span{position:absolute;left:6px;bottom:6px;padding:2px 7px;border-radius:6px;background:rgba(10,15,30,.6);font-size:10px;font-weight:500;color:#f2efe6}
-.sw-direct{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:rgb(126,200,152)}
-.sw-guide{position:relative;display:flex;width:276px;height:26px;border-radius:8px;background:rgba(255,255,255,.04)}
-.sw-curseur{position:absolute;left:0;top:0;width:92px;height:26px;border-radius:8px;border:1px solid var(--gold);background:rgba(201,168,76,.1);box-sizing:border-box}
-.sw-g{position:relative;width:92px;text-align:center;line-height:26px;font-size:11px;font-weight:500;color:rgba(242,239,230,.75)}
-.sw-g b{position:absolute;inset:0;font-weight:500;color:var(--gold);opacity:0}
-
-/* 4. entraide : deux personnes, quatre coups de main échangés */
-.sw-ech{position:absolute;inset:0}
-.sw-ech-av{position:absolute;width:44px;height:44px}
-.sw-onde{position:absolute;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);box-sizing:border-box;opacity:0}
-.sw-legende-n{position:absolute;width:80px;text-align:center;font-size:10.5px;font-weight:500;color:rgba(242,239,230,.6)}
-.sw-don{
-  position:absolute;left:0;top:0;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;
-  border-radius:999px;background:#1b2744;border:1px solid rgba(201,168,76,.45);box-shadow:0 4px 10px rgba(0,0,0,.25);
-  font-size:10.5px;font-weight:500;color:#f2efe6;white-space:nowrap;opacity:0;will-change:transform
-}
-/* Deux fils d'or qui poussent de chaque photo et se rejoignent au milieu */
-.sw-fil{position:absolute;top:43.25px;width:48px;height:1.5px;overflow:hidden;border-radius:1px}
-.sw-fil.g{left:102px}
-.sw-fil.d{left:150px}
-.sw-fil i{position:absolute;inset:0;opacity:0}
-.sw-fil.g i{background:linear-gradient(to right,rgba(201,168,76,0),#C9A84C)}
-.sw-fil.d i{background:linear-gradient(to left,rgba(201,168,76,0),#C9A84C)}
-.sw-noeud-or{position:absolute;left:146px;top:40px;width:8px;height:8px;border-radius:1.5px;background:var(--gold);box-shadow:0 0 10px rgba(201,168,76,.8);opacity:0}
-.sw-noeud-h{position:absolute;left:145px;top:39px;width:10px;height:10px;border-radius:50%;border:1px solid var(--gold);box-sizing:border-box;opacity:0}
-.sw-lien-t{position:absolute;left:90px;top:20px;width:120px;text-align:center;font-size:9.5px;font-weight:500;text-transform:uppercase;color:var(--gold);opacity:0}
-
-/* 5. réseau */
-.sw-reseau{position:relative;width:160px;height:120px;display:flex;align-items:center;justify-content:center}
-.sw-allie{position:absolute;left:75px;top:55px;width:10px;height:10px;border-radius:50%;background:rgba(242,239,230,.55)}
-.sw-allie.or{left:74px;top:54px;width:12px;height:12px;background:var(--gold)}
-.sw-centre{position:relative;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#141c33;border:1px solid rgba(201,168,76,.6)}
-.sw-compte{display:flex;align-items:baseline;gap:6px}
-.sw-compte b{font-size:20px;font-weight:500;color:var(--gold)}
-.sw-compte span{font-size:12px;color:rgba(242,239,230,.7)}
-
-/* Les étapes, synchronisées avec la scène */
-.sw-etapes{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
-.sw-etape{
-  position:relative;display:block;width:100%;text-align:left;cursor:pointer;
-  padding:12px 14px 12px 22px;border:0;border-radius:var(--radius-sm);background:transparent;
-  font-family:inherit;color:inherit;transition:background .25s;
-}
-.sw-etape:hover{background:rgba(255,255,255,.025)}
-.sw-etape:focus-visible{outline:1px solid rgba(201,168,76,.6);outline-offset:2px}
-.sw-rail{position:absolute;left:6px;top:14px;bottom:14px;width:2px;border-radius:2px;background:rgba(245,240,232,.1);overflow:hidden}
-.sw-rail i{position:absolute;left:0;top:0;width:100%;height:0;background:var(--gold)}
-.sw-etape b{display:block;font-size:1.02rem;font-weight:400;color:var(--t-mid);line-height:1.35;transition:color .25s}
-.sw-etape span:not(.sw-rail){display:block;font-size:.9rem;font-weight:300;color:var(--t-lo);line-height:1.55;margin-top:4px;transition:color .25s}
-.sw-etape.on{background:rgba(255,255,255,.03)}
-.sw-etape.on b{color:var(--ivory)}
-.sw-etape.on span:not(.sw-rail){color:var(--t-mid)}
-
+.etapes{list-style:none;margin:0 auto;padding:0;max-width:1100px;display:flex;flex-direction:column;gap:84px}
+.etape{display:grid;grid-template-columns:.78fr 1.22fr;gap:64px;align-items:center}
+.etape:nth-child(even){grid-template-columns:1.22fr .78fr}
+.etape:nth-child(even) .etape-texte{order:2}
+.etape-n{display:block;font-weight:200;font-size:4.4rem;line-height:.85;color:var(--gold);letter-spacing:-.04em;margin-bottom:18px}
+.etape h3{font-size:clamp(1.35rem,2.4vw,1.8rem);font-weight:300;color:var(--ivory);line-height:1.25;margin:0 0 14px}
+.etape p{font-size:1rem;font-weight:300;color:var(--t-mid);line-height:1.7;max-width:420px;margin:0}
+.etape-media{position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;background:#101a30;
+  border:1px solid rgba(201,168,76,.2);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.etape-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.etapes-suite{text-align:center;margin:80px auto 0;font-size:1.05rem;font-weight:300;color:var(--t-mid)}
+.etapes-suite em{font-style:italic;color:var(--ivory)}
 @media(max-width:820px){
-  .sw{grid-template-columns:1fr;gap:28px}
-  .sw-etape{padding:10px 12px 10px 20px}
-  .sw-etape:not(.on) span:not(.sw-rail){display:none}
+  .how-head{margin-bottom:44px}
+  .etapes{gap:52px}
+  .etape,.etape:nth-child(even){grid-template-columns:1fr;gap:22px}
+  .etape:nth-child(even) .etape-texte{order:0}
+  .etape-n{font-size:3.2rem;margin-bottom:12px}
+  .etape-media{border-radius:var(--radius)}
+  .etapes-suite{margin-top:56px}
 }
-
-/* ── AVIS QUI DÉFILENT ── */
-.avis{padding:36px 0 12px;overflow:hidden}
-.avis-piste{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
-.avis-piste::-webkit-scrollbar{display:none}
-.avis-rail{display:flex;gap:14px;width:max-content;padding:4px 24px}
-.avis-rail.defile{animation:avis-defile 90s linear infinite}
-.avis-piste:hover .avis-rail.defile,.avis-piste:focus-within .avis-rail.defile{animation-play-state:paused}
-@keyframes avis-defile{to{transform:translateX(calc(-50% - 7px))}}
-.avis-carte{
-  width:340px;flex:none;margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:18px;
-  border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:var(--ink2);position:relative;
-}
-.avis-carte::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.2),transparent)}
-.avis-carte blockquote{margin:0;font-size:.95rem;font-style:italic;font-weight:300;line-height:1.6;color:rgba(245,240,232,.75)}
-@media(max-width:768px){.avis-carte{width:280px;padding:20px}}
-@media(prefers-reduced-motion:reduce){.avis-rail.defile{animation:none}}
 
 /* CTA de section */
 .section-cta{text-align:center;margin-top:52px}
-.wall-more-wrap{display:none;text-align:center;margin-top:28px}
-@media(max-width:768px){.wall-more-wrap{display:block}}
+.wall-more-wrap{text-align:center;margin-top:28px}
 
 /* ── RYTHME / CASSURES DE SECTIONS ── */
 #how,section.pricing,.cta-block{background:var(--ink0)}
@@ -576,66 +482,6 @@ nav::before{
 .price-note{
   font-family:'DM Sans',sans-serif;font-size:.72rem;
   color:var(--t-mid);letter-spacing:.02em;margin-top:16px;
-}
-
-/* ── BÉNÉFICES (onglets) ── */
-.benefits{max-width:1100px;margin:0 auto}
-.benefits-head{margin-bottom:52px}
-.benefits-layout{
-  display:grid;grid-template-columns:0.92fr 1.08fr;gap:20px;align-items:stretch;
-}
-.benefits-tabs{display:flex;flex-direction:column;gap:12px}
-.benefit-tab{
-  text-align:left;cursor:pointer;width:100%;
-  background:transparent;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:24px 26px;
-  font-family:'DM Sans',sans-serif;font-size:1.08rem;font-weight:400;
-  color:var(--t-mid);line-height:1.35;
-  transition:color .25s ease,background .25s ease,border-color .25s ease;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-}
-.benefit-tab:hover{color:var(--t-hi);border-color:var(--border-hi)}
-.benefit-tab.active{
-  color:var(--ivory);
-  background:var(--ink2);
-  border-color:rgba(201,168,76,.35);
-}
-.benefit-tab::after{
-  content:'';flex-shrink:0;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--gold);opacity:0;transform:scale(.4);
-  transition:opacity .25s ease,transform .25s ease;
-}
-.benefit-tab.active::after{opacity:1;transform:scale(1)}
-.benefits-panels{position:relative}
-.benefit-panel{
-  display:none;
-  height:100%;
-  background:var(--ink2);
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:52px 48px;
-  position:relative;overflow:hidden;
-}
-.benefit-panel::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(to right,transparent,rgba(201,168,76,.3),transparent);
-}
-.benefit-panel.active{display:flex;flex-direction:column;justify-content:center;animation:benefitIn .35s ease}
-.benefit-panel-title{
-  font-family:'DM Sans',sans-serif;font-size:clamp(1.5rem,2.6vw,2rem);
-  font-weight:300;color:var(--ivory);line-height:1.2;margin-bottom:20px;
-}
-.benefit-panel p{
-  font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:300;
-  color:var(--t-hi);line-height:1.7;max-width:460px;
-}
-@keyframes benefitIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media(max-width:768px){
-  .benefits-layout{grid-template-columns:1fr;gap:12px}
-  .benefit-panel{padding:36px 28px}
 }
 
 /* ── COMPARATIF ── */
@@ -1226,7 +1072,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <div class="compare-metrics">
         <span><b>10x</b> moins cher</span>
         <span><b>10x</b> moins chronophage</span>
-        <span><b>10x</b> plus pertinent</span>
+        <span><b>52</b> alliés par an</span>
       </div>
     </div>
     <div class="compare-table">
@@ -1272,217 +1118,40 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   </div>
 </section>
 
-<!-- HOW IT WORKS : la semaine d'un membre, même scène que l'onboarding de l'app
-     (components/scenes/SceneSemaine.tsx), portée en HTML/CSS/JS sans dépendance. -->
+<!-- COMMENT ÇA MARCHE : trois étapes, chacune illustrée par une boucle muette tirée de la vidéo principale -->
 <section class="section" id="how">
   <div class="how-head">
     <span class="section-label">Comment ça marche</span>
     <h2 class="section-title sw-titre">Chaque semaine, une rencontre pour s'entraider.</h2>
     <p class="sw-sub">30 minutes avec un membre choisi pour votre activité. Des relations qui durent.</p>
   </div>
-
-  <div class="sw" id="sw">
-    <div class="sw-stage" id="sw-stage" aria-hidden="true">
-      <div class="sw-inner" id="sw-inner">
-
-        <!-- 1. L'alerte du lundi -->
-        <div class="sw-t">
-          <span class="sw-jour">Lundi, 14&nbsp;h</span>
-          <div class="sw-notif" id="sw-notif">
-            <div class="sw-notif-tete"><span class="sw-point"></span><span>WhatsApp · Haloways</span></div>
-            <div class="sw-notif-corps">
-              <img class="sw-av" src="photos/scene-claire.jpg" alt="">
-              <div><b>Votre rencontre de la semaine</b><span>Claire, dirigeante d'un cabinet RH. Son réseau compte vos cibles.</span></div>
-            </div>
-          </div>
-          <span class="sw-puce" id="sw-mail">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z M3 7l9 6 9-6" stroke="rgba(242,239,230,.7)" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            Et par email
-          </span>
-        </div>
-
-        <!-- 2. L'un propose, l'autre choisit -->
-        <div class="sw-t">
-          <div class="sw-duo">
-            <span class="sw-qui" id="sw-quiA"><img class="sw-av sw-av-s" src="photos/scene-claire.jpg" alt="">Claire propose ses moments libres</span>
-            <span class="sw-qui" id="sw-quiB"><span class="sw-av sw-av-s sw-vous">V</span>Vous choisissez, c'est calé</span>
-          </div>
-          <div class="sw-creneaux">
-            <span class="sw-cr">Mar. 9&nbsp;h</span>
-            <span class="sw-cr">Mer. 14&nbsp;h<svg class="sw-coche" id="sw-coche" width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="sw-cr">Ven. 16&nbsp;h</span>
-          </div>
-        </div>
-
-        <!-- 3. La visio guidée : Présentations, Besoins, Entraide -->
-        <div class="sw-t">
-          <div class="sw-tuiles" id="sw-tuiles">
-            <div class="sw-tuile"><img src="photos/scene-vous.jpg" alt=""><span>Vous</span></div>
-            <div class="sw-tuile"><img src="photos/scene-claire.jpg" alt=""><span>Claire</span><i class="sw-direct" id="sw-direct"></i></div>
-          </div>
-          <div class="sw-guide">
-            <i class="sw-curseur" id="sw-curseur"></i>
-            <span class="sw-g">Présentations<b>Présentations</b></span>
-            <span class="sw-g">Besoins<b>Besoins</b></span>
-            <span class="sw-g">Entraide<b>Entraide</b></span>
-          </div>
-        </div>
-
-        <!-- 4. De l'entraide concrète : quatre coups de main, dans les deux sens -->
-        <div class="sw-t">
-          <div class="sw-ech" id="sw-ech">
-            <i class="sw-fil g"><i id="sw-fil-g"></i></i>
-            <i class="sw-fil d"><i id="sw-fil-d"></i></i>
-            <i class="sw-noeud-h" id="sw-noeud-h"></i>
-            <i class="sw-noeud-or" id="sw-noeud"></i>
-            <span class="sw-lien-t" id="sw-lien-t">Entraide</span>
-            <i class="sw-onde" id="sw-onde-v" style="left:54px;top:22px"></i>
-            <i class="sw-onde" id="sw-onde-c" style="left:202px;top:22px"></i>
-            <img class="sw-av sw-ech-av" src="photos/scene-vous.jpg" alt="" style="left:54px;top:22px">
-            <img class="sw-av sw-ech-av" src="photos/scene-claire.jpg" alt="" style="left:202px;top:22px">
-            <span class="sw-legende-n" style="left:36px;top:70px">Vous</span>
-            <span class="sw-legende-n" style="left:184px;top:70px">Claire</span>
-            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6V16h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z"/></svg>Un conseil</span>
-            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>Un retour</span>
-            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11H4zM9 8V5h6v3M4 13h16"/></svg>Un client</span>
-            <span class="sw-don"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Une mise en relation</span>
-          </div>
-        </div>
-
-<!-- 5. Le réseau qui grandit -->
-        <div class="sw-t">
-          <div class="sw-reseau" id="sw-reseau">
-            <span class="sw-centre"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#C9A84C" d="M5 4.5h5v1.1H8.6v5.6h6.8V5.6H14V4.5h5v1.1h-1.4v12.8H19v1.1h-5v-1.1h1.4v-6.1H8.6v6.1H10v1.1H5v-1.1h1.4V5.6H5z"/></svg></span>
-          </div>
-          <div class="sw-compte" id="sw-compte"><b>52</b><span>allié·e·s par an</span></div>
-        </div>
-
+  <ol class="etapes">
+    <li class="etape">
+      <div class="etape-texte">
+        <span class="etape-n">1</span>
+        <h3>Un membre choisi pour vous</h3>
+        <p>Chaque semaine, on sélectionne un membre dont le réseau contient vos futurs clients. L'alerte arrive sur WhatsApp et par email.</p>
       </div>
-    </div>
-
-    <ol class="sw-etapes" id="sw-etapes">
-      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>Votre rencontre de la semaine</b><span>Un membre choisi pour vos synergies. L'alerte arrive sur WhatsApp et par email.</span></button></li>
-      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>L'un propose, l'autre choisit</b><span>Quelques créneaux pris sur les moments libres de l'agenda. Un clic pour confirmer.</span></button></li>
-      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>30 minutes de visio guidée</b><span>L'interface vous guide : les présentations, vos besoins, puis l'entraide.</span></button></li>
-      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>De l'entraide concrète</b><span>Un conseil, un retour, un client, une mise en relation : chacun aide l'autre là où il peut.</span></button></li>
-      <li><button type="button" class="sw-etape"><span class="sw-rail"><i></i></span><b>Un·e nouvel·le allié·e chaque semaine</b><span>Votre réseau grandit. Une semaine chargée ? Vous la passez.</span></button></li>
-    </ol>
-  </div>
-
-  <div class="section-cta">
-    <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-  </div>
-</section>
-
-<!-- AVIS QUI DÉFILENT : quelques témoignages choisis, plus haut que le mur -->
-<section class="avis" aria-label="Avis de membres">
-  <div class="avis-piste">
-    <div class="avis-rail" id="avis-rail">
-      <figure class="avis-carte">
-        <blockquote>"Ce qui m'a convaincu c'est la réciprocité. On ne vient pas pour prendre. On prépare aussi ce qu'on peut apporter à l'autre. Les rencontres sont plus équilibrées et cela crée une vraie relation d'entre-aide."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/simon-kushnirenko.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Simon Kushnirenko</div><div class="author-role">Entrepreneur in Residence · Pioneers</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"En trois semaines, j'ai rencontré deux personnes qui m'ont introduit auprès de décideurs que je ciblais depuis des mois. Aucune prospection. Juste les bonnes rencontres."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/antoine-torrini.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Antoine Torrini</div><div class="author-role">Fondateur · Boxy</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"J'avais le réseau mais pas la structure pour l'activer régulièrement. Haloways a changé ça. Chaque semaine une rencontre avec quelqu'un qui peut m'ouvrir des portes concrètes. Et ce qui se passe pendant la visio est vraiment différent de tout ce que j'avais essayé avant."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/philippe-bonjour-de-montfleury.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Philippe Bonjour de Montfleury</div><div class="author-role">Directeur Général · Invictus Management</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"Mon réseau existant s'essoufflait. Haloways m'a remis en contact avec des dirigeants que je n'aurais jamais croisés autrement. Deux nouveaux clients en six semaines."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/anthony-naudeau.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Anthony Naudeau</div><div class="author-role">Expert en comptabilité d'entreprise</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"Je passais trop de temps à entretenir des relations qui n'allaient nulle part. Haloways a changé ça&nbsp;! Chaque rencontre a une raison d'être claire, et les deux côtés en ressortent avec des intros pour avancer."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/charlene-lin.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Charlene Lin</div><div class="author-role">Operating Partner Freelance · Atscale</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"J'arrive préparé à chaque rencontre. Je sais ce que l'autre cherche, il sait ce que je peux lui apporter. Les introductions se font pendant l'appel, en quelques secondes. Pour quelqu'un qui n'aime pas forcément prospecter, c'est exactement le bon format."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/fabio-bigini.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Fabio Bigini</div><div class="author-role">CTO · Stealth AI Startup</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"En conseil indépendant, les clients viennent par recommandation. Haloways a structuré ça pour moi. Une rencontre par semaine avec quelqu'un qui peut m'introduire auprès des bons profils. En deux mois on m'a ouvert la porte de 3 nouveaux clients."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/pierre-yves-portafaix.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Pierre-Yves Portafaix</div><div class="author-role">Consultant indépendant · Money Time Consulting</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"La qualité des mises en relation change vraiment la donne. J'ai signé deux deals majeurs en moins d'un mois."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/daniel-laska.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Daniel Laska</div><div class="author-role">Founder · Lensily</div></div>
-        </figcaption>
-      </figure>
-      <figure class="avis-carte">
-        <blockquote>"Je cherchais des missions longues, pas des one-shots. Les introductions que j'ai reçues via Haloways m'ont menée exactement là. Des conversations sérieuses, dès le premier échange."</blockquote>
-        <figcaption class="card-author">
-          <div class="avatar"><img src="photos/carole-anne-pelletier.png" alt="" loading="lazy"></div>
-          <div class="author-info"><div class="author-name">Carole-Anne Pelletier</div><div class="author-role">Freelance en stratégie produit</div></div>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-
-<!-- BÉNÉFICES -->
-<section class="section" id="benefits">
-  <div class="benefits">
-    <div class="benefits-head">
-      <span class="section-label">Concrètement</span>
-      <h2 class="section-title">Ce que ça change pour votre activité.</h2>
-    </div>
-    <div class="benefits-layout">
-      <div class="benefits-tabs" role="tablist">
-        <button class="benefit-tab active" data-i="0">De nouveaux clients.</button>
-        <button class="benefit-tab" data-i="1">Des partenaires pour accélérer.</button>
-        <button class="benefit-tab" data-i="2">Des prescripteurs toute l'année.</button>
-        <button class="benefit-tab" data-i="3">Le réseau de chaque membre.</button>
+      <div class="etape-media"><video muted loop playsinline preload="none" poster="video/etape-1-reseau.jpg" aria-hidden="true"><source src="video/etape-1-reseau.mp4" type="video/mp4"></video></div>
+    </li>
+    <li class="etape">
+      <div class="etape-texte">
+        <span class="etape-n">2</span>
+        <h3>30 minutes de visio guidée</h3>
+        <p>Présentations, besoins, entraide : l'interface vous guide pas à pas. Vous n'avez rien à préparer.</p>
       </div>
-      <div class="benefits-panels">
-        <div class="benefit-panel active" data-i="0">
-          <h3 class="benefit-panel-title">De nouveaux clients.</h3>
-          <p>Chaque semaine, une personne dont le réseau contient vos futurs clients. Les meilleures ventes commencent par une introduction, rarement par un message à froid.</p>
-        </div>
-        <div class="benefit-panel" data-i="1">
-          <h3 class="benefit-panel-title">Des partenaires pour accélérer.</h3>
-          <p>Rencontrez ceux avec qui bâtir : offres communes, projets à deux, opportunités que vous n'auriez pas trouvées seul.</p>
-        </div>
-        <div class="benefit-panel" data-i="2">
-          <h3 class="benefit-panel-title">Des prescripteurs toute l'année.</h3>
-          <p>Chaque allié devient une voix qui vous recommande, même quand vous n'êtes pas là. C'est le réseau qui travaille pour vous en continu.</p>
-        </div>
-        <div class="benefit-panel" data-i="3">
-          <h3 class="benefit-panel-title">Le réseau de chaque membre, ouvert pour vous.</h3>
-          <p>Pour chaque personne rencontrée, vous voyez son réseau et ses cibles. Une introduction vous intéresse ? Un clic, et le message est rédigé pour vous.</p>
-        </div>
+      <div class="etape-media"><video muted loop playsinline preload="none" poster="video/etape-2-visio.jpg" aria-hidden="true"><source src="video/etape-2-visio.mp4" type="video/mp4"></video></div>
+    </li>
+    <li class="etape">
+      <div class="etape-texte">
+        <span class="etape-n">3</span>
+        <h3>Les intros en un clic</h3>
+        <p>Vous parcourez son réseau ensemble. Une introduction vous intéresse ? Le message est rédigé pour vous.</p>
       </div>
-    </div>
-    <div class="section-cta">
-      <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-    </div>
-  </div>
+      <div class="etape-media"><video muted loop playsinline preload="none" poster="video/etape-3-intro.jpg" aria-hidden="true"><source src="video/etape-3-intro.mp4" type="video/mp4"></video></div>
+    </li>
+  </ol>
+  <p class="etapes-suite">Chaque semaine, un·e nouvel·le allié·e. <em>Une semaine chargée ? Vous la passez.</em></p>
 </section>
 
 <!-- TESTIMONIALS WALL -->
@@ -2099,9 +1768,6 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <div class="wall-more-wrap">
     <button class="btn-ghost wall-more" id="wall-more">Voir plus de témoignages</button>
   </div>
-  <div class="section-cta">
-    <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-  </div>
 </section>
 
 <!-- PRICING -->
@@ -2227,22 +1893,6 @@ function closeMobileMenu() {
   update()
   window.addEventListener('scroll', update, { passive: true })
 })()
-// Benefits tabs
-;(function() {
-  var tabs = document.querySelectorAll('.benefit-tab')
-  var panels = document.querySelectorAll('.benefit-panel')
-  if (!tabs.length) return
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var i = tab.getAttribute('data-i')
-      tabs.forEach(function(t) { t.classList.remove('active') })
-      panels.forEach(function(p) { p.classList.remove('active') })
-      tab.classList.add('active')
-      var panel = document.querySelector('.benefit-panel[data-i="' + i + '"]')
-      if (panel) panel.classList.add('active')
-    })
-  })
-})()
 // FAQ accordion
 ;(function() {
   var qs = document.querySelectorAll('.faq-q')
@@ -2256,20 +1906,19 @@ function closeMobileMenu() {
     })
   })
 })()
-// Temoignages - voir plus (mobile)
+// Témoignages : 6 visibles, puis 9 de plus à chaque clic
 ;(function() {
   var wrap = document.querySelector('.wall-more-wrap')
   var btn = document.getElementById('wall-more')
   if (!wrap || !btn) return
-  if (window.innerWidth > 768) return
   var cards = Array.prototype.slice.call(document.querySelectorAll('.wall .card'))
-  var shown = 5
+  var shown = 6
   function render() {
     cards.forEach(function(c, i) { c.style.display = i < shown ? '' : 'none' })
     if (shown >= cards.length) wrap.style.display = 'none'
   }
   render()
-  btn.addEventListener('click', function() { shown += 5; render() })
+  btn.addEventListener('click', function() { shown += 9; render() })
 })()
 // Pricing - switcher annuel / mensuel
 ;(function() {
@@ -2398,170 +2047,23 @@ function closeMobileMenu() {
 })();
 </script>
 <script>
-/* Comment ça marche : la semaine d'un membre, en cinq tableaux.
-   Portage de la scène de l'onboarding (components/scenes/SceneSemaine.tsx) :
-   même rythme (3,47 s par tableau, la visio plus longue pour marquer
-   Présentations, Besoins, Entraide), mêmes fenêtres d'animation.
-   Une seule horloge pilote tout. Elle s'arrête hors écran et onglet caché.
-   Avec la réduction des animations : un état fixe par étape, au clic. */
+/* Comment ça marche : chaque boucle ne joue que visible à l'écran (et pas avec
+   la réduction des animations, où l'affiche suffit). */
 (function(){
-  var root=document.getElementById('sw');
-  if(!root) return;
-  var stage=document.getElementById('sw-stage'), inner=document.getElementById('sw-inner');
-  var tabs=inner.querySelectorAll('.sw-t');
-  var etapes=root.querySelectorAll('.sw-etape'), rails=root.querySelectorAll('.sw-rail i');
-
-  var N=5, DT=3470, POIDS=[1,1,2.2,1.8,1];
-  var TOTAL=POIDS.reduce(function(a,b){return a+b},0), CYCLE=DT*TOTAL, B=[0];
-  POIDS.forEach(function(p){B.push(B[B.length-1]+p/TOTAL)});
-  function fen(v,a,b){return v<=a?0:v>=b?1:(v-a)/(b-a)}
-  function pos(c){for(var k=0;k<N;k++){if(c<B[k+1]) return k+(c-B[k])/(B[k+1]-B[k])}return N}
-  function loc(c,k){return Math.min(1,Math.max(0,pos(c)-k))}
-  function vis(c,k){var p=pos(c);if(!(p>=k&&p<k+1)) return 0;var l=p-k;return fen(l,0,.08)*(1-fen(l,.92,1))}
-  function $(id){return document.getElementById(id)}
-
-  // ── Mise à l'échelle : la scène est dessinée à 300 × 176.
-  function echelle(){inner.style.transform='scale('+(stage.clientWidth/300)+')'}
-  echelle();
-  if(window.ResizeObserver) new ResizeObserver(echelle).observe(stage); else addEventListener('resize',echelle);
-
-  // ── Tableau 4 : qui donne quoi à qui. Chacun reçoit deux coups de main.
-  var VOUS_X=76, CLAIRE_X=224, AV_Y=44, PILE=[102,128];
-  var DONS=Array.prototype.map.call($('sw-ech').querySelectorAll('.sw-don'),function(el,i){
-    var versVous=i%2===0;
-    return {el:el,w:el.offsetWidth||90,de:versVous?CLAIRE_X:VOUS_X,a:versVous?VOUS_X:CLAIRE_X,y:PILE[i>>1],debut:.08+i*.17,versVous:versVous};
-  });
-  var ondeV=$('sw-onde-v'), ondeC=$('sw-onde-c'), filG=$('sw-fil-g'), filD=$('sw-fil-d'), noeud=$('sw-noeud'), noeudH=$('sw-noeud-h'), lienT=$('sw-lien-t');
-  var echAv=$('sw-ech').querySelectorAll('.sw-ech-av,.sw-legende-n');
-  // Largeurs mesurées une fois les polices chargées (sinon décalées de quelques px).
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){DONS.forEach(function(d){d.w=d.el.offsetWidth||d.w})});
-  function lisse(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-
-  // ── Tableau 5 : quatorze allié·e·s sur deux anneaux.
-  var reseau=$('sw-reseau'), ALLIES=[];
-  for(var i=0;i<14;i++){
-    var anneau=i<6?44:70, n=i<6?6:8, j=i<6?i:i-6;
-    var ang=(j/n)*Math.PI*2-Math.PI/2+(i<6?0:Math.PI/8);
-    var d=document.createElement('i'); d.className='sw-allie'+(i===0?' or':'');
-    reseau.insertBefore(d,reseau.firstChild);
-    ALLIES.push({el:d,x:Math.cos(ang)*anneau,y:Math.sin(ang)*anneau*.78,i:i});
-  }
-
-  var notif=$('sw-notif'), mail=$('sw-mail'), quiA=$('sw-quiA'), quiB=$('sw-quiB'), coche=$('sw-coche');
-  var crs=inner.querySelectorAll('.sw-cr'), tuiles=$('sw-tuiles'), direct=$('sw-direct'), curseur=$('sw-curseur');
-  var guideOr=inner.querySelectorAll('.sw-g b'), guide=inner.querySelectorAll('.sw-g');
-  var compte=$('sw-compte');
-  var ARRETS=[[.18,.42],[.48,.68],[.74,.96]];
-  var etapeCourante=-1;
-
-  function rendre(c){
-    for(var k=0;k<N;k++){var v=vis(c,k);tabs[k].style.opacity=v;tabs[k].style.visibility=v>0?'visible':'hidden'}
-    var e=Math.min(N-1,Math.floor(pos(c)));
-    if(e!==etapeCourante){etapes.forEach(function(x,i){x.classList.toggle('on',i===e)});etapeCourante=e}
-    var p=pos(c);
-    rails.forEach(function(r,i){r.style.height=(i<e?0:i===e?(p-i)*100:0)+'%'});
-
-    // 1. l'alerte
-    var l=loc(c,0), a=fen(l,.05,.22);
-    notif.style.opacity=a; notif.style.transform='translateY('+((1-a)*-24)+'px)';
-    a=fen(l,.42,.56); mail.style.opacity=a; mail.style.transform='translateY('+((1-a)*8)+'px)';
-
-    // 2. les créneaux
-    l=loc(c,1);
-    quiA.style.opacity=fen(l,.02,.1)*(1-fen(l,.52,.58)); quiB.style.opacity=fen(l,.58,.66);
-    var choix=fen(l,.6,.7);
-    crs.forEach(function(cr,i){
-      var on=fen(l,.1+i*.1,.2+i*.1), choisi=i===1;
-      cr.style.opacity=on*(choisi?1:1-choix*.65);
-      cr.style.transform='translateY('+((1-on)*10)+'px) scale('+(choisi?1+Math.sin(choix*Math.PI)*.08:1)+')';
-      if(choisi){cr.style.borderColor='rgba(201,168,76,'+(.3+choix*.7)+')';cr.style.background='rgba(201,168,76,'+(choix*.14)+')'}
-    });
-    coche.style.opacity=fen(l,.66,.74);
-
-    // 3. la visio, avec un arrêt sur chaque étape
-    l=loc(c,2); a=fen(l,.04,.2);
-    tuiles.style.opacity=a; tuiles.style.transform='scale('+(.92+a*.08)+')';
-    curseur.style.transform='translateX('+((fen(l,.42,.48)+fen(l,.68,.74))*92)+'px)';
-    direct.style.opacity=.4+Math.abs(Math.sin(l*Math.PI*4))*.6;
-    ARRETS.forEach(function(r,i){
-      var o=fen(l,r[0],r[0]+.04)*(1-fen(l,r[1],r[1]+.03));
-      guideOr[i].style.opacity=o; guide[i].style.opacity=.55+.45*o;
-    });
-
-    // 4. l'entraide : un conseil, un retour, un client, une mise en relation
-    l=loc(c,3); a=fen(l,0,.08);
-    echAv.forEach(function(x){x.style.opacity=a});
-    var ondes={v:0,c:0};
-    DONS.forEach(function(d){
-      var t=lisse(fen(l,d.debut,d.debut+.13));
-      var x=d.de+(d.a-d.de)*t, y=AV_Y+(d.y-AV_Y)*t-Math.sin(t*Math.PI)*42;
-      d.el.style.opacity=fen(l,d.debut,d.debut+.02);
-      d.el.style.transform='translate('+(x-d.w/2)+'px,'+(y-11)+'px) scale('+(.55+.45*Math.min(1,t*1.6))+')';
-      // Le receveur accuse réception : une onde part de sa photo.
-      var o=fen(l,d.debut+.13,d.debut+.25);
-      if(o>0&&o<1){if(d.versVous) ondes.v=o; else ondes.c=o}
-    });
-    [[ondeV,ondes.v],[ondeC,ondes.c]].forEach(function(p){
-      p[0].style.opacity=p[1]>0?(1-p[1])*.9:0; p[0].style.transform='scale('+(1+p[1]*.7)+')';
-    });
-    // Les fils poussent de chaque photo vers le milieu, le nœud s'allume à
-    // leur rencontre, puis le mot se pose en resserrant ses lettres.
-    a=lisse(fen(l,.72,.81));
-    filG.style.opacity=filD.style.opacity=a>0?1:0;
-    filG.style.transform='translateX('+(-(1-a)*48)+'px)'; filD.style.transform='translateX('+((1-a)*48)+'px)';
-    a=fen(l,.8,.86); noeud.style.opacity=a; noeud.style.transform='rotate(45deg) scale('+(a===0?0:a+Math.sin(a*Math.PI)*.6)+')';
-    a=fen(l,.8,.95); noeudH.style.opacity=a>0&&a<1?(1-a)*.8:0; noeudH.style.transform='scale('+(1+a*3.2)+')';
-    a=lisse(fen(l,.83,.93)); lienT.style.opacity=a; lienT.style.letterSpacing=(5-a*3.4)+'px'; lienT.style.transform='translateY('+((1-a)*4)+'px)';
-
-    // 5. le réseau
-    l=loc(c,4);
-    ALLIES.forEach(function(al){
-      var q=fen(l,.06+al.i*.045,.14+al.i*.045);
-      al.el.style.opacity=q; al.el.style.transform='translate('+al.x+'px,'+al.y+'px) scale('+(.4+q*.6)+')';
-    });
-    a=fen(l,.6,.72); compte.style.opacity=a; compte.style.transform='translateY('+((1-a)*6)+'px)';
-  }
-
-  // ── Sans animation : un état lisible par étape, choisi au clic.
-  var FIGE=[.8,.85,.6,.9,.9];
-  function figer(k){rendre(B[k]+FIGE[k]*(B[k+1]-B[k]))}
-  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduit){
-    figer(0);
-    etapes.forEach(function(b,k){b.addEventListener('click',function(){figer(k)})});
-    return;
-  }
-
-  // ── L'horloge : avance seulement quand la scène est visible.
-  var ecoule=0, dernier=null, visible=false, raf=null;
-  function boucle(t){
-    if(dernier!==null) ecoule+=t-dernier;
-    dernier=t;
-    rendre((ecoule%CYCLE)/CYCLE);
-    raf=requestAnimationFrame(boucle);
-  }
-  function lancer(){if(raf===null&&visible&&!document.hidden){dernier=null;raf=requestAnimationFrame(boucle)}}
-  function arreter(){if(raf!==null){cancelAnimationFrame(raf);raf=null}}
-  rendre(0);
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){visible=es[0].isIntersecting;visible?lancer():arreter()},{threshold:.2}).observe(stage);
-  } else {visible=true;lancer()}
-  document.addEventListener('visibilitychange',function(){document.hidden?arreter():lancer()});
-  etapes.forEach(function(b,k){b.addEventListener('click',function(){
-    ecoule=B[k]*CYCLE+1; rendre(B[k]);
-    try{window.posthog&&posthog.capture('landing_semaine_etape',{etape:k+1})}catch(e){}
-  })});
-})();
-</script>
-<script>
-/* Les avis défilent en boucle : la piste est doublée (copie masquée aux
-   lecteurs d'écran), puis translatée de moitié. Sans JavaScript ou avec la
-   réduction des animations, elle se fait défiler à la main. */
-(function(){
-  var rail=document.getElementById('avis-rail');
-  if(!rail||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-  Array.prototype.slice.call(rail.children).forEach(function(c){var d=c.cloneNode(true);d.setAttribute('aria-hidden','true');rail.appendChild(d)});
-  rail.classList.add('defile');
+  var vids=document.querySelectorAll('.etape-media video');
+  if(!vids.length||!('IntersectionObserver' in window)) return;
+  var sobre=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vus={};
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var v=e.target, k=Array.prototype.indexOf.call(vids,v);
+    if(e.isIntersecting){
+      if(!vus[k]){vus[k]=1;try{window.posthog&&posthog.capture('landing_semaine_etape',{etape:k+1})}catch(x){}}
+      if(sobre) return;
+      if(v.preload!=='auto') v.preload='auto';
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    } else v.pause();
+  })},{threshold:.35});
+  vids.forEach(function(v){io.observe(v)});
 })();
 </script>
 </body>
