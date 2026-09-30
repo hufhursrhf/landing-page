@@ -411,7 +411,8 @@ nav::before{
 
 /* CTA de section */
 .section-cta{text-align:center;margin-top:52px}
-.wall-more-wrap{text-align:center;margin-top:28px}
+.wall-more-wrap{display:none;text-align:center;margin-top:28px}
+@media(max-width:768px){.wall-more-wrap{display:block}}
 
 /* ── RYTHME / CASSURES DE SECTIONS ── */
 #how,section.pricing,.cta-block{background:var(--ink0)}
@@ -962,7 +963,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     <a class="nav-login" href="#tarif">Tarif</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
-    <a class="nav-cta" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+    <a class="nav-cta" data-cta="menu" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
   </div>
   <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
@@ -970,7 +971,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <a class="mobile-link" href="#wall" onclick="closeMobileMenu()">Témoignages</a>
   <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Tarif</a>
   <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
-  <a class="mobile-cta" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+  <a class="mobile-cta" data-cta="menu_mobile" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
 </div>
 
 <!-- HERO -->
@@ -1006,12 +1007,12 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     </button>
     <div class="film-fin" hidden>
       <p>Votre première rencontre<br>vous attend <em>cette semaine</em>.</p>
-      <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+      <a class="btn-primary" data-cta="video_fin" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
       <button class="film-revoir" type="button">Revoir la vidéo</button>
     </div>
   </div>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+    <a class="btn-primary" data-cta="sous_video" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
   </div>
 </section>
@@ -1113,7 +1114,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       </div>
     </div>
     <div class="section-cta">
-      <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+      <a class="btn-primary" data-cta="comparatif" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
     </div>
   </div>
 </section>
@@ -1793,7 +1794,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <li>Accès au réseau et aux cibles de chaque membre</li>
       <li>Démo personnalisée offerte pendant l'essai</li>
     </ul>
-    <a class="btn-primary price-cta" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+    <a class="btn-primary price-cta" data-cta="tarif" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
     <p class="price-note">Rien à payer pendant les 14 jours d'essai. Ensuite, 33 € HT prélevés chaque mois. Annulable à tout moment.</p>
   </div>
 </section>
@@ -1843,7 +1844,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <div class="rule"></div>
   <h2 class="cta-title">Votre premier allié vous attend cette semaine.</h2>
   <p class="cta-sub">Commencez vos 14 jours. Sans engagement, annulable à tout moment.</p>
-  <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+  <a class="btn-primary" data-cta="fin_de_page" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
 </section>
 
 <!-- FOOTER -->
@@ -1906,19 +1907,20 @@ function closeMobileMenu() {
     })
   })
 })()
-// Témoignages : 6 visibles, puis 9 de plus à chaque clic
+// Témoignages : le mur complet sur ordinateur ; sur mobile, 5 puis « voir plus »
 ;(function() {
   var wrap = document.querySelector('.wall-more-wrap')
   var btn = document.getElementById('wall-more')
   if (!wrap || !btn) return
+  if (window.innerWidth > 768) return
   var cards = Array.prototype.slice.call(document.querySelectorAll('.wall .card'))
-  var shown = 6
+  var shown = 5
   function render() {
     cards.forEach(function(c, i) { c.style.display = i < shown ? '' : 'none' })
     if (shown >= cards.length) wrap.style.display = 'none'
   }
   render()
-  btn.addEventListener('click', function() { shown += 9; render() })
+  btn.addEventListener('click', function() { shown += 5; render() })
 })()
 // Pricing - switcher annuel / mensuel
 ;(function() {
@@ -2005,7 +2007,7 @@ function closeMobileMenu() {
       if (!window.posthog || typeof window.posthog.capture !== 'function') return;
       var section = a.closest ? a.closest('section') : null;
       window.posthog.capture('landing_free_trial_click', {
-        location: (section && section.id) ? section.id : (a.className || 'unknown'),
+        location: a.getAttribute('data-cta') || ((section && section.id) ? section.id : (a.className || 'unknown')),
         cta_text: (a.textContent || '').trim().slice(0, 60),
         href: a.getAttribute('href') || null
       });
