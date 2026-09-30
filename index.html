@@ -230,7 +230,7 @@ nav::before{
   min-height:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
-  padding:150px 24px 56px;
+  padding:124px 24px 56px;
   position:relative;
   overflow:hidden;
 }
@@ -250,7 +250,7 @@ nav::before{
 }
 .hero-social{
   display:inline-flex;align-items:center;gap:18px;
-  margin-bottom:36px;text-decoration:none;
+  margin-bottom:28px;text-decoration:none;
   transition:opacity .2s;
 }
 .hero-social:hover{opacity:.85}
@@ -305,7 +305,7 @@ nav::before{
   font-size:clamp(.9rem,1.85vw,1.08rem);
   font-weight:300;font-style:italic;
   color:var(--t-mid);
-  max-width:520px;margin:0 auto 48px;
+  max-width:520px;margin:0 auto 38px;
   line-height:1.65;
 }
 .hero-sub em{
@@ -314,6 +314,33 @@ nav::before{
   font-weight:400;
 }
 .hero-actions{display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap}
+/* ── FILM (vidéo principale, hébergée ici : pas de compteur de vues) ── */
+.film{position:relative;width:min(1040px,100%);margin:4px auto 48px;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;background:#0b1326;
+  border:1px solid rgba(201,168,76,.26);box-shadow:0 40px 120px rgba(0,0,0,.45),0 0 0 7px rgba(201,168,76,.035);isolation:isolate}
+.film video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;background:#0b1326}
+.film-voile{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:radial-gradient(55% 55% at 50% 50%,rgba(10,16,32,.10),rgba(10,16,32,.50));border:0;padding:0;cursor:pointer;color:var(--ivory);font:inherit;transition:opacity .35s}
+.film-lire{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:rgba(10,16,32,.58);border:1.5px solid rgba(201,168,76,.85);
+  box-shadow:0 0 0 10px rgba(201,168,76,.10),0 14px 40px rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .25s,box-shadow .25s}
+.film-lire svg{width:30px;height:30px;margin-left:5px;fill:var(--gold)}
+.film-voile:hover .film-lire,.film-voile:focus-visible .film-lire{transform:scale(1.06);box-shadow:0 0 0 14px rgba(201,168,76,.14),0 14px 40px rgba(0,0,0,.45)}
+.film-voile:focus-visible{outline:none}
+.film-libelle{font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory);background:rgba(9,14,28,.72);padding:9px 16px;border-radius:999px}
+.film-muet{position:absolute;left:16px;bottom:14px;z-index:2;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--t-mid);background:rgba(9,14,28,.62);padding:6px 11px;border-radius:999px;pointer-events:none;transition:opacity .35s}
+.film.joue .film-voile,.film.joue .film-muet{opacity:0;pointer-events:none}
+.film-fin{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:rgba(10,16,32,.86);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);text-align:center;padding:24px}
+.film-fin[hidden]{display:none}
+.film-fin p{font-size:clamp(1.2rem,2.6vw,1.9rem);font-weight:300;color:var(--ivory);line-height:1.25;max-width:560px}
+.film-fin p em{font-style:italic;color:var(--gold)}
+.film-revoir{background:none;border:0;color:var(--t-mid);font:inherit;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.film-revoir:hover{color:var(--t-hi)}
+@media(max-width:640px){
+  .film{border-radius:var(--radius);margin-bottom:36px}
+  .film-lire{width:66px;height:66px}.film-lire svg{width:22px;height:22px}
+  .film-libelle{font-size:.56rem;padding:7px 12px}
+  .film-muet{display:none}
+}
+
 .btn-primary{
   display:inline-flex;align-items:center;
   padding:.85rem 2.2rem;
@@ -1101,7 +1128,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
 </div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="accueil">
   <a class="hero-social" href="#wall">
     <div class="social-stack">
       <img src="photos/charles-pebereau.png" alt="">
@@ -1121,6 +1148,22 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   </a>
   <h1 class="hero-h1">Un club d'affaires. <em>En mieux.</em></h1>
   <p class="hero-sub">Le club d'affaires sur-mesure qui sélectionne, pour vous, <em>les bonnes personnes</em> à rencontrer chaque semaine.</p>
+  <div class="film" id="film">
+    <video playsinline muted preload="metadata" poster="video/haloways-affiche.jpg" aria-label="Haloways en 1 minute 30">
+      <source src="video/haloways-v4-720.mp4" type="video/mp4" media="(max-width: 820px)">
+      <source src="video/haloways-v4-1080.mp4" type="video/mp4">
+    </video>
+    <span class="film-muet">Aperçu sans le son</span>
+    <button class="film-voile" type="button" aria-label="Regarder la vidéo avec le son">
+      <span class="film-lire"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span>
+      <span class="film-libelle">Regarder avec le son · 1 min 30</span>
+    </button>
+    <div class="film-fin" hidden>
+      <p>Votre première rencontre<br>vous attend <em>cette semaine</em>.</p>
+      <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+      <button class="film-revoir" type="button">Revoir la vidéo</button>
+    </div>
+  </div>
   <div class="hero-actions">
     <a class="btn-primary" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
@@ -2265,6 +2308,43 @@ function closeMobileMenu() {
 })()
 </script>
 
+
+<!-- Film : aperçu muet en boucle (sous-titres incrustés), lecture avec le son au clic -->
+<script>
+(function () {
+  var f = document.getElementById('film'); if (!f) return;
+  var v = f.querySelector('video'), voile = f.querySelector('.film-voile'), fin = f.querySelector('.film-fin');
+  var sobre = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) || (navigator.connection && navigator.connection.saveData);
+  var avecSon = false, jalons = {};
+  function ev(nom, props) { try { window.posthog && window.posthog.capture(nom, props || {}) } catch (e) {} }
+  if (!sobre) {
+    v.muted = true; v.loop = true; v.preload = 'auto';
+    var lancer = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}) };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (avecSon) return; e.isIntersecting ? lancer() : v.pause() }) }, { threshold: .25 }).observe(f);
+    } else lancer();
+  } else { f.querySelector('.film-muet').style.display = 'none' }
+  function lireAvecSon() {
+    avecSon = true; jalons = {};
+    v.loop = false; v.muted = false; v.currentTime = 0; v.controls = true;
+    f.classList.add('joue'); fin.hidden = true;
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    ev('landing_video_play', { mode: 'son' });
+  }
+  voile.addEventListener('click', lireAvecSon);
+  v.addEventListener('timeupdate', function () {
+    if (!avecSon || !v.duration) return;
+    var q = Math.floor(v.currentTime / v.duration * 4) * 25;
+    if (q > 0 && q < 100 && !jalons[q]) { jalons[q] = 1; ev('landing_video_progress', { pct: q }) }
+  });
+  v.addEventListener('ended', function () {
+    if (!avecSon) return;
+    ev('landing_video_progress', { pct: 100 });
+    v.controls = false; fin.hidden = false;
+  });
+  fin.querySelector('.film-revoir').addEventListener('click', lireAvecSon);
+})();
+</script>
 <!-- Track free-trial CTA clicks → PostHog event 'landing_free_trial_click' -->
 <script>
 (function () {
