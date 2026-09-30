@@ -11,6 +11,11 @@
  */
 const { CSS, POSTHOG } = require('./_gabarit.js')
 
+// La vidéo de démo en bas des interviews : une bande à part, chargée seulement
+// à l'approche (rien pour le rendu initial ni pour les robots), sans balisage
+// VideoObject, pour que la page reste un article aux yeux des moteurs.
+const CSS_DEMO = "\n.demo{background:var(--ink0);border-top:1px solid var(--border-hi);padding:92px 24px 96px}\n.demo-in{max-width:960px;margin:0 auto;text-align:center}\n.demo-k{display:block;font-size:.62rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}\n.demo h2{font-family:'DM Sans',sans-serif;font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:300;line-height:1.2;color:var(--ivory)}\n.demo h2 em{font-style:italic;color:var(--gold)}\n.demo p.demo-sub{margin:12px auto 0;max-width:520px;font-size:1rem;font-weight:300;color:var(--t-mid)}\n.demo-film{position:relative;aspect-ratio:16/9;margin-top:36px;border-radius:22px;overflow:hidden;background:#0b1326;border:1px solid rgba(201,168,76,.26);box-shadow:0 30px 90px rgba(0,0,0,.4)}\n.demo-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}\n.demo-lire{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:0;padding:0;cursor:pointer;color:var(--ivory);font:inherit;background:radial-gradient(55% 55% at 50% 50%,rgba(10,16,32,.1),rgba(10,16,32,.5));transition:opacity .3s}\n.demo-rond{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:rgba(10,16,32,.58);border:1.5px solid rgba(201,168,76,.85);box-shadow:0 0 0 10px rgba(201,168,76,.1),0 14px 40px rgba(0,0,0,.45);transition:transform .25s}\n.demo-rond svg{width:28px;height:28px;fill:var(--gold)}\n.demo-lire:hover .demo-rond,.demo-lire:focus-visible .demo-rond{transform:scale(1.06)}\n.demo-lire:focus-visible{outline:none}\n.demo-lib{font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;background:rgba(9,14,28,.72);padding:8px 14px;border-radius:999px}\n.demo-film.joue .demo-lire{opacity:0;pointer-events:none}\n@media(max-width:640px){.demo{padding:64px 16px 72px}.demo-film{border-radius:16px}.demo-rond{width:62px;height:62px}.demo-rond svg{width:20px;height:20px}}\n"
+
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://mbdvmvgxfqztcxeamzgo.supabase.co'
 // Clé publique (anon), déjà embarquée dans l'app web. Elle ne donne accès qu'aux RPC autorisées.
 const SUPABASE_ANON = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iZHZtdmd4ZnF6dGN4ZWFtemdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMzg3OTYsImV4cCI6MjA4ODcxNDc5Nn0.5HNME7DJWug9EqTCbw2lwBNd2VRa2CrclPoFAluzYRk'
@@ -152,7 +157,7 @@ ${apercu ? '' : `<link rel="canonical" href="${url}">`}
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
-<style>${CSS}</style>
+<style>${CSS}${CSS_DEMO}</style>
 ${apercu ? '' : POSTHOG}
 </head>
 <body>
@@ -163,7 +168,7 @@ ${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status 
 <main>
 <article>
 <header class="hx">
-<nav class="hx-crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>/</span><a href="/interviews">Interviews</a><span>/</span><span aria-current="page">${esc(nom)}</span></nav>
+<nav class="hx-crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>/</span><span aria-current="page">${esc(nom)}</span></nav>
 <div class="vc">
 <div class="vc-id">
 <div class="vc-ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : `<span class="hx-ini">${esc(initiales(nom))}</span>`}</div>
@@ -191,11 +196,39 @@ ${f.linkedin ? `<a class="lk${siteUrl ? '' : ' first'}" href="${esc(f.linkedin)}
 </div></aside></div></article>
 ${relecture}
 </main>
+${apercu ? '' : `<section class="demo" aria-labelledby="demo-t"><div class="demo-in">
+<span class="demo-k">Haloways en 1 min 30</span>
+<h2 id="demo-t">Le club, <em>en vidéo</em>.</h2>
+<p class="demo-sub">Une rencontre choisie pour vous, chaque semaine. Voici comment ça se passe.</p>
+<div class="demo-film" id="demo-film">
+<video playsinline preload="none" data-poster="/video/haloways-affiche.jpg" aria-label="Présentation d'Haloways en 1 minute 30"><source data-src="/video/haloways-v4-720.mp4" type="video/mp4" media="(max-width: 820px)"><source data-src="/video/haloways-v4-1080.mp4" type="video/mp4"></video>
+<button class="demo-lire" type="button" aria-label="Lire la vidéo de présentation d'Haloways"><span class="demo-rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span><span class="demo-lib">Regarder · 1 min 30</span></button>
+</div></div></section>
+<script>
+(function(){
+  var f=document.getElementById('demo-film'); if(!f) return;
+  var v=f.querySelector('video'), b=f.querySelector('.demo-lire'), charge=false, jalons={};
+  function charger(){ if(charge) return; charge=true;
+    v.poster=v.getAttribute('data-poster');
+    Array.prototype.forEach.call(v.querySelectorAll('source'),function(s){s.src=s.getAttribute('data-src')});
+    v.load(); }
+  function ev(n,p){try{window.posthog&&posthog.capture(n,Object.assign({page:'interview',slug:${JSON.stringify(slug)}},p||{}))}catch(e){}}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ charger(); io.disconnect() } },{rootMargin:'500px 0px'});
+    io.observe(f);
+  }
+  b.addEventListener('click',function(){ charger(); f.classList.add('joue'); v.controls=true;
+    var p=v.play(); if(p&&p.catch) p.catch(function(){}); ev('landing_video_play',{mode:'son'}) });
+  v.addEventListener('timeupdate',function(){ if(!v.duration) return; var q=Math.floor(v.currentTime/v.duration*4)*25;
+    if(q>0&&q<100&&!jalons[q]){jalons[q]=1;ev('landing_video_progress',{pct:q})} });
+  v.addEventListener('ended',function(){ ev('landing_video_progress',{pct:100}) });
+})();
+</script>`}
 <section class="cta-band" aria-labelledby="cta-t"><span class="label">Le club Haloways</span>
 <h2 id="cta-t">Rencontrez des entrepreneurs comme ${esc(prenom)}, chaque semaine.</h2>
 <p>Des rencontres choisies pour faire avancer votre activité, en visio. Dès 33 €/mois, sans engagement.</p>
 <a class="btn" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a></section><footer class="foot"><span class="flogo">HALOWAYS</span>
-<nav aria-label="Liens du site"><a href="/">Accueil</a><a href="/interviews">Interviews</a><a href="mailto:nicolas@haloways.com">Contact</a><a href="/terms">Conditions d'utilisation</a><a href="/privacy">Confidentialité</a><a href="/mentions-legales">Mentions légales</a></nav>
+<nav aria-label="Liens du site"><a href="/">Accueil</a><a href="mailto:nicolas@haloways.com">Contact</a><a href="/terms">Conditions d'utilisation</a><a href="/privacy">Confidentialité</a><a href="/mentions-legales">Mentions légales</a></nav>
 <small>© 2026 Haloways</small></footer>
 <script>
 /* Les messages s'envoient au fil du scroll : la question arrive, on voit
@@ -232,7 +265,7 @@ module.exports = async (req, res) => {
     if (!d || !d.page) {
       res.statusCode = 404
       res.setHeader('Content-Type', 'text/html; charset=utf-8')
-      return res.end('<!DOCTYPE html><meta charset="utf-8"><title>Interview introuvable · Haloways</title><p style="font-family:sans-serif;padding:40px">Cette interview n\'existe pas ou n\'est plus en ligne. <a href="/interviews">Voir les interviews</a></p>')
+      return res.end('<!DOCTYPE html><meta charset="utf-8"><title>Interview introuvable · Haloways</title><p style="font-family:sans-serif;padding:40px">Cette interview n\'existe pas ou n\'est plus en ligne. <a href="/">Retour à l\'accueil</a></p>')
     }
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
     // Une page publiée se met en cache une minute à la périphérie : une

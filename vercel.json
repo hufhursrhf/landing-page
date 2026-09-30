@@ -38,5 +38,12 @@
       "source": "/interviews/:slug",
       "destination": "/api/interview?slug=:slug"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/interviews",
+      "destination": "/",
+      "permanent": false
+    }
   ]
 }
