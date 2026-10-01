@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technologies IA — Haloways</title>
+<!-- ChatGPT Ads : pixel de mesure. Ajouter ?oaiq_debug=1 à l'URL pour voir son activité dans la console. -->
+<script>
+!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+oaiq("init",{pixelId:"QTnPUoJFhGuL9y8BWA1Ane",debug:/[?&]oaiq_debug=1/.test(location.search)});
+oaiq("measure","page_viewed",{type:"contents",contents:[{id:location.pathname,name:document.title||location.pathname,content_type:"page"}]});
+// Le clic sur l'annonce (oppref) suit le visiteur jusqu'à l'application, où le
+// compte est créé : c'est là que la conversion est mesurée. Le cookie du pixel
+// le porte déjà d'un sous-domaine à l'autre ; le lien le répète au cas où le
+// navigateur refuse le cookie.
+document.addEventListener("click",function(e){
+  var a=e.target&&e.target.closest?e.target.closest('a[href*="one.haloways.com"]'):null;
+  if(!a)return;
+  try{
+    var m=document.cookie.match(/(?:^|; )__oppref=([^;]+)/);
+    var o=new URLSearchParams(location.search).get("oppref")||(m?decodeURIComponent(m[1]):"");
+    if(!o)return;
+    var u=new URL(a.href);
+    if(!u.searchParams.get("oppref")){u.searchParams.set("oppref",o);a.href=u.toString()}
+  }catch(x){}
+},true);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">

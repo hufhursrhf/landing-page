@@ -9,7 +9,7 @@
  * serveur, pour que LinkedIn et Google lisent le titre, la description et
  * l'image de partage sans exécuter de JavaScript.
  */
-const { CSS, POSTHOG } = require('./_gabarit.js')
+const { CSS, POSTHOG, PIXEL_CHATGPT } = require('./_gabarit.js')
 
 // La vidéo de démo en bas des interviews : une bande à part, chargée seulement
 // à l'approche (rien pour le rendu initial ni pour les robots), sans balisage
@@ -158,6 +158,7 @@ ${apercu ? '' : `<link rel="canonical" href="${url}">`}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
 <style>${CSS}${CSS_DEMO}</style>
+${apercu ? '' : PIXEL_CHATGPT}
 ${apercu ? '' : POSTHOG}
 </head>
 <body>
