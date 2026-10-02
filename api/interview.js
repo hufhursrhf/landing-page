@@ -10,6 +10,8 @@
  * l'image de partage sans exécuter de JavaScript.
  */
 const { CSS, POSTHOG, PIXEL_CHATGPT } = require('./_gabarit.js')
+// La version 2 de la page, servie avec ?v=2 tant qu'elle n'est pas validée.
+const rendreV2 = require('./_interview_v2.js')
 
 // La vidéo de démo en bas des interviews : une bande à part, chargée seulement
 // à l'approche (rien pour le rendu initial ni pour les robots), sans balisage
@@ -273,6 +275,9 @@ module.exports = async (req, res) => {
     // correction dans l'admin est en ligne presque tout de suite.
     res.setHeader('Cache-Control', token ? 'private, no-store' : 'public, s-maxage=60, stale-while-revalidate=600')
     if (token) res.setHeader('X-Robots-Tag', 'noindex, nofollow')
+    // ?v=2 : la nouvelle mise en page, à comparer avec l'actuelle (jamais pour une relecture).
+    const v2 = !token && String((req.query && req.query.v) || q.get('v') || '') === '2'
+    if (v2) return res.end(rendreV2(d, { esc, paragraphes, initiales, HOTE, LOGO_LINKEDIN, SITE, POSTHOG, PIXEL_CHATGPT }))
     return res.end(page(d, { token: token || null }))
   } catch (e) {
     console.error('[interview]', e)
@@ -283,3 +288,4 @@ module.exports = async (req, res) => {
 
 // Pour les tests locaux du gabarit.
 module.exports.rendre = page
+module.exports.rendreV2 = (d) => rendreV2(d, { esc, paragraphes, initiales, HOTE, LOGO_LINKEDIN, SITE, POSTHOG: '', PIXEL_CHATGPT: '' })
