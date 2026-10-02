@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://haloways.com/sitemap.xml
+Sitemap: https://www.haloways.com/sitemap.xml

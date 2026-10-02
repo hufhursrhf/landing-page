@@ -1,24 +1,19 @@
 /**
- * La page d'interview, version 2 (02/10/2026). Servie avec ?v=2 tant qu'elle
- * n'est pas validée : la page en ligne ne change pas.
+ * La page d'une interview (refonte du 02/10/2026, validée par Nicolas).
  *
- * Ce qui change par rapport à la version 1, et pourquoi :
- *   • les réponses ne sont plus dans des cartes sombres. Une bulle de
- *     messagerie tient une phrase ; avec trois paragraphes c'est un mur. La
- *     question reste une bulle (c'est Charles qui écrit), la réponse devient
- *     du texte de lecture, repéré par le visage de l'invité ;
- *   • plus rien n'est caché en attendant une animation : en défilant vite on
- *     tombait sur des écrans vides. Seule la bulle de la question s'anime ;
- *   • le parcours daté (publication.reperes), rédigé à chaque interview mais
- *     jamais affiché, ouvre la page ;
- *   • la fiche (entreprise, lieu, depuis quand) monte dans l'en-tête sous
- *     forme d'étiquettes, au lieu d'une carte qui répétait l'en-tête ;
- *   • sur grand écran, un sommaire des questions suit la lecture ;
- *   • la fin tient en un seul bloc : ce que l'invité recherche, puis Haloways
- *     en une phrase, une vidéo qui s'ouvre au clic et un bouton. Avant : la
- *     recherche, la fiche, une bande vidéo, une bande d'appel.
- *   • le titre « 10 questions à Maxime » laisse la place à l'accroche de
- *     l'interview, qui dit de quoi on parle.
+ *   • la question est une bulle, signée du H d'Haloways (on ne nomme pas
+ *     l'intervieweur pour le moment) ; la réponse est du texte de lecture,
+ *     repéré par le visage de l'invité, avec ses passages clés surlignés ;
+ *   • rien n'est caché en attendant une animation ;
+ *   • l'en-tête porte la fiche en étiquettes : l'entreprise renvoie toujours
+ *     vers son site (à défaut sa page LinkedIn), « Membre Haloways » vers
+ *     l'inscription ;
+ *   • chaque échange a un thème court, repris dans le sommaire (grand écran) ;
+ *   • la fin tient en un seul bloc : ce que l'invité recherche, puis Haloways.
+ *
+ * Les champs de lecture rapide (titre_conversation, theme, surlignages) sont
+ * écrits par la rédaction (interview-writing.ts) et retouchables dans l'admin.
+ * Une page qui ne les a pas reste lisible : la question sert de repli.
  */
 
 const CSS = `
@@ -57,6 +52,12 @@ img{display:block;max-width:100%}
 .faits{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .faits li{list-style:none;font-size:.78rem;line-height:1.3;padding:.42rem .8rem;border:1px solid var(--line);border-radius:999px;color:var(--mid)}
 .faits li.g{border-color:rgba(201,168,76,.4);color:var(--gold)}
+.faits li:has(a){padding:0}
+.faits a{display:inline-flex;align-items:center;gap:6px;padding:.42rem .8rem;text-decoration:none;border-radius:999px;transition:background .2s,color .2s}
+.faits a:hover{background:rgba(245,240,232,.06);color:var(--ivory)}
+.faits li.g a:hover{background:rgba(201,168,76,.12);color:var(--gold)}
+.qui span a{color:inherit;text-decoration:underline;text-decoration-color:rgba(201,168,76,.5);text-underline-offset:3px}
+.qui span a:hover{color:var(--ivory)}
 .portrait{position:relative;margin-top:10px;width:232px;justify-self:end}
 .portrait::before{content:'';position:absolute;inset:-12px;border:1px solid rgba(201,168,76,.3);border-radius:50%}
 .portrait img,.portrait .ini{position:relative;width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;background:var(--ink2)}
@@ -81,15 +82,17 @@ img{display:block;max-width:100%}
 .conv-t{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.45rem,3.2vw,1.9rem);line-height:1.3;color:var(--ivory);margin-top:12px;text-wrap:balance}
 .ex{margin-top:clamp(40px,6vw,60px);scroll-margin-top:84px}
 .q{display:flex;align-items:flex-start;gap:10px}
-.q .av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;margin-top:5px;border:1px solid var(--line)}
-.q h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.18rem,2.6vw,1.34rem);line-height:1.35;color:var(--ivory);background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.3);border-radius:5px 20px 20px 20px;padding:12px 18px;max-width:560px}
+.q .av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;margin-top:6px;border:1px solid rgba(201,168,76,.4)}
+.theme{display:block;margin:0 0 10px 40px;font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.theme i{font-style:normal;color:var(--lo);margin-right:8px}
+.q h2{font-family:inherit;font-style:normal;font-weight:500;font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.45;color:var(--ivory);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.32);border-radius:5px 18px 18px 18px;padding:11px 16px;max-width:560px}
 .a{margin-top:18px;padding-left:40px}
 .a .de{display:flex;align-items:center;gap:8px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lo);margin-bottom:8px}
 .a .de img,.a .de i{width:22px;height:22px;border-radius:50%;object-fit:cover;flex:none}
 .a .de i{display:inline-flex;align-items:center;justify-content:center;background:var(--ink2);font-family:var(--serif);font-size:.7rem;color:var(--gold);letter-spacing:0}
 .a p{margin-bottom:1em}
 .a p:last-child{margin-bottom:0}
-.a p:first-of-type{color:var(--ivory);font-weight:400}
+.a mark{background:linear-gradient(transparent 12%,rgba(201,168,76,.3) 12%,rgba(201,168,76,.3) 92%,transparent 92%);color:var(--ivory);font-weight:400;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pull{margin:clamp(44px,7vw,68px) 0 0;padding:28px 0;border-top:1px solid rgba(201,168,76,.3);border-bottom:1px solid rgba(201,168,76,.3);text-align:center}
 .pull p{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.28;color:var(--ivory);text-wrap:balance}
 .pull cite{display:block;margin-top:12px;font-style:normal;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
@@ -124,6 +127,14 @@ img{display:block;max-width:100%}
 .foot nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 .foot a{text-decoration:none;color:var(--mid)}
 .foot a:hover{color:var(--gold)}
+.apercu{background:rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.3);color:var(--ivory);font-size:.86rem;text-align:center;padding:10px 20px}
+.relire{max-width:760px;margin:clamp(48px,7vw,80px) auto 0;padding:0 clamp(20px,4vw,40px)}
+.relire .box{background:var(--ink2);border:1px solid rgba(201,168,76,.3);border-radius:24px;padding:clamp(22px,4vw,34px)}
+.relire h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;line-height:1.2;color:var(--ivory)}
+.relire p{margin-top:10px;color:var(--mid);font-size:.96rem}
+.relire textarea{display:block;width:100%;min-height:120px;margin-top:18px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--ink);color:var(--hi);font:inherit;font-size:.96rem;resize:vertical}
+.relire .acts{margin-top:16px}
+.relire .ok{color:#8fd3a0}.relire .ko{color:#e58a7a}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
 
 /* La bulle de la question arrive ; la réponse, elle, est toujours là. */
@@ -141,6 +152,7 @@ img{display:block;max-width:100%}
 @media(min-width:981px){.qui .ph{display:none}}
 @media(max-width:760px){
   body{font-size:16.5px}
+  .theme{margin-left:0}
   .top nav .nl{display:none}
   .parcours ol{grid-auto-flow:row;grid-auto-columns:auto;border-top:0;border-left:1px solid var(--line);margin-left:3px}
   .parcours li{padding:0 0 18px 20px}
@@ -157,8 +169,9 @@ const court = (t, n) => {
   return s.length > n ? `${s.slice(0, n - 1).replace(/[\s,;:]+\S*$/, '')}…` : s
 }
 
-module.exports = function rendreV2(d, h) {
-  const { esc, paragraphes, initiales, HOTE, LOGO_LINKEDIN, SITE, POSTHOG, PIXEL_CHATGPT } = h
+module.exports = function rendre(d, h, { token } = {}) {
+  const { esc, initiales, LOGO_LINKEDIN, SITE, POSTHOG, PIXEL_CHATGPT, SUPABASE_URL, SUPABASE_ANON } = h
+  const apercu = !!token
   const p = d.page || {}
   const slug = d.slug || ''
   const url = `${SITE}/interviews/${slug}`
@@ -178,12 +191,32 @@ module.exports = function rendreV2(d, h) {
   const recherche = (p.recherche || []).filter(Boolean)
   const siteNu = f.site ? String(f.site).replace(/^https?:\/\//, '').replace(/\/$/, '') : ''
   const siteUrl = f.site ? (/^https?:/.test(f.site) ? f.site : `https://${f.site}`) : ''
+  // Le nom de l'entreprise est toujours cliquable : son site, sinon sa page LinkedIn.
+  const lienEntreprise = siteUrl || f.entreprise_linkedin || ''
+  const INSCRIPTION = 'https://one.haloways.com/signup'
+  // Dans le rôle (« fondateur du studio Rouges Plumes »), le nom de l'entreprise devient un lien.
+  const roleHtml = (() => {
+    const r = esc(role), n = esc(f.entreprise || '')
+    return lienEntreprise && n && r.includes(n)
+      ? r.replace(n, `<a href="${esc(lienEntreprise)}" target="_blank" rel="noopener">${n}</a>`)
+      : r
+  })()
+  // Les réponses : paragraphes, et passages clés surlignés (retrouvés mot pour mot).
+  const reponseHtml = (e) => {
+    const marques = (Array.isArray(e.surlignages) ? e.surlignages : []).map((x) => esc(String(x || '').trim())).filter(Boolean)
+    return String(e.reponse || '').split(/\n\s*\n/).map((x) => x.trim()).filter(Boolean).map((x) => {
+      let t = esc(x).replace(/\n/g, '<br>')
+      for (const m of marques) { const i = t.indexOf(m); if (i >= 0) t = `${t.slice(0, i)}<mark>${m}</mark>${t.slice(i + m.length)}` }
+      return `<p>${t}</p>`
+    }).join('')
+  }
 
   const faits = [
-    f.entreprise ? esc(f.entreprise) : '',
+    f.entreprise ? (lienEntreprise ? `<a href="${esc(lienEntreprise)}" target="_blank" rel="noopener">${esc(f.entreprise)} <span aria-hidden="true">↗</span></a>` : esc(f.entreprise)) : '',
     f.lieu ? esc(f.lieu) : '',
     f.depuis ? `À son compte depuis ${esc(f.depuis)}` : '',
-  ].filter(Boolean).map((t) => `<li>${t}</li>`).join('') + (p.membre_haloways ? '<li class="g">Membre Haloways</li>' : '')
+  ].filter(Boolean).map((t) => `<li>${t}</li>`).join('')
+    + (p.membre_haloways ? `<li class="g"><a href="${INSCRIPTION}" data-cta="interview_membre">Membre Haloways</a></li>` : '')
 
   const mini = portrait ? `<img src="${esc(portrait)}" alt="" loading="lazy">` : `<i>${esc(initiales(nom))}</i>`
   const blocs = echanges.map((e, i) => {
@@ -191,8 +224,9 @@ module.exports = function rendreV2(d, h) {
     const pulls = exergues.filter((x) => Number(x.apres_echange) === n && x.texte)
       .map((x) => `<blockquote class="pull"><p>« ${esc(x.texte)} »</p><cite>${esc(nom)}</cite></blockquote>`).join('')
     return `<section class="ex" id="q${n}">
-<div class="q"><img class="av" src="${esc(HOTE.photo)}" alt="${esc(HOTE.nom)}" loading="lazy"><h2>${esc(e.question)}</h2></div>
-<div class="a"><p class="de">${mini}${esc(prenom)}</p>${paragraphes(e.reponse)}</div>
+${e.theme ? `<span class="theme"><i>${String(n).padStart(2, '0')}</i>${esc(e.theme)}</span>` : ''}
+<div class="q"><img class="av" src="/apple-touch-icon.png" alt="Haloways" width="30" height="30" loading="lazy"><h2>${esc(e.question)}</h2></div>
+<div class="a"><p class="de">${mini}${esc(prenom)}</p>${reponseHtml(e)}</div>
 </section>${pulls}`
   }).join('')
 
@@ -201,14 +235,43 @@ module.exports = function rendreV2(d, h) {
     headline: p.titre, alternativeHeadline: p.surtitre, description: desc, inLanguage: 'fr-FR',
     datePublished: pubIso, dateModified: pubIso, mainEntityOfPage: url, url,
     image: [image, portrait].filter(Boolean), wordCount: mots, articleSection: 'Interviews',
-    author: { '@type': 'Person', name: HOTE.nom },
+    author: { '@type': 'Organization', name: 'Haloways', url: `${SITE}/` },
     publisher: { '@type': 'Organization', name: 'Haloways', url: `${SITE}/`, logo: { '@type': 'ImageObject', url: `${SITE}/logo-square.png` } },
     about: { '@type': 'Person', name: nom, jobTitle: role || undefined, ...(f.entreprise ? { worksFor: { '@type': 'Organization', name: f.entreprise, ...(siteUrl ? { url: siteUrl } : {}) } } : {}), sameAs: [siteUrl, f.linkedin].filter(Boolean) },
   }
 
+  // Haloways en deux phrases : ce qui se passe, et ce que le membre y gagne.
+  const valeur = `Trente minutes en visio, où chacun ouvre son réseau à l'autre : c'est ainsi que les membres trouvent leurs prochains clients et partenaires.`
   const pont = p.membre_haloways
-    ? `<b>${esc(prenom)} est membre d'Haloways.</b> Chaque semaine, le club lui présente un entrepreneur choisi pour son activité, en visio. Vous pouvez en être aussi.`
-    : `<b>Cette interview est produite par Haloways.</b> Chaque semaine, le club présente à chacun de ses membres un entrepreneur choisi pour son activité, en visio.`
+    ? `<b>${esc(prenom)} est membre d'Haloways.</b> Chaque semaine, le club lui présente un entrepreneur choisi pour son activité. ${valeur}`
+    : `<b>Haloways est un club d'entrepreneurs.</b> Chaque semaine, chaque membre rencontre un entrepreneur choisi pour son activité. ${valeur}`
+
+  const relecture = apercu ? `
+<section class="relire" id="relire"><div class="box">
+<h2>Votre interview vous convient&nbsp;?</h2>
+<p>Validez-la telle quelle, ou dites-nous ce qu'il faut corriger. Vous pouvez retirer un nom, il appartient à la personne citée. Les faits que vous avez racontés restent, ils appartiennent au récit.</p>
+${d.status === 'approved' || d.status === 'published' ? '<p class="ok">Merci, votre interview est validée.</p>' : ''}
+<textarea id="corr" placeholder="Vos corrections, précisément (ex. : c'était en 2022, pas en 2021)"></textarea>
+<div class="acts"><button class="btn" id="ok" type="button">Je valide mon interview</button><button class="btn clair" id="ko" type="button">Envoyer mes corrections</button></div>
+<p id="etat" style="margin-top:16px"></p></div></section>
+<script>
+(function(){
+  var etat=document.getElementById('etat');
+  function envoyer(decision){
+    var m=document.getElementById('corr').value;
+    if(decision==='changes'&&!m.trim()){etat.className='ko';etat.textContent="Écrivez ce qu'il faut corriger.";return}
+    etat.className='';etat.textContent='Envoi…';
+    fetch(${JSON.stringify(SUPABASE_URL + '/functions/v1/interview-publish')},{method:'POST',headers:{'Content-Type':'application/json',apikey:${JSON.stringify(SUPABASE_ANON)}},
+      body:JSON.stringify({action:'review',token:${JSON.stringify(token || '')},decision:decision,message:m})})
+    .then(function(r){return r.json()}).then(function(d){
+      if(d&&d.ok){etat.className='ok';etat.textContent=decision==='approve'?'Merci, votre interview est validée. Nous vous prévenons dès sa publication.':'Merci, vos corrections sont transmises à l\u2019équipe.'}
+      else{etat.className='ko';etat.textContent=(d&&d.error)||"L'envoi a échoué, réessayez."}
+    }).catch(function(){etat.className='ko';etat.textContent="L'envoi a échoué, réessayez."});
+  }
+  document.getElementById('ok').onclick=function(){envoyer('approve')};
+  document.getElementById('ko').onclick=function(){envoyer('changes')};
+})();
+</script>` : ''
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -217,8 +280,8 @@ module.exports = function rendreV2(d, h) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(`${p.titre} · ${nom}, interview Haloways`)}</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="robots" content="noindex,follow">
-<link rel="canonical" href="${url}">
+<meta name="robots" content="${apercu ? 'noindex,nofollow' : 'index,follow,max-image-preview:large'}">
+${apercu ? '' : `<link rel="canonical" href="${url}">`}
 <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -229,20 +292,28 @@ module.exports = function rendreV2(d, h) {
 <meta property="og:description" content="${esc(`${p.surtitre}. ${desc}`)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${esc(image)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(`${nom} : « ${p.citation_partage || p.titre} »`)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(p.titre)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${esc(image)}">
+<meta property="article:published_time" content="${pubIso}"><meta property="article:section" content="Interviews">
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>${CSS}</style>
 <script>document.documentElement.className='js'</script>
-${PIXEL_CHATGPT}
-${POSTHOG}
+${apercu ? '' : PIXEL_CHATGPT}
+${apercu ? '' : POSTHOG}
 </head>
 <body>
 <div class="prog" id="prog" aria-hidden="true"></div>
 <header class="top"><a class="logo" href="/" aria-label="Haloways, accueil">HALOWAYS</a>
 <nav aria-label="Navigation principale"><a class="nl" href="/#tarif">Tarif</a><a class="nl" href="https://one.haloways.com/login">Se connecter</a>
 <a class="btn sm" href="https://one.haloways.com/signup" data-cta="interview_haut">Commencer 14 jours gratuits</a></nav></header>
+${apercu ? `<div class="apercu">Aperçu privé, visible par vous seul${d.status === 'published' ? '' : ' : cette page n’est pas encore publiée'}. <a href="#relire" style="color:var(--gold)">Valider ou corriger ↓</a></div>` : ''}
 <main>
 <article>
 <header class="hero">
@@ -250,7 +321,7 @@ ${POSTHOG}
 <p class="k"><b>Interview</b><span>${esc(p.date_label || '')}</span><span>${lecture} min de lecture</span></p>
 <h1><i>«&nbsp;</i>${esc(p.titre)}<i>&nbsp;»</i></h1>
 <div class="qui"><span class="ph">${portrait ? `<img src="${esc(portrait)}" alt="Portrait de ${esc(nom)}">` : esc(initiales(nom))}</span>
-<div><b>${esc(nom)}${f.linkedin ? `<a href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b><span>${esc(role)}</span></div></div>
+<div><b>${esc(nom)}${f.linkedin ? `<a href="${esc(f.linkedin)}" target="_blank" rel="noopener" aria-label="Profil LinkedIn de ${esc(nom)}">${LOGO_LINKEDIN}</a>` : ''}</b><span>${roleHtml}</span></div></div>
 ${p.chapo ? `<p class="chapo">${esc(p.chapo)}</p>` : ''}
 ${faits ? `<ul class="faits" aria-label="En bref">${faits}</ul>` : ''}
 </div>
@@ -261,22 +332,23 @@ ${reperes.length >= 3 ? `<section class="parcours" aria-labelledby="parcours-t">
 <ol>${reperes.map((r) => `<li><b>${esc(r.date)}</b><span>${esc(r.texte)}</span></li>`).join('')}</ol>
 </section>` : ''}
 <div class="conv">
-<nav class="rail" aria-label="Les questions"><p class="kk">Les questions</p>
-<ol>${echanges.map((e, i) => `<li><a href="#q${i + 1}">${esc(court(e.question, 58))}</a></li>`).join('')}</ol></nav>
+<nav class="rail" aria-label="Sommaire de la conversation"><p class="kk">Sommaire</p>
+<ol>${echanges.map((e, i) => `<li><a href="#q${i + 1}" title="${esc(e.question)}">${esc(e.theme || court(e.question, 58))}</a></li>`).join('')}</ol></nav>
 <div>
-<p class="kk">La conversation, menée par ${esc(HOTE.nom)}</p>
-<p class="conv-t">${esc(p.accroche || `${prenom} raconte son parcours, ses rencontres et ce qu'il cherche aujourd'hui.`)}</p>
+<p class="kk">La conversation</p>
+<h2 class="conv-t">${esc(p.titre_conversation || p.accroche || `${prenom} raconte son parcours, ses rencontres et ce qu'il cherche aujourd'hui.`)}</h2>
 ${blocs}
-<p class="credits">Propos recueillis par ${esc(HOTE.nom)}. Production : Nicolas De Monte.</p>
+<p class="credits">Un entretien Haloways.</p>
 </div>
 </div>
 </article>
+${relecture}
 </main>
 <section class="fin" aria-labelledby="fin-t"><div class="fin-in">
 <div>
 ${recherche.length ? `<h2 id="fin-t">Ce que ${esc(prenom)} <em>recherche</em></h2>
 <ol class="cherche">${recherche.map((r) => `<li>${esc(r)}</li>`).join('')}</ol>` : `<h2 id="fin-t">Pour joindre <em>${esc(prenom)}</em></h2>`}
-<div class="acts">${f.linkedin ? `<a class="btn clair" href="${esc(f.linkedin)}" target="_blank" rel="noopener" data-cta="interview_linkedin">${LOGO_LINKEDIN}Écrire à ${esc(prenom)}</a>` : ''}${siteUrl ? `<a class="btn clair" href="${esc(siteUrl)}" target="_blank" rel="noopener">${esc(f.entreprise || siteNu)} ↗</a>` : ''}</div>
+<div class="acts">${f.linkedin ? `<a class="btn clair" href="${esc(f.linkedin)}" target="_blank" rel="noopener" data-cta="interview_linkedin">${LOGO_LINKEDIN}Écrire à ${esc(prenom)}</a>` : ''}${lienEntreprise ? `<a class="btn clair" href="${esc(lienEntreprise)}" target="_blank" rel="noopener" data-cta="interview_site">${esc(f.entreprise || siteNu)} ↗</a>` : ''}</div>
 </div>
 <aside class="pont" aria-label="Haloways">
 <button class="film" id="film" type="button" style="background-image:url(/video/haloways-affiche.jpg)" aria-label="Voir la présentation d'Haloways, 1 minute 30"><span class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span><span class="lib">Haloways en 1 min 30</span></button>
@@ -293,7 +365,7 @@ ${recherche.length ? `<h2 id="fin-t">Ce que ${esc(prenom)} <em>recherche</em></h
 <script>
 (function(){
   var slug=${JSON.stringify(slug)};
-  function ev(n,p){try{window.posthog&&posthog.capture(n,Object.assign({page:'interview',version:2,slug:slug},p||{}))}catch(e){}}
+  function ev(n,p){try{window.posthog&&posthog.capture(n,Object.assign({page:'interview',slug:slug},p||{}))}catch(e){}}
   /* Au défilement : la barre de lecture avance, la bulle de la question en vue
      arrive, le sommaire suit la question en cours. Tout part de l'événement
      de défilement (et non d'un observateur) : une bulle ne peut pas rester
