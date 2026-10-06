@@ -16,11 +16,21 @@
  * Une page qui ne les a pas reste lisible : la question sert de repli.
  */
 
+/**
+ * Le H d'Haloways dans les bulles de question. Dessiné en SVG plutôt que repris
+ * de /apple-touch-icon.png : dans l'icône d'app le H est posé un peu haut, et
+ * rogné en rond il paraissait décentré. Ici il est centré au pixel, quelle que
+ * soit la police chargée.
+ */
+const H_BULLE = `<svg class="av" viewBox="0 0 30 30" width="30" height="30" role="img" aria-label="Haloways"><circle cx="15" cy="15" r="14.5" fill="#15233f" stroke="rgba(201,168,76,.45)"/><g fill="#C9A84C"><rect x="9.6" y="9.4" width="1.7" height="11.2"/><rect x="18.7" y="9.4" width="1.7" height="11.2"/><rect x="11.3" y="14.55" width="7.4" height=".9"/><rect x="8.1" y="9" width="4.7" height=".8"/><rect x="17.2" y="9" width="4.7" height=".8"/><rect x="8.1" y="20.2" width="4.7" height=".8"/><rect x="17.2" y="20.2" width="4.7" height=".8"/></g></svg>`
+
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#101a30;--ink2:#15233f;--gold:#C9A84C;--ivory:#F5F0E8;--hi:rgba(245,240,232,.9);--mid:rgba(245,240,232,.66);--lo:rgba(245,240,232,.44);--line:rgba(245,240,232,.1);--serif:'Cormorant Garamond',Georgia,serif}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--ink);color:var(--hi);font-family:'DM Sans',system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* Les fines lignes verticales de la landing (.lines-bg), derrière toute la page. */
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;background-image:repeating-linear-gradient(to right,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 1px,transparent 38px)}
 a{color:inherit}
 img{display:block;max-width:100%}
 .top{position:sticky;top:0;z-index:30;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(18px,4vw,40px);background:rgba(16,26,48,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -82,7 +92,7 @@ img{display:block;max-width:100%}
 .conv-t{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.45rem,3.2vw,1.9rem);line-height:1.3;color:var(--ivory);margin-top:12px;text-wrap:balance}
 .ex{margin-top:clamp(40px,6vw,60px);scroll-margin-top:84px}
 .q{display:flex;align-items:flex-start;gap:10px}
-.q .av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;margin-top:6px;border:1px solid rgba(201,168,76,.4)}
+.q .av{width:30px;height:30px;flex:none;margin-top:6px;display:block}
 .theme{display:block;margin:0 0 10px 40px;font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .theme i{font-style:normal;color:var(--lo);margin-right:8px}
 .q h2{font-family:inherit;font-style:normal;font-weight:500;font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.45;color:var(--ivory);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.32);border-radius:5px 18px 18px 18px;padding:11px 16px;max-width:560px}
@@ -105,7 +115,7 @@ img{display:block;max-width:100%}
 .fin h2 em{font-style:italic;color:var(--gold)}
 .cherche{list-style:none;margin-top:20px;counter-reset:c}
 .cherche li{counter-increment:c;display:grid;grid-template-columns:28px 1fr;gap:6px;padding:12px 0;border-top:1px solid var(--line);font-size:.98rem;line-height:1.55}
-.cherche li::before{content:counter(c);font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--gold)}
+.cherche li::before{content:counter(c);font-family:inherit;font-style:normal;font-weight:500;font-size:.86rem;font-variant-numeric:tabular-nums;line-height:1.78;color:var(--gold)}
 .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .pont{background:var(--ink2);border:1px solid var(--line);border-radius:24px;padding:22px}
 .film{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;overflow:hidden;background:#0b1326 center/cover no-repeat;cursor:pointer}
@@ -225,7 +235,7 @@ module.exports = function rendre(d, h, { token } = {}) {
       .map((x) => `<blockquote class="pull"><p>« ${esc(x.texte)} »</p><cite>${esc(nom)}</cite></blockquote>`).join('')
     return `<section class="ex" id="q${n}">
 ${e.theme ? `<span class="theme"><i>${String(n).padStart(2, '0')}</i>${esc(e.theme)}</span>` : ''}
-<div class="q"><img class="av" src="/apple-touch-icon.png" alt="Haloways" width="30" height="30" loading="lazy"><h2>${esc(e.question)}</h2></div>
+<div class="q">${H_BULLE}<h2>${esc(e.question)}</h2></div>
 <div class="a"><p class="de">${mini}${esc(prenom)}</p>${reponseHtml(e)}</div>
 </section>${pulls}`
   }).join('')
