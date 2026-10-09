@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Politique de confidentialité — Haloways</title>
-<meta name="description" content="Haloways protège vos données personnelles. Cette politique détaille comment nous collectons, utilisons et sécurisons vos informations sur la plateforme.">
+<title>Politique de confidentialité · Haloways</title>
+<meta name="description" content="Quelles données Haloways traite, pourquoi, qui y accède, quels prestataires interviennent et comment exercer vos droits.">
 <meta name="robots" content="noindex,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,19 @@ a:hover{color:var(--gold)}
 .divider{height:1px;background:var(--border);margin:48px 0}
 footer-text{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t-lo);margin-top:64px;text-align:center}
 @media(max-width:600px){main{padding:60px 24px 80px}nav{padding:0 24px}}
+
+h3{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.04em;color:var(--t-hi);margin:26px 0 8px}
+strong{font-weight:500;color:var(--t-hi)}
+.bref{border:1px solid rgba(201,168,76,.22);background:rgba(201,168,76,.05);border-radius:10px;padding:22px 24px 12px;margin:32px 0 0}
+.bref-titre{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,168,76,.75);margin-bottom:12px}
+.tableau{overflow-x:auto;margin:6px 0 18px;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:480px}
+th,td{text-align:left;vertical-align:top;padding:11px 16px;font-size:.84rem;line-height:1.6;color:var(--t-mid);border-bottom:1px solid var(--border)}
+th{font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t-lo)}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{color:var(--t-hi);width:30%}
+.tableau.large td:first-child{width:62%}
+@media(max-width:600px){table{min-width:0}thead{display:none}td{display:block;width:auto!important;border-bottom:0;padding:3px 16px}td:first-child{padding-top:13px}td:last-child{padding-bottom:13px;border-bottom:1px solid var(--border)}}
 </style>
 <!-- PostHog Analytics + Session Replay -->
 <script>
@@ -48,44 +61,148 @@ footer-text{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:up
 </nav>
 <main>
   <h1>Politique de confidentialité</h1>
-  <p class="meta">Haloways · nicolas@haloways.com</p>
+  <p class="meta">Dernière mise à jour : 9 octobre 2026</p>
 
-  <p>Haloways protège la confidentialité de ses membres et utilisateurs. Cette politique décrit la manière dont nous collectons, utilisons et sécurisons vos données personnelles dans le cadre de l'utilisation de notre plateforme et de nos services d'introductions B2B.</p>
+  <p>Haloways est un club de mise en relation entre professionnels. Pour vous proposer chaque semaine la bonne rencontre et les bonnes intros, nous traitons des données sur vous et sur votre réseau. Cette page dit lesquelles, pourquoi, qui y accède et comment garder la main.</p>
 
-  <p>Le responsable de traitement est la société Haloways, dont le siège social est situé au 6 lot Le Clos de l'Épinette, 85440 Talmont-Saint-Hilaire, France.</p>
+  <p>Le responsable du traitement est la société Haloways, SAS au capital de 2 000 €, SIREN 100 350 040, dont le siège est situé 6 lotissement Le Clos de l'Épinette, 85440 Talmont-Saint-Hilaire, France. Contact : <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a>.</p>
+
+  <div class="bref">
+    <p class="bref-titre">En bref</p>
+    <ul>
+      <li>Nous lisons la liste de vos relations LinkedIn et des signaux de proximité. Nous n'enregistrons et n'analysons jamais le texte de vos messages privés.</li>
+      <li>Aucune de vos relations n'est contactée sans une action de votre part.</li>
+      <li>Vos données sont hébergées à Paris. Nous ne les vendons pas.</li>
+      <li>Les modèles d'intelligence artificielle que nous utilisons ne sont pas entraînés sur vos données.</li>
+      <li>Vous retirez chaque autorisation quand vous voulez, et nous supprimons vos données sur simple demande.</li>
+    </ul>
+  </div>
 
   <div class="divider"></div>
 
-  <h2>1. Données collectées</h2>
-  <p>Nous collectons et traitons uniquement les informations nécessaires au fonctionnement de notre application et à l'amélioration de l'expérience utilisateur. Ces informations peuvent inclure :</p>
+  <h2>1. Les données que nous traitons</h2>
+
+  <h3>Votre compte et votre profil</h3>
+  <p>Nom, prénom, adresse email, numéro de téléphone, photo, poste, entreprise, description de votre activité, et les profils que vous cherchez à rencontrer (vos cibles). Vous nous les donnez à l'inscription ou nous les lisons sur votre profil LinkedIn public et sur le site de votre entreprise.</p>
+
+  <h3>Votre réseau LinkedIn</h3>
+  <p>Si vous connectez LinkedIn, nous passons par l'interface officielle de portabilité des données de LinkedIn. Cette autorisation est en lecture seule : elle ne permet ni d'envoyer un message, ni de publier, ni d'agir sur votre compte. LinkedIn ne propose qu'une autorisation globale, qui couvre plus que ce dont nous avons besoin. Voici ce que nous en faisons réellement :</p>
   <ul>
-    <li>Informations de profil et de contact fournies par l'utilisateur lors de la connexion à notre application.</li>
-    <li>Informations issues des services Google connectés par l'utilisateur, utilisées uniquement dans le cadre des fonctionnalités proposées (par exemple, l'affichage ou l'organisation d'événements pour mieux répertorier le réseau de l'utilisateur dans l'application).</li>
+    <li><strong>Vos relations</strong> : nom, poste, entreprise, lieu et adresse du profil. C'est ce qui permet de savoir à qui vous pouvez présenter un autre membre.</li>
+    <li><strong>Votre profil et votre parcours</strong>, pour comprendre votre activité.</li>
+    <li><strong>Des signaux de proximité</strong>, pour distinguer vos relations proches de vos simples contacts : le nombre de messages échangés avec chaque relation, vos réactions et commentaires, les contacts que vous avez importés dans LinkedIn et les entreprises que vous suivez.</li>
+  </ul>
+  <p><strong>Vos messages privés.</strong> Pour compter vos échanges, un programme reçoit la liste de vos messages et n'en retient que l'expéditeur et le destinataire. Le texte des messages n'est ni enregistré, ni analysé, ni transmis à un modèle d'intelligence artificielle, et aucune personne de notre équipe ne peut le consulter.</p>
+  <p><strong>Sans connexion LinkedIn.</strong> Vous pouvez importer vous-même le fichier de vos relations. Seul ce fichier est lu, dans votre navigateur. Nous n'avons alors accès à aucun message ni à aucun signal de proximité.</p>
+
+  <h3>Votre agenda</h3>
+  <p>Si vous connectez Google Agenda ou Outlook, nous lisons les horaires de vos événements pour connaître vos créneaux libres, sans retenir leur titre ni leur contenu, et nous créons dans votre agenda l'événement de chaque rencontre confirmée.</p>
+
+  <h3>Votre boîte d'envoi</h3>
+  <p>Vous pouvez autoriser Haloways à envoyer une intro depuis votre adresse Gmail ou Outlook. Cette autorisation ne permet que l'envoi du message que vous avez relu et validé. Nous ne lisons pas votre boîte de réception.</p>
+
+  <h3>Vos rencontres en visio</h3>
+  <p>Les rencontres entre membres ont lieu en visio dans l'application. Leur son est enregistré et transcrit automatiquement, afin de produire le compte rendu envoyé aux deux participants et de retrouver les intros évoquées. L'image n'est pas enregistrée. Nous conservons aussi les messages échangés dans la visio et des journaux techniques (connexion, qualité du son et de l'image) pour résoudre les incidents.</p>
+  <p>Les interviews publiées par Haloways sont enregistrées en vidéo. Elles ne sont diffusées qu'après relecture et accord de la personne interviewée.</p>
+
+  <h3>Votre activité dans le club</h3>
+  <p>Rencontres proposées, acceptées ou manquées, personnes épinglées, intros demandées, promises et envoyées, résultats que vous déclarez après une rencontre, parrainages, réponses à nos messages.</p>
+
+  <h3>Votre paiement</h3>
+  <p>Le paiement est traité par Stripe. Nous ne voyons ni ne conservons le numéro de votre carte. Nous conservons vos factures et l'état de votre abonnement.</p>
+
+  <h3>Votre navigation</h3>
+  <p>Sur le site et dans l'application, un outil de mesure d'audience (PostHog, hébergé dans l'Union européenne) enregistre les pages vues, les clics et une reconstitution de vos sessions : les écrans affichés et ce que vous y saisissez, à l'exception des mots de passe et des informations de paiement. Cela nous sert à comprendre où l'application bloque et à corriger les erreurs.</p>
+  <p>Le site haloways.com utilise aussi un traceur de mesure publicitaire (ChatGPT Ads) : il nous indique si une visite venue d'une annonce a abouti à une inscription, un essai ou un abonnement. Nous ne lui transmettons ni votre nom, ni votre email.</p>
+
+  <h2>2. Si vous n'êtes pas membre</h2>
+  <p>Vous pouvez figurer dans Haloways parce qu'un membre vous compte parmi ses relations LinkedIn. Nous traitons alors votre nom, votre poste, votre entreprise, votre lieu et l'adresse de votre profil, tels que LinkedIn les fournit à ce membre. Lorsqu'un membre envisage de vous présenter quelqu'un, nous relisons votre profil LinkedIn public pour que la présentation repose sur votre situation réelle.</p>
+  <p>Ces données servent uniquement à repérer des mises en relation utiles. Vous n'êtes jamais contacté par Haloways : seul le membre qui vous connaît peut vous écrire, s'il le décide. Ce traitement repose sur notre intérêt légitime et celui de nos membres à entretenir leur réseau professionnel.</p>
+  <p>Vous pouvez demander à tout moment à savoir ce que nous détenons sur vous, à le faire corriger ou supprimer, ou à ne plus apparaître dans le club : <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a>.</p>
+
+  <h2>3. Pourquoi nous les traitons</h2>
+  <div class="tableau large">
+    <table>
+      <thead><tr><th>Finalité</th><th>Fondement</th></tr></thead>
+      <tbody>
+        <tr><td>Créer votre compte, vous proposer une rencontre par semaine, organiser la visio, vous aider à demander et à faire des intros</td><td>Exécution du contrat</td></tr>
+        <tr><td>Lire votre réseau LinkedIn, votre agenda, envoyer depuis votre boîte</td><td>Votre consentement, retirable à tout moment</td></tr>
+        <tr><td>Enregistrer le son des rencontres, le transcrire, rédiger le compte rendu</td><td>Exécution du contrat</td></tr>
+        <tr><td>Traiter les données de vos relations non membres</td><td>Intérêt légitime</td></tr>
+        <tr><td>Vous envoyer les messages du service par email et WhatsApp (rencontres, rappels, intros)</td><td>Exécution du contrat ; réglable dans vos préférences</td></tr>
+        <tr><td>Facturer, tenir notre comptabilité</td><td>Obligation légale</td></tr>
+        <tr><td>Mesurer l'audience, corriger les erreurs, améliorer l'application</td><td>Intérêt légitime, ou votre consentement lorsque la loi l'exige</td></tr>
+        <tr><td>Mesurer l'efficacité de nos annonces</td><td>Votre consentement</td></tr>
+        <tr><td>Prévenir les abus et assurer la sécurité du service</td><td>Intérêt légitime</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4. Qui voit quoi</h2>
+  <ul>
+    <li><strong>Les autres membres</strong> voient votre profil (nom, photo, poste, entreprise, activité, cibles). Lorsqu'ils cherchent une intro, ils voient le nom, le poste et l'entreprise de celles de vos relations qui correspondent à leur recherche. Ils ne voient ni vos messages, ni votre agenda, ni vos coordonnées.</li>
+    <li><strong>Le membre que vous rencontrez</strong> reçoit le même compte rendu que vous.</li>
+    <li><strong>L'équipe Haloways</strong>, soit ses deux fondateurs, accède aux données nécessaires pour faire fonctionner le club et vous aider.</li>
+    <li><strong>Nos prestataires techniques</strong>, listés plus bas, dans la limite de leur mission.</li>
+  </ul>
+  <p>Nous ne vendons ni ne louons vos données, et nous ne les transmettons à aucun annonceur.</p>
+
+  <h2>5. L'intelligence artificielle</h2>
+  <p>Haloways n'a pas développé son propre modèle. Nous utilisons, par leurs interfaces professionnelles, les modèles d'Anthropic (Claude), d'OpenAI et un modèle de vérification (Jev) appelé sans conservation des données. Ils servent à comprendre votre activité et vos cibles, à repérer dans un réseau les personnes qui correspondent à une recherche, à rédiger un brouillon d'intro que vous relisez toujours, à résumer une rencontre et à comprendre vos réponses à nos messages WhatsApp.</p>
+  <p>Selon les conditions de ces fournisseurs, les données envoyées par ces interfaces ne servent pas à entraîner leurs modèles. Le texte de vos messages privés LinkedIn ne leur est jamais transmis.</p>
+  <p>La rencontre proposée chaque semaine est choisie par un programme, à partir de votre activité, de vos cibles et de votre réseau. Vous restez libre de l'accepter ou non, et vous pouvez demander qu'une personne de l'équipe réexamine toute proposition ou analyse automatique vous concernant.</p>
+
+  <h2>6. Nos prestataires</h2>
+  <div class="tableau">
+    <table>
+      <thead><tr><th>Prestataire</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase</td><td>Base de données, authentification et serveurs, hébergés à Paris</td></tr>
+        <tr><td>Vercel</td><td>Hébergement du site et de l'application, accès au modèle Jev</td></tr>
+        <tr><td>Stripe</td><td>Paiement et facturation</td></tr>
+        <tr><td>Daily</td><td>Visio, enregistrement du son et transcription</td></tr>
+        <tr><td>Anthropic, OpenAI</td><td>Modèles d'intelligence artificielle</td></tr>
+        <tr><td>Brevo</td><td>Envoi des emails</td></tr>
+        <tr><td>SendSeven, Meta (WhatsApp)</td><td>Envoi et réception des messages WhatsApp</td></tr>
+        <tr><td>Mindcase, Bright Data</td><td>Lecture de profils LinkedIn publics et de fiches d'entreprise</td></tr>
+        <tr><td>Firecrawl</td><td>Lecture du site web de votre entreprise à l'inscription</td></tr>
+        <tr><td>FullEnrich</td><td>Recherche de l'adresse email professionnelle d'une relation, quand vous choisissez de lui écrire par email</td></tr>
+        <tr><td>PostHog</td><td>Mesure d'audience et reconstitution de sessions, hébergé dans l'Union européenne</td></tr>
+        <tr><td>Shotstack, ElevenLabs</td><td>Montage des interviews publiées</td></tr>
+        <tr><td>Slack</td><td>Alertes internes de l'équipe</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>LinkedIn, Google et Microsoft interviennent pour les comptes que vous choisissez de connecter.</p>
+  <p><strong>Transferts hors de l'Union européenne.</strong> Certains de ces prestataires sont établis aux États-Unis, notamment Vercel, Stripe, Daily, Anthropic, OpenAI et Meta. Ces transferts sont encadrés par les clauses contractuelles types de la Commission européenne ou par le cadre de protection des données entre l'Union européenne et les États-Unis.</p>
+
+  <h2>7. Données Google</h2>
+  <p>L'utilisation par Haloways des informations reçues des API Google respecte les <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">règles relatives aux données utilisateur des services API Google</a>, y compris les exigences d'utilisation limitée. Ces informations servent uniquement à lire vos disponibilités, à créer les événements de vos rencontres et, si vous l'autorisez, à envoyer les messages que vous validez. Elles ne sont ni vendues, ni utilisées pour de la publicité, ni utilisées pour entraîner des modèles d'intelligence artificielle.</p>
+
+  <h2>8. Combien de temps</h2>
+  <ul>
+    <li><strong>Votre compte, votre réseau, vos rencontres, leurs enregistrements et comptes rendus, vos intros</strong> : pendant toute la durée de votre adhésion. Après son terme, nous les supprimons sur simple demande, dans un délai de 30 jours.</li>
+    <li><strong>Vos autorisations LinkedIn, Google et Microsoft</strong> : jusqu'à leur expiration ou à leur retrait.</li>
+    <li><strong>Vos factures</strong> : 10 ans, comme la loi l'impose.</li>
+    <li><strong>Les données de vos relations</strong> : tant que vous êtes membre, ou jusqu'à ce que la personne concernée en demande la suppression.</li>
   </ul>
 
-  <h2>2. Utilisation des données</h2>
-  <p>Les données collectées sont utilisées uniquement pour :</p>
+  <h2>9. Sécurité</h2>
+  <p>Les données sont hébergées à Paris, chiffrées lors de leur transport et au repos. Sans compte, aucune donnée de membre n'est accessible. Entre membres, seuls sont visibles le profil de chacun et, lors d'une recherche d'intro, le nom, le poste et l'entreprise des relations concernées. Les clés d'accès à vos comptes LinkedIn, Google et Microsoft sont conservées côté serveur : ni l'application, ni les autres membres ne peuvent les lire. L'accès de l'équipe est limité aux deux fondateurs. En cas de violation de données présentant un risque pour vous, nous vous en informons ainsi que la CNIL dans les délais prévus par la loi.</p>
+
+  <h2>10. Garder la main</h2>
   <ul>
-    <li>Fournir et améliorer les fonctionnalités de notre application.</li>
-    <li>Permettre à l'utilisateur de visualiser, organiser ou exploiter ses informations directement dans l'application.</li>
-    <li>Garantir le bon fonctionnement des intégrations avec les services tiers que l'utilisateur choisit de connecter.</li>
+    <li><strong>Retirer une autorisation</strong> : depuis les réglages de votre compte LinkedIn, Google ou Microsoft, ou en nous écrivant.</li>
+    <li><strong>Choisir vos notifications</strong> : par famille de messages, pour l'email et pour WhatsApp, depuis vos préférences. Chaque email contient un lien de désabonnement.</li>
+    <li><strong>Exercer vos droits</strong> : accès, rectification, effacement, limitation, opposition, portabilité, et définition du sort de vos données après votre décès. Écrivez à <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a>. Nous répondons dans un délai d'un mois.</li>
+    <li><strong>Saisir la CNIL</strong> : si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.</li>
   </ul>
-  <p>Nous n'utilisons jamais les données pour de la publicité ciblée ou pour tout autre usage non directement lié au service fourni.</p>
 
-  <h2>3. Partage des données</h2>
-  <p>Nous ne vendons, louons ni ne partageons vos données personnelles avec des tiers, sauf lorsque cela est nécessaire au fonctionnement du service (ex. prestataires techniques assurant l'hébergement et le traitement des données) ou lorsque la loi l'exige.</p>
+  <h2>11. Évolution de cette politique</h2>
+  <p>Nous mettons cette page à jour lorsque nos pratiques changent. En cas de changement important, les membres sont prévenus par email avant son entrée en vigueur.</p>
 
-  <h2>4. Conservation des données</h2>
-  <p>Les données sont conservées uniquement le temps nécessaire à la fourniture du service et sont supprimées à la demande de l'utilisateur ou lors de la fermeture de son compte.</p>
-
-  <h2>5. Sécurité</h2>
-  <p>Nous mettons en place des mesures techniques et organisationnelles pour protéger les données contre l'accès non autorisé, la perte ou la divulgation.</p>
-
-  <h2>6. Vos droits</h2>
-  <p>Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Vous pouvez exercer ces droits en nous contactant à : <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a></p>
-
-  <h2>7. Contact</h2>
-  <p>Haloways<br>6 lot Le Clos de l'Épinette<br>85440 Talmont-Saint-Hilaire – France<br>Email : <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a></p>
+  <h2>12. Contact</h2>
+  <p>Haloways<br>6 lotissement Le Clos de l'Épinette<br>85440 Talmont-Saint-Hilaire, France<br>Email : <a href="mailto:nicolas@haloways.com">nicolas@haloways.com</a></p>
 
   <div class="divider"></div>
   <footer-text>© 2026 Haloways</footer-text>
