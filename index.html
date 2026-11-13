@@ -363,6 +363,21 @@ nav::before{
   transition:color .2s,border-color .2s;
 }
 .btn-ghost:hover{color:var(--t-hi);border-color:rgba(245,240,232,.25)}
+/* La visio découverte avec Charles (13/11) : seconde porte d'entrée, en or léger (liseré et texte), jamais en aplat. */
+.btn-visio,.nav-visio,.mobile-visio{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:var(--radius-sm);
+  background:transparent;color:var(--gold);
+  border:1px solid rgba(201,168,76,.55);
+  font-family:'DM Sans',sans-serif;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.btn-visio{padding:.85rem 2rem;font-size:.62rem}
+.nav-visio{padding:.62rem 1.2rem;font-size:.6rem}
+.mobile-visio{padding:1rem 2rem;font-size:.65rem;margin-top:14px;position:relative;z-index:1}
+.btn-visio:hover,.nav-visio:hover,.mobile-visio:hover{background:rgba(201,168,76,.10);border-color:rgba(201,168,76,.85);transform:translateY(-1px)}
 
 /* ── HOW IT WORKS ── */
 .section{padding:100px 40px}
@@ -959,6 +974,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     <a class="nav-login" href="#tarif">Tarif</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
+    <a class="nav-visio" data-demo="menu" href="https://one.haloways.com/demo?depuis=menu">Visio découverte</a>
     <a class="nav-cta" data-cta="menu" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
   </div>
   <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
@@ -968,6 +984,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Tarif</a>
   <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
   <a class="mobile-cta" data-cta="menu_mobile" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+  <a class="mobile-visio" data-demo="menu_mobile" href="https://one.haloways.com/demo?depuis=menu_mobile">Réserver une visio découverte</a>
 </div>
 
 <!-- HERO -->
@@ -993,7 +1010,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <p class="hero-sub">Le club d'affaires sur-mesure qui sélectionne, pour vous, <em>les bonnes personnes</em> à rencontrer chaque semaine.</p>
   <div class="hero-actions">
     <a class="btn-primary" data-cta="hero" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-    <a class="btn-ghost" data-demo="hero" href="https://one.haloways.com/demo">Réserver une démo</a>
+    <a class="btn-visio" data-demo="hero" href="https://one.haloways.com/demo?depuis=hero">Réserver une visio découverte</a>
     <a class="btn-ghost" href="#how">Comment ça marche</a>
   </div>
 </section>
@@ -1776,6 +1793,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <li>Démo personnalisée offerte pendant l'essai</li>
     </ul>
     <a class="btn-primary price-cta" data-cta="tarif" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+    <a class="btn-visio price-cta" data-demo="tarif" href="https://one.haloways.com/demo?depuis=tarif" style="margin-top:10px">Réserver une visio découverte</a>
     <p class="price-note">Rien à payer pendant les 14 jours d'essai. Ensuite, 33 € HT prélevés chaque mois. Annulable à tout moment.</p>
   </div>
 </section>
@@ -1830,7 +1848,8 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <h2 class="cta-title">Votre premier allié vous attend cette semaine.</h2>
   <p class="cta-sub">Commencez vos 14 jours. Sans engagement, annulable à tout moment.</p>
   <a class="btn-primary" data-cta="fin_de_page" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-  <p class="cta-sub" style="margin-top:18px">Ou <a data-demo="fin_de_page" href="https://one.haloways.com/demo" style="color:inherit;text-decoration:underline;text-underline-offset:3px">réservez une démo de 30 minutes</a>.</p>
+  <div style="margin-top:14px"><a class="btn-visio" data-demo="fin_de_page" href="https://one.haloways.com/demo?depuis=fin_de_page">Réserver une visio découverte</a></div>
+  <p class="cta-sub" style="margin-top:12px">30 minutes avec Charles pour voir qui, dans les réseaux des membres, correspond aux clients que vous cherchez.</p>
 </section>
 
 <!-- FOOTER -->
