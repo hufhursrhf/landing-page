@@ -363,21 +363,53 @@ nav::before{
   transition:color .2s,border-color .2s;
 }
 .btn-ghost:hover{color:var(--t-hi);border-color:rgba(245,240,232,.25)}
-/* La visio découverte avec Charles (13/11) : seconde porte d'entrée, en or léger (liseré et texte), jamais en aplat. */
-.btn-visio,.nav-visio,.mobile-visio{
-  display:inline-flex;align-items:center;justify-content:center;
+/* La visio découverte avec Charles (13/11, refait le 14/11) : seconde porte d'entrée, en or léger
+   (voile, liseré et texte), jamais en aplat ; une caméra pour dire « visio » d'un coup d'œil. */
+.btn-visio{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  height:48px;padding:0 1.8rem;box-sizing:border-box;
   border-radius:var(--radius-sm);
-  background:transparent;color:var(--gold);
-  border:1px solid rgba(201,168,76,.55);
-  font-family:'DM Sans',sans-serif;font-weight:700;
+  background:rgba(201,168,76,.07);color:var(--gold);
+  border:1px solid rgba(201,168,76,.42);
+  font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;
   letter-spacing:.2em;text-transform:uppercase;
-  text-decoration:none;cursor:pointer;
+  text-decoration:none;cursor:pointer;white-space:nowrap;
   transition:background .2s,border-color .2s,transform .15s;
 }
-.btn-visio{padding:.85rem 2rem;font-size:.62rem}
-.nav-visio{padding:.62rem 1.2rem;font-size:.6rem}
-.mobile-visio{padding:1rem 2rem;font-size:.65rem;margin-top:14px;position:relative;z-index:1}
-.btn-visio:hover,.nav-visio:hover,.mobile-visio:hover{background:rgba(201,168,76,.10);border-color:rgba(201,168,76,.85);transform:translateY(-1px)}
+.btn-visio:hover{background:rgba(201,168,76,.13);border-color:rgba(201,168,76,.75);transform:translateY(-1px)}
+.btn-visio svg,.nav-visio svg,.lien-visio svg{flex:none}
+.hero-actions .btn-primary,.cta-actions .btn-primary{height:48px;padding-top:0;padding-bottom:0;box-sizing:border-box;justify-content:center;white-space:nowrap}
+.hero-actions{gap:12px}
+.hero-more{
+  display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+  color:var(--t-lo);font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:color .2s;
+}
+.hero-more:hover{color:var(--t-hi)}
+.nav-visio{
+  display:inline-flex;align-items:center;gap:7px;padding:.6rem 1rem;
+  color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:color .2s;
+}
+.nav-visio:hover{color:#d9c06b}
+.mobile-visio{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;
+  padding:1rem 2rem;border-radius:var(--radius-sm);position:relative;z-index:1;
+  background:rgba(201,168,76,.07);color:var(--gold);border:1px solid rgba(201,168,76,.42);
+  font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+}
+.lien-visio{
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;
+  color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;text-decoration:none;
+}
+.lien-visio:hover{color:#d9c06b}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-sub.cta-note{margin-top:26px;font-size:.82rem;font-style:normal;color:var(--t-lo);max-width:440px;margin-left:auto;margin-right:auto}
+@media(max-width:560px){
+  .hero-actions,.cta-actions{flex-direction:column;align-items:stretch;width:100%;max-width:340px;margin-left:auto;margin-right:auto}
+  .hero-actions .btn-primary,.hero-actions .btn-visio,.cta-actions .btn-primary,.cta-actions .btn-visio{width:100%;padding:0 1rem}
+}
 
 /* ── HOW IT WORKS ── */
 .section{padding:100px 40px}
@@ -974,7 +1006,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     <a class="nav-login" href="#tarif">Tarif</a>
     <span class="nav-sep"></span>
     <a class="nav-login" href="https://one.haloways.com/login">Se connecter</a>
-    <a class="nav-visio" data-demo="menu" href="https://one.haloways.com/demo?depuis=menu">Visio découverte</a>
+    <a class="nav-visio" data-demo="menu" href="https://one.haloways.com/demo?depuis=menu"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Visio découverte</a>
     <a class="nav-cta" data-cta="menu" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
   </div>
   <button class="burger" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('open');this.classList.toggle('open')"><span></span><span></span><span></span></button>
@@ -984,7 +1016,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <a class="mobile-link" href="#tarif" onclick="closeMobileMenu()">Tarif</a>
   <a class="mobile-link" href="https://one.haloways.com/login" onclick="closeMobileMenu()">Se connecter</a>
   <a class="mobile-cta" data-cta="menu_mobile" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-  <a class="mobile-visio" data-demo="menu_mobile" href="https://one.haloways.com/demo?depuis=menu_mobile">Réserver une visio découverte</a>
+  <a class="mobile-visio" data-demo="menu_mobile" href="https://one.haloways.com/demo?depuis=menu_mobile"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Visio découverte</a>
 </div>
 
 <!-- HERO -->
@@ -1010,9 +1042,9 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <p class="hero-sub">Le club d'affaires sur-mesure qui sélectionne, pour vous, <em>les bonnes personnes</em> à rencontrer chaque semaine.</p>
   <div class="hero-actions">
     <a class="btn-primary" data-cta="hero" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-    <a class="btn-visio" data-demo="hero" href="https://one.haloways.com/demo?depuis=hero">Réserver une visio découverte</a>
-    <a class="btn-ghost" href="#how">Comment ça marche</a>
+    <a class="btn-visio" data-demo="hero" href="https://one.haloways.com/demo?depuis=hero"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Réserver une visio découverte</a>
   </div>
+  <a class="hero-more" href="#how">Comment ça marche <span aria-hidden="true">↓</span></a>
 </section>
 
 <!-- BRAND MARQUEE -->
@@ -1793,7 +1825,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <li>Démo personnalisée offerte pendant l'essai</li>
     </ul>
     <a class="btn-primary price-cta" data-cta="tarif" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-    <a class="btn-visio price-cta" data-demo="tarif" href="https://one.haloways.com/demo?depuis=tarif" style="margin-top:10px">Réserver une visio découverte</a>
+    <a class="lien-visio" data-demo="tarif" href="https://one.haloways.com/demo?depuis=tarif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Ou réserver une visio découverte</a>
     <p class="price-note">Rien à payer pendant les 14 jours d'essai. Ensuite, 33 € HT prélevés chaque mois. Annulable à tout moment.</p>
   </div>
 </section>
@@ -1847,9 +1879,11 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   <div class="rule"></div>
   <h2 class="cta-title">Votre premier allié vous attend cette semaine.</h2>
   <p class="cta-sub">Commencez vos 14 jours. Sans engagement, annulable à tout moment.</p>
-  <a class="btn-primary" data-cta="fin_de_page" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
-  <div style="margin-top:14px"><a class="btn-visio" data-demo="fin_de_page" href="https://one.haloways.com/demo?depuis=fin_de_page">Réserver une visio découverte</a></div>
-  <p class="cta-sub" style="margin-top:12px">30 minutes avec Charles pour voir qui, dans les réseaux des membres, correspond aux clients que vous cherchez.</p>
+  <div class="cta-actions">
+    <a class="btn-primary" data-cta="fin_de_page" href="https://one.haloways.com/signup">Commencer 14 jours gratuits</a>
+    <a class="btn-visio" data-demo="fin_de_page" href="https://one.haloways.com/demo?depuis=fin_de_page"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Réserver une visio découverte</a>
+  </div>
+  <p class="cta-sub cta-note">Visio découverte : 30 minutes avec Charles pour voir qui, dans les réseaux des membres, correspond aux clients que vous cherchez.</p>
 </section>
 
 <!-- FOOTER -->
