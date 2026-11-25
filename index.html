@@ -969,6 +969,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
   color:rgba(245,240,232,.6);
   margin-bottom:22px;
 }
+.brands-label b{font-weight:500;color:var(--gold);font-size:1.5em;letter-spacing:.08em;margin:0 .15em;font-variant-numeric:tabular-nums;vertical-align:-.06em}
 .brands-track-wrap{
   position:relative;
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
@@ -1167,7 +1168,7 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
 
 <!-- BRAND MARQUEE -->
 <section class="brands" aria-label="Parmi les membres Haloways">
-  <div class="brands-label">Parmi les membres Haloways</div>
+  <div class="brands-label">Parmi les <b>300+</b> membres Haloways</div>
   <div class="brands-track-wrap">
     <div class="brands-track">
       <img class="brand-logo" style="height:28px" src="brands/cube.png" alt="Cube École">
@@ -1203,9 +1204,6 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
       <img class="brand-logo" style="height:22px" src="brands/zylio.png" alt="" aria-hidden="true">
     </div>
   </div>
-  <div class="brands-stats">
-    <div class="bstat"><span class="bstat-n" data-cible="300">300+</span><span class="bstat-l">Membres</span></div>
-  </div>
 </section>
 
 
@@ -1234,8 +1232,8 @@ body>*:not(.lines-bg):not(#splash):not(nav):not(#mobile-menu){position:relative;
     </div>
     <ul class="meca-chiffres">
       <li><b>5</b><span>présentations par rencontre, en moyenne</span></li>
-      <li><b>70&nbsp;%</b><span>des messages reçoivent une réponse</span></li>
-      <li><b>30&nbsp;%</b><span>mènent à un échange ou à un rendez-vous</span></li>
+      <li><b>70&nbsp;%</b><span>des présentations reçoivent une réponse du prospect</span></li>
+      <li><b>30&nbsp;%</b><span>mènent à un échange ou à un rendez-vous avec votre client idéal</span></li>
     </ul>
   </div>
 </section>
@@ -2152,13 +2150,70 @@ function closeMobileMenu() {
     // Les liens de démo avec Charles (13/11) : 'landing_demo_click'.
     var d = e.target && e.target.closest ? e.target.closest('a[href*="one.haloways.com/demo"]') : null;
     if (d) {
-      try { if (window.posthog && window.posthog.capture) window.posthog.capture('landing_demo_click', { location: d.getAttribute('data-demo') || 'unknown' }); } catch (err) {}
+      try {
+        if (window.posthog && window.posthog.capture) window.posthog.capture('landing_demo_click', {
+          location: d.getAttribute('data-demo') || 'unknown',
+          cta_text: (d.textContent || '').trim().slice(0, 60),
+          secondes: Math.round((Date.now() - (window.__hwDebut || Date.now())) / 1000),
+          profondeur: window.__hwProfondeur || 0,
+          sections_vues: (window.__hwSections || []).join(',')
+        });
+      } catch (err) {}
     }
   }, true);
 })();
 </script>
 
 
+<script>
+/* Suivi de la lecture (25/11) : ce que la personne a vu et touché avant de réserver, ou de partir.
+   - landing_section_vue   : chaque section, la première fois qu'elle est vraiment à l'écran ;
+   - landing_defilement    : 25, 50, 75 et 100 % de la page ;
+   - landing_faq_ouverte   : la question ouverte ;
+   - landing_menu_clic     : les liens du menu ;
+   - landing_temoignages_plus : « Voir plus de témoignages » ;
+   - landing_depart        : au départ de la page, le temps passé, la profondeur et les sections vues.
+   landing_demo_click (plus haut) porte les mêmes repères au moment du clic. */
+(function(){
+  window.__hwDebut = Date.now(); window.__hwProfondeur = 0; window.__hwSections = [];
+  function envoyer(nom, props){ try { if (window.posthog && posthog.capture) posthog.capture(nom, props || {}) } catch (e) {} }
+  var noms = { accueil:'haut_de_page', mecanisme:'mecanisme', how:'comment_ca_marche', 'pour-qui':'pour_qui', garantie:'garantie', compare:'comparatif', wall:'temoignages', faq:'questions', cta:'fin_de_page' };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      var n = noms[e.target.id] || e.target.id;
+      window.__hwSections.push(n);
+      envoyer('landing_section_vue', { section: n, rang: window.__hwSections.length, secondes: Math.round((Date.now() - window.__hwDebut) / 1000) });
+    }) }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 }); // la section traverse le milieu de l'écran, quelle que soit sa hauteur
+    Object.keys(noms).forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el) });
+  }
+  var paliers = [25, 50, 75, 100], attente = false;
+  function mesurer(){
+    attente = false;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? Math.min(100, Math.round(window.scrollY / h * 100)) : 100;
+    while (paliers.length && p >= paliers[0]) { var palier = paliers.shift(); window.__hwProfondeur = palier; envoyer('landing_defilement', { profondeur: palier }) }
+  }
+  window.addEventListener('scroll', function(){ if (!attente) { attente = true; requestAnimationFrame(mesurer) } }, { passive: true });
+  document.addEventListener('click', function(e){
+    var t = e.target; if (!t || !t.closest) return;
+    var q = t.closest('.faq-q');
+    if (q && !q.parentElement.classList.contains('open')) envoyer('landing_faq_ouverte', { question: (q.textContent || '').trim().slice(0, 90) });
+    var m = t.closest('.nav-login, .mobile-link');
+    if (m) envoyer('landing_menu_clic', { lien: (m.textContent || '').trim(), vers: m.getAttribute('href') });
+    if (t.closest('#wall-more')) envoyer('landing_temoignages_plus');
+    if (t.closest('.hero-more')) envoyer('landing_menu_clic', { lien: 'Comment ça marche (haut de page)', vers: '#mecanisme' });
+  }, true);
+  var parti = false;
+  function depart(){
+    if (parti) return; parti = true;
+    envoyer('landing_depart', { secondes: Math.round((Date.now() - window.__hwDebut) / 1000), profondeur: window.__hwProfondeur, sections_vues: window.__hwSections.join(','), nb_sections: window.__hwSections.length });
+  }
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') depart() });
+  window.addEventListener('pagehide', depart);
+})();
+</script>
 <script>
 /* Les compteurs montent de 0 jusqu'à leur valeur quand ils apparaissent.
    La valeur finale est déjà écrite dans la page : sans JavaScript ou avec
